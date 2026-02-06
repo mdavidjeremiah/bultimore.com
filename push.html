@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingram's Push | Reading Initiative | Bultimore Foundation</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <!-- Animate.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary-gold: #d4af37;
+      --gold-light: #f4e7a6;
+      --gold-dark: #b8941f;
+      --dark-brown: #996515;
+      --black: #1a1a1a;
+      --light-bg: #fefefe;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      padding-top: 0;
+      overflow-x: hidden;
+    }
+    
+    /* TOPBAR STYLING */
+    .topbar {
+      background: linear-gradient(135deg, var(--dark-brown) 0%, #7a5312 100%);
+      color: white;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1001;
+    }
+    
+    .topbar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-gold), transparent 30%, transparent 70%, var(--primary-gold));
+    }
+    
+    .topbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .topbar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    
+    .topbar-item i {
+      color: var(--primary-gold);
+      font-size: 0.9rem;
+      width: 18px;
+      text-align: center;
+    }
+    
+    .topbar-social {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .topbar-social a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .topbar-social a:hover {
+      color: var(--primary-gold);
+      transform: translateY(-2px);
+    }
+    
+    /* NAVBAR STYLING */
+    .navbar-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+      background: transparent;
+    }
+    
+    .navbar-solid {
+      background: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+    }
+    
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .navbar-solid .navbar-brand {
+      color: var(--dark-brown);
+    }
+    
+    .navbar-brand span {
+      color: var(--primary-gold);
+    }
+    
+    .nav-link {
+      color: var(--primary-gold) !important;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 10px 16px !important;
+      margin: 0 5px;
+      position: relative;
+      transition: var(--transition);
+      border-radius: 4px;
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+      color: var(--black) !important;
+    }
+    
+    /* Golden underline animation */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+      transition: var(--transition);
+      opacity: 0;
+    }
+    
+    .nav-link:hover::after {
+      width: 80%;
+      opacity: 1;
+    }
+    
+    /* Active Programs menu item */
+    .nav-link.active {
+      background: rgba(212, 175, 55, 0.15) !important;
+      color: var(--black) !important;
+    }
+    
+    .nav-link.active::after {
+      width: 80%;
+      opacity: 1;
+      background: var(--primary-gold);
+    }
+    
+    /* Navbar toggler */
+    .navbar-toggler {
+      border: none;
+      padding: 8px;
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212, 175, 55, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    
+    /* Mobile menu */
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border-radius: 0 0 10px 10px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+      }
+      
+      .nav-link {
+        color: var(--dark-brown) !important;
+        margin: 5px 0;
+      }
+    }
+    
+    /* HERO SECTION - WELL SPACED FROM NAVBAR */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=1928&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      padding-top: 120px; /* Added space between navbar and hero */
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 1.5rem;
+      margin-top: 40px; /* Extra spacing from top */
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 1.5rem auto 2.5rem;
+      opacity: 0.95;
+    }
+
+    /* ACTION BUTTONS */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .action-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      border: 2px solid var(--primary-gold);
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+    
+    .action-btn.outline {
+      background: transparent;
+      color: var(--primary-gold);
+    }
+    
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    }
+    
+    .action-btn.outline:hover {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+    }
+
+    /* AUTH CONTAINER - SIGN UP/SIGN IN TOGGLE (Hidden by default) */
+    .auth-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 450px;
+      margin: 2rem auto 0;
+      color: var(--dark-brown);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      position: relative;
+      overflow: hidden;
+      min-height: 450px;
+      display: none; /* Hidden by default */
+    }
+    
+    .auth-container.show {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .auth-forms {
+      position: relative;
+      width: 200%;
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    
+    .auth-container.sign-in-mode .auth-forms {
+      transform: translateX(-50%);
+    }
+    
+    .auth-form {
+      width: 50%;
+      padding: 0 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .auth-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .auth-header h4 {
+      color: var(--dark-brown);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 1.8rem;
+    }
+    
+    .auth-header p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    .auth-form input {
+      border-radius: 10px;
+      margin-bottom: 1.2rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid #ddd;
+      transition: var(--transition);
+      width: 100%;
+    }
+    
+    .auth-form input:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+      outline: none;
+    }
+    
+    .auth-form button {
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary-gold), var(--gold-dark));
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem;
+      transition: var(--transition);
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    
+    .auth-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+    
+    .auth-switch {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: var(--dark-brown);
+      font-size: 0.95rem;
+    }
+    
+    .auth-switch a {
+      color: var(--primary-gold);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border-bottom: 1px dotted transparent;
+    }
+    
+    .auth-switch a:hover {
+      border-bottom: 1px dotted var(--primary-gold);
+    }
+    
+    .auth-tab-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .auth-tab {
+      padding: 10px 30px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #999;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .auth-tab.active {
+      color: var(--dark-brown);
+    }
+    
+    .auth-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary-gold);
+    }
+    
+    /* Close button for auth form */
+    .auth-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 10;
+    }
+    
+    .auth-close:hover {
+      color: var(--primary-gold);
+      transform: rotate(90deg);
+    }
+
+    /* MISSION SECTION */
+    .mission {
+      background: #fff;
+      padding: 5rem 2rem;
+    }
+
+    .mission h2 {
+      text-align: center;
+      color: var(--dark-brown);
+      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      font-family: 'Playfair Display', serif;
+      position: relative;
+    }
+    
+    .mission h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-gold);
+      border-radius: 2px;
+    }
+
+    .mission p {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    /* STATS / IMPACT SECTION WITH COUNT-UP ANIMATION */
+    .impact {
+      background: linear-gradient(135deg, var(--dark-brown) 0%, #7a5312 100%);
+      color: white;
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .impact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+      background-size: cover;
+    }
+
+    .impact h3 {
+      color: var(--primary-gold);
+      margin-bottom: 3rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .impact .stat {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary-gold);
+      margin-bottom: 0.5rem;
+      display: inline-block;
+      min-width: 120px;
+    }
+
+    .impact p {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0.9;
+    }
+    
+    /* FOOTER STYLING */
+    .footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #ddd;
+      padding: 60px 0 30px;
+      position: relative;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-gold), var(--dark-brown), var(--primary-gold));
+    }
+    
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .footer-tagline {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--primary-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-social a:hover {
+      background: var(--primary-gold);
+      color: #1a1a1a;
+      transform: translateY(-3px);
+    }
+    
+    .footer-heading {
+      color: var(--primary-gold);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-gold);
+      padding-left: 5px;
+    }
+    
+    .footer-contact {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+      color: #bbb;
+    }
+    
+    .footer-contact i {
+      color: var(--primary-gold);
+      font-size: 1.1rem;
+      width: 20px;
+      margin-top: 3px;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      margin-top: 1.5rem;
+    }
+    
+    .newsletter-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
+    }
+    
+    .newsletter-input::placeholder {
+      color: #999;
+    }
+    
+    .newsletter-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 4px 4px 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-btn:hover {
+      background: var(--gold-light);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+      font-size: 0.9rem;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 100px;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-top: 20px;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .mission h2 {
+        font-size: 2.2rem;
+      }
+      
+      .impact h3 {
+        font-size: 2rem;
+      }
+      
+      .footer-brand {
+        font-size: 2rem;
+      }
+      
+      .topbar-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      
+      .topbar-left {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .impact .stat {
+        font-size: 2.5rem;
+        min-width: 100px;
+      }
+      
+      .auth-container {
+        padding: 2rem 1.5rem;
+        min-height: 420px;
+        margin: 2rem 1rem 0;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .action-btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
+    }
+    
+    /* ANIMATIONS */
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    .animate-slide-up {
+      animation: slideUp 0.6s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .counting {
+      animation: countUp 1s ease-out;
+    }
+    
+    @keyframes slideInDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <div class='topbar d-none d-lg-block'>
+    <div class='container'>
+      <div class='topbar-content'>
+        <div class='topbar-left'>
+          <div class='topbar-item'>
+            <i class='fas fa-map-marker-alt'></i>
+            <span>02 Cleopus Drive, Nalumunye</span>
+          </div>
+          <div class='topbar-item'>
+            <i class='fas fa-phone-alt'></i>
+            <span>+256 776 533 872</span>
+          </div>
+          <div class='topbar-item'>
+            <i class='fas fa-envelope-open'></i>
+            <span>info@bultimore.com</span>
+          </div>
+        </div>
+        <div class='topbar-social'>
+          <a href='#'><i class='fab fa-facebook-f'></i></a>
+          <a href='#'><i class='fab fa-instagram'></i></a>
+          <a href='#'><i class='fab fa-linkedin-in'></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-wrapper">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span>Bultimore</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallary.html">Art Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archive.html">Archive</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="library.html">Library</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="#" id="programsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Programs
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+              <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+              <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+              <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contacts</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION WITH SPACED HEADING -->
+  <section class="hero animate-fade-in">
+    <div>
+      <h1 class="animate__animated animate__fadeInDown">Ingram's Push for Reading</h1>
+      <p class="animate__animated animate__fadeInUp">
+        Reading is fundamental — it shapes thought, awakens imagination, and empowers action.  
+        Join our member-based initiative to build a culture of readers and thinkers.
+      </p>
+
+      <!-- ACTION BUTTONS (Sign Up / Sign In) -->
+      <div class="action-buttons">
+        <a href="#" class="action-btn" id="showSignUpBtn">Join the Movement</a>
+        <a href="#" class="action-btn outline" id="showSignInBtn">Member Login</a>
+      </div>
+
+      <!-- AUTH CONTAINER WITH TOGGLE (Hidden by default) -->
+      <div class="auth-container animate__animated animate__zoomIn" id="authContainer">
+        <button class="auth-close" id="closeAuthBtn">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="auth-tab-toggle">
+          <div class="auth-tab active" id="signUpTab">Sign Up</div>
+          <div class="auth-tab" id="signInTab">Sign In</div>
+        </div>
+        
+        <div class="auth-forms">
+          <!-- Sign Up Form -->
+          <div class="auth-form" id="signUpForm">
+            <div class="auth-header">
+              <h4>Join the Movement</h4>
+              <p>Create your account to start your reading journey</p>
+            </div>
+            <form id="signUpFormElement">
+              <input type="text" class="form-control" placeholder="Full Name" required />
+              <input type="email" class="form-control" placeholder="Email Address" required />
+              <input type="password" class="form-control" placeholder="Create Password" required />
+              <input type="password" class="form-control" placeholder="Confirm Password" required />
+              <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                <label class="form-check-label" for="termsCheck">I agree to the <a href="#" style="color: var(--primary-gold);">Terms & Conditions</a></label>
+              </div>
+              <button type="submit" class="btn">Create Account</button>
+            </form>
+            <div class="auth-switch">
+              Already have an account? <a id="switchToSignIn">Sign In</a>
+            </div>
+          </div>
+          
+          <!-- Sign In Form -->
+          <div class="auth-form" id="signInForm">
+            <div class="auth-header">
+              <h4>Welcome Back</h4>
+              <p>Sign in to continue your reading journey</p>
+            </div>
+            <form id="signInFormElement">
+              <input type="email" class="form-control" placeholder="Email Address" required />
+              <input type="password" class="form-control" placeholder="Password" required />
+              <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <button type="submit" class="btn">Sign In</button>
+            </form>
+            <div class="auth-switch">
+              <a href="#" class="d-block mb-2">Forgot Password?</a>
+              Don't have an account? <a id="switchToSignUp">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION SECTION -->
+  <section class="mission">
+    <div class="container">
+      <h2>Our Mission</h2>
+      <p>
+        Ingram's Push is a literary and educational initiative dedicated to promoting the habit of reading among young people and adults alike.  
+        We believe that reading transforms lives, sharpens minds, and strengthens societies.  
+        Our goal is to foster curiosity, literacy, and lifelong learning across communities through mentorship programs, book drives, and digital access.
+      </p>
+    </div>
+  </section>
+
+  <!-- IMPACT SECTION WITH COUNT-UP ANIMATION -->
+  <section class="impact">
+    <div class="container">
+      <h3>Our Global Impact</h3>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="stat-container">
+            <div class="stat" id="membersStat" data-target="1200">0</div>
+            <p>Members Registered</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-container">
+            <div class="stat" id="booksStat" data-target="8500">0</div>
+            <p>Books Distributed</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-container">
+            <div class="stat" id="hubsStat" data-target="35">0</div>
+            <p>Community Reading Hubs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <!-- Brand Column -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <span class="footer-brand">Bultimore Foundation</span>
+          <p class="footer-tagline">
+            Transforming communities through education, nutrition, and environmental sustainability. 
+            Your donations create lasting impact across Uganda.
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <!-- Quick Links Column -->
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="gallary.html"><i class="fas fa-palette"></i> Art Gallery</a></li>
+            <li><a href="library.html"><i class="fas fa-book"></i> Library</a></li>
+            <li><a href="programs.html"><i class="fas fa-cogs"></i> Our Programs</a></li>
+            <li><a href="donate.html"><i class="fas fa-heart"></i> Donate</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Column -->
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <h4 class="footer-heading">Contact Info</h4>
+          <div class="footer-contact">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>02 Cleopus Drive, Nalumunye</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-phone-alt"></i>
+            <div>+256 776 533 872</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-envelope"></i>
+            <div>info@bultimore.com</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-clock"></i>
+            <div>Mon-Fri: 9AM-5PM EAT</div>
+          </div>
+        </div>
+        
+        <!-- Newsletter Column -->
+        <div class="col-lg-3">
+          <h4 class="footer-heading">Stay Connected</h4>
+          <p>Subscribe to receive impact reports and updates on how your donations are changing lives.</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="newsletter-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ingram's Push Initiative. All rights reserved. | Powered by Bultimore Foundation</p>
+        <p>Transforming lives through education, literacy, and community empowerment.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-wrapper');
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar-solid');
+      } else {
+        navbar.classList.remove('navbar-solid');
+      }
+    });
+
+    // AUTH FORM TOGGLE AND SHOW/HIDE FUNCTIONALITY
+    const authContainer = document.getElementById('authContainer');
+    const showSignUpBtn = document.getElementById('showSignUpBtn');
+    const showSignInBtn = document.getElementById('showSignInBtn');
+    const closeAuthBtn = document.getElementById('closeAuthBtn');
+    const signUpTab = document.getElementById('signUpTab');
+    const signInTab = document.getElementById('signInTab');
+    const switchToSignIn = document.getElementById('switchToSignIn');
+    const switchToSignUp = document.getElementById('switchToSignUp');
+    
+    // Function to show Sign Up form
+    function showSignUpForm() {
+      authContainer.classList.add('show');
+      authContainer.classList.remove('sign-in-mode');
+      signUpTab.classList.add('active');
+      signInTab.classList.remove('active');
+      
+      // Scroll to auth form smoothly
+      authContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    // Function to show Sign In form
+    function showSignInForm() {
+      authContainer.classList.add('show');
+      authContainer.classList.add('sign-in-mode');
+      signUpTab.classList.remove('active');
+      signInTab.classList.add('active');
+      
+      // Scroll to auth form smoothly
+      authContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    // Function to hide auth form
+    function hideAuthForm() {
+      authContainer.classList.remove('show');
+    }
+    
+    // Event listeners for showing forms
+    showSignUpBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      showSignUpForm();
+    });
+    
+    showSignInBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      showSignInForm();
+    });
+    
+    // Event listener for closing form
+    closeAuthBtn.addEventListener('click', hideAuthForm);
+    
+    // Event listeners for switching between forms
+    signUpTab.addEventListener('click', showSignUpForm);
+    signInTab.addEventListener('click', showSignInForm);
+    switchToSignIn.addEventListener('click', function(e) {
+      e.preventDefault();
+      showSignInForm();
+    });
+    switchToSignUp.addEventListener('click', function(e) {
+      e.preventDefault();
+      showSignUpForm();
+    });
+    
+    // Close form when clicking outside
+    document.addEventListener('click', function(e) {
+      if (authContainer.classList.contains('show') && 
+          !authContainer.contains(e.target) && 
+          e.target !== showSignUpBtn && 
+          e.target !== showSignInBtn &&
+          !showSignUpBtn.contains(e.target) &&
+          !showSignInBtn.contains(e.target)) {
+        hideAuthForm();
+      }
+    });
+    
+    // Close form with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && authContainer.classList.contains('show')) {
+        hideAuthForm();
+      }
+    });
+    
+    // Form submissions
+    document.getElementById('signUpFormElement').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = this.querySelector('input[type="text"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      
+      if (name && email) {
+        alert(`Welcome, ${name}! Your account has been created successfully. Check your email for verification.`);
+        this.reset();
+        hideAuthForm();
+      }
+    });
+    
+    document.getElementById('signInFormElement').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      
+      if (email) {
+        alert(`Welcome back! You have successfully signed in.`);
+        this.reset();
+        hideAuthForm();
+      }
+    });
+
+    // COUNT-UP ANIMATION FOR STATS
+    function animateCountUp() {
+      const stats = document.querySelectorAll('.stat');
+      
+      stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          stat.textContent = Math.floor(current).toLocaleString() + (stat.id === 'hubsStat' ? '' : '+');
+        }, 16);
+        
+        // Add animation class
+        stat.classList.add('counting');
+      });
+    }
+    
+    // Trigger count-up animation when section is in view
+    const impactSection = document.querySelector('.impact');
+    let hasAnimated = false;
+    
+    function checkIfInView() {
+      const rect = impactSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      
+      // If section is in view and hasn't been animated yet
+      if (rect.top <= windowHeight * 0.75 && rect.bottom >= 0 && !hasAnimated) {
+        animateCountUp();
+        hasAnimated = true;
+      }
+    }
+    
+    // Check on load and scroll
+    window.addEventListener('load', checkIfInView);
+    window.addEventListener('scroll', checkIfInView);
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse.show');
+          if (navbarCollapse) {
+            bootstrap.Collapse.getInstance(navbarCollapse).hide();
+          }
+        }
+      });
+    });
+
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('.newsletter-input').value;
+        if (email) {
+          alert('Thank you for subscribing to our newsletter! You will receive updates about our impact.');
+          this.querySelector('.newsletter-input').value = '';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

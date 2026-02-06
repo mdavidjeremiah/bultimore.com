@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dear Daughter | Ingram's Push | Bultimore Foundation</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-gold: #d4af37;
+      --gold-light: #FFE8A5;
+      --gold-mid: #D4AF37;
+      --gold-dark: #996515;
+      --dark-brown: #996515;
+      --black: #1a1a1a;
+      --light-bg: #fefefe;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      padding-top: 0;
+      overflow-x: hidden;
+    }
+    
+    /* TOPBAR STYLING */
+    .topbar {
+      background: linear-gradient(135deg, var(--dark-brown) 0%, #7a5312 100%);
+      color: white;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1001;
+    }
+    
+    .topbar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-gold), transparent 30%, transparent 70%, var(--primary-gold));
+    }
+    
+    .topbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .topbar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    
+    .topbar-item i {
+      color: var(--primary-gold);
+      font-size: 0.9rem;
+      width: 18px;
+      text-align: center;
+    }
+    
+    .topbar-social {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .topbar-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+    
+    .topbar-social a:hover {
+      color: var(--primary-gold);
+      transform: translateY(-2px);
+    }
+    
+    /* NAVBAR STYLING */
+    .navbar-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    .navbar-transparent {
+      background: transparent !important;
+      backdrop-filter: none;
+      transition: var(--transition);
+    }
+    
+    .navbar-solid {
+      background: rgba(255, 255, 255, 0.98) !important;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+    }
+    
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: white;
+      transition: var(--transition);
+    }
+    
+    .navbar-solid .navbar-brand {
+      color: var(--dark-brown);
+    }
+    
+    .navbar-brand span {
+      color: var(--primary-gold);
+    }
+    
+    .nav-link {
+      color: var(--primary-gold) !important;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 10px 16px !important;
+      margin: 0 5px;
+      position: relative;
+      transition: var(--transition);
+      border-radius: 4px;
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+      color: var(--black) !important;
+    }
+    
+    /* Golden underline animation */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+      transition: var(--transition);
+      opacity: 0;
+    }
+    
+    .nav-link:hover::after {
+      width: 80%;
+      opacity: 1;
+    }
+    
+    /* Active Programs menu item */
+    .nav-link.active {
+      background: rgba(212, 175, 55, 0.15) !important;
+      color: var(--black) !important;
+    }
+    
+    .nav-link.active::after {
+      width: 80%;
+      opacity: 1;
+      background: var(--primary-gold);
+    }
+    
+    /* Navbar toggler */
+    .navbar-toggler {
+      border: none;
+      padding: 8px;
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212, 175, 55, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    
+    /* Mobile menu */
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border-radius: 0 0 10px 10px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+      }
+      
+      .nav-link {
+        color: var(--dark-brown) !important;
+        margin: 5px 0;
+      }
+    }
+    
+    /* HERO SECTION */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      margin-top: -90px; /* Adjust for navbar height */
+    }
+    
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      z-index: 2;
+    }
+    
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--primary-gold);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.95;
+    }
+    
+    .hero-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      padding: 12px 35px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: var(--transition);
+      border: 2px solid var(--primary-gold);
+    }
+    
+    .hero-btn:hover {
+      background: transparent;
+      color: var(--primary-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    }
+    
+    /* CONTENT SECTIONS */
+    .section-padding {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-brown);
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-gold);
+      border-radius: 2px;
+    }
+    
+    .section-text {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      line-height: 1.8;
+    }
+    
+    /* MISSION & VISION */
+    .mission-vision-section {
+      background: #f9f7f0;
+    }
+    
+    .feature-image {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+    
+    .feature-image:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+    
+    .feature-title {
+      color: var(--dark-brown);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .feature-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--primary-gold);
+      border-radius: 2px;
+    }
+    
+    .feature-text {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    
+    /* VOICES SECTION */
+    .voice-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      height: 100%;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    
+    .voice-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary-gold);
+    }
+    
+    .voice-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary-gold);
+      margin: 2rem auto 1.5rem;
+      display: block;
+    }
+    
+    .voice-name {
+      color: var(--dark-brown);
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .voice-location {
+      color: var(--primary-gold);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    .voice-quote {
+      color: #666;
+      font-style: italic;
+      text-align: center;
+      padding: 0 1.5rem 1.5rem;
+      line-height: 1.6;
+    }
+    
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, var(--dark-brown) 0%, #7a5312 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+      background-size: cover;
+    }
+    
+    .cta-title {
+      color: var(--primary-gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-text {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      opacity: 0.95;
+    }
+    
+    .cta-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: var(--transition);
+      border: 2px solid var(--primary-gold);
+      font-size: 1.1rem;
+    }
+    
+    .cta-btn:hover {
+      background: transparent;
+      color: var(--primary-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+    }
+    
+    /* FOOTER STYLING - Based on Capture.PNG */
+    .footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #ddd;
+      padding: 60px 0 30px;
+      position: relative;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-gold), var(--dark-brown), var(--primary-gold));
+    }
+    
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .footer-tagline {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--primary-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-social a:hover {
+      background: var(--primary-gold);
+      color: #1a1a1a;
+      transform: translateY(-3px);
+    }
+    
+    .footer-heading {
+      color: var(--primary-gold);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-gold);
+      padding-left: 5px;
+    }
+    
+    .footer-contact {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+      color: #bbb;
+    }
+    
+    .footer-contact i {
+      color: var(--primary-gold);
+      font-size: 1.1rem;
+      width: 20px;
+      margin-top: 3px;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      margin-top: 1.5rem;
+    }
+    
+    .newsletter-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
+    }
+    
+    .newsletter-input::placeholder {
+      color: #999;
+    }
+    
+    .newsletter-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 4px 4px 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-btn:hover {
+      background: var(--gold-light);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+      font-size: 0.9rem;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      .cta-title {
+        font-size: 2.2rem;
+      }
+      
+      .footer-brand {
+        font-size: 2rem;
+      }
+      
+      .topbar-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      
+      .topbar-left {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar d-none d-lg-block">
+    <div class="container">
+      <div class="topbar-content">
+        <div class="topbar-left">
+          <div class="topbar-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>02 Cleopus Drive, Nalumunye</span>
+          </div>
+          <div class="topbar-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>+256 776 533 872</span>
+          </div>
+          <div class="topbar-item">
+            <i class="fas fa-envelope-open"></i>
+            <span>info@bultimore.com</span>
+          </div>
+        </div>
+        <div class="topbar-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-wrapper navbar-transparent">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span>Bultimore</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Art Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archive.html">Archive</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="library.html">Library</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="#" id="programsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Programs
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+              <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+              <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+              <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contacts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="donate.html">Donate</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="img/WAPI_Web-Background_Lower-Res.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1 class="hero-title">Dear Daughter</h1>
+        <p class="hero-subtitle">
+          Empowering every girl to rise, learn, and lead with confidence. 
+          A message of hope and action for today's generation.
+        </p>
+        <a href="#learn-more" class="hero-btn">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="learn-more" class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Why "Dear Daughter" Matters</h2>
+      <p class="section-text">
+        "Dear Daughter" is more than a campaign — it's a movement to uplift, protect, and educate young girls around the world.
+        Inspired by the voices of women, fathers, and mentors, this initiative challenges cultural limits and celebrates the power of education and dignity.
+      </p>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="mission-vision-section section-padding">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="feature-image">
+            <img src="img/dear-daughter-education.jpg" alt="Girls Empowerment" class="img-fluid">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h3 class="feature-title">Our Mission</h3>
+          <p class="feature-text">
+            To create a safe space for girls and women to share their stories, learn new skills, 
+            and find mentorship that lights their path forward. We provide resources, workshops, 
+            and a supportive community that empowers girls to reach their full potential.
+          </p>
+          
+          <h3 class="feature-title">Our Vision</h3>
+          <p class="feature-text">
+            A world where every girl is valued, heard, and given equal opportunity to thrive — 
+            no matter where she is born. We envision a future where gender doesn't limit potential, 
+            and every daughter has the tools to build her own destiny.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED VOICES -->
+  <section class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Featured Voices</h2>
+      <p class="section-text">Hear from the inspiring young women who are leading change in their communities.</p>
+      
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="voice-card">
+            <img src="img/voice1.jpg" alt="Amina - Kenya" class="voice-img">
+            <h4 class="voice-name">Amina</h4>
+            <div class="voice-location">Kenya</div>
+            <p class="voice-quote">"Education gave me a voice I never thought I had. Now I use it to advocate for other girls in my community."</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="voice-card">
+            <img src="img/voice2.jpg" alt="Nora - Uganda" class="voice-img">
+            <h4 class="voice-name">Nora</h4>
+            <div class="voice-location">Uganda</div>
+            <p class="voice-quote">"I want every girl to believe that she belongs in the classroom, in the boardroom, and in every space she chooses."</p>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <div class="voice-card">
+            <img src="img/voice3.jpg" alt="Sofia - Malawi" class="voice-img">
+            <h4 class="voice-name">Sofia</h4>
+            <div class="voice-location">Malawi</div>
+            <p class="voice-quote">"We are not the future. We are the present, and our voices matter today in shaping tomorrow."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="cta-section section-padding">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <h2 class="cta-title">Join the Dear Daughter Movement</h2>
+          <p class="cta-text">
+            Become part of a global sisterhood. Volunteer, mentor, or share your story — 
+            because every daughter deserves a brighter tomorrow. Your involvement can change lives.
+          </p>
+          <a href="signup.html" class="cta-btn">Get Involved Today</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <!-- Brand Column -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <span class="footer-brand">Bultimore Foundation</span>
+          <p class="footer-tagline">
+            Transforming communities through education, nutrition, and environmental sustainability. 
+            Your donations create lasting impact across Uganda.
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <!-- Quick Links Column -->
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="gallary.html"><i class="fas fa-palette"></i> Art Gallery</a></li>
+            <li><a href="library.html"><i class="fas fa-book"></i> Library</a></li>
+            <li><a href="programs.html"><i class="fas fa-cogs"></i> Our Programs</a></li>
+            <li><a href="donate.html"><i class="fas fa-heart"></i> Donate</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Column -->
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <h4 class="footer-heading">Contact Info</h4>
+          <div class="footer-contact">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>02 Cleopus Drive, Nalumunye</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-phone-alt"></i>
+            <div>+256 776 533 872</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-envelope"></i>
+            <div>info@bultimore.com</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-clock"></i>
+            <div>Mon-Fri: 9AM-5PM EAT</div>
+          </div>
+        </div>
+        
+        <!-- Newsletter Column -->
+        <div class="col-lg-3">
+          <h4 class="footer-heading">Stay Connected</h4>
+          <p>Subscribe to receive impact reports and updates on how your donations are changing lives.</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="newsletter-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Dear Daughter Initiative. All rights reserved. | Part of Bultimore Foundation</p>
+        <p>Transforming lives through empowerment, education, and opportunity.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-wrapper');
+      if (window.scrollY > 50) {
+        navbar.classList.remove('navbar-transparent');
+        navbar.classList.add('navbar-solid');
+      } else {
+        navbar.classList.remove('navbar-solid');
+        navbar.classList.add('navbar-transparent');
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse.show');
+          if (navbarCollapse) {
+            bootstrap.Collapse.getInstance(navbarCollapse).hide();
+          }
+        }
+      });
+    });
+
+    // Initialize tooltips if any
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('.newsletter-input').value;
+        if (email) {
+          alert('Thank you for subscribing to our newsletter! You will receive updates about our impact.');
+          this.querySelector('.newsletter-input').value = '';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

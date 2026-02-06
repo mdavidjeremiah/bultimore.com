@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Mastery Roadmap: 4-Year Journey to Your Own Cryptocurrency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --success-color: #06d6a0;
+            --warning-color: #ffbe0b;
+            --danger-color: #ef476f;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --phase-1: #2a9d8f;
+            --phase-2: #e9c46a;
+            --phase-3: #f4a261;
+            --phase-4: #e76f51;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .phase {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .phase-header {
+            padding: 20px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .phase-header:hover {
+            opacity: 0.9;
+        }
+
+        .phase-1 .phase-header { background: var(--phase-1); }
+        .phase-2 .phase-header { background: var(--phase-2); color: #333; }
+        .phase-3 .phase-header { background: var(--phase-3); }
+        .phase-4 .phase-header { background: var(--phase-4); }
+
+        .phase-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .phase-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .phase-content.expanded {
+            padding: 20px;
+            max-height: 5000px;
+        }
+
+        .year-container {
+            margin-bottom: 25px;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .year-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f1f8ff;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .year-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .month-container {
+            margin-bottom: 20px;
+            border-left: 2px solid var(--secondary-color);
+            padding-left: 12px;
+            display: none;
+        }
+
+        .month-container.expanded {
+            display: block;
+        }
+
+        .month-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #f9f5ff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .month-title {
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .week-container {
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .week-container.expanded {
+            display: block;
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #fff9f0;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .week-title {
+            font-size: 1rem;
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        .day-container {
+            margin-bottom: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .day-container.expanded {
+            display: block;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .day-title {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .day-content {
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .topic {
+            margin-bottom: 8px;
+            padding: 5px 0;
+        }
+
+        .project-card {
+            background: #e8f4fc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .resources {
+            background: #f0f9ff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .resource-icon {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+
+        .timeline-visual {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--phase-1), var(--phase-2), var(--phase-3), var(--phase-4));
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .timeline-phase {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            width: 25%;
+        }
+
+        .phase-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .phase-label {
+            font-weight: 600;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .budget-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .budget-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .budget-card {
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border-top: 5px solid;
+        }
+
+        .budget-card-1 { border-color: var(--phase-1); }
+        .budget-card-2 { border-color: var(--phase-2); }
+        .budget-card-3 { border-color: var(--phase-3); }
+        .budget-card-4 { border-color: var(--phase-4); }
+
+        .budget-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .budget-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .budget-list {
+            list-style-type: none;
+        }
+
+        .budget-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .budget-list li:last-child {
+            border-bottom: none;
+        }
+
+        .success-factors {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .success-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .factor-card {
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            border-top: 5px solid var(--success-color);
+        }
+
+        .factor-icon {
+            font-size: 2rem;
+            color: var(--success-color);
+            margin-bottom: 15px;
+        }
+
+        .factor-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-visual {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .timeline-visual::before {
+                width: 4px;
+                height: 80%;
+                top: 10%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .timeline-phase {
+                width: 100%;
+            }
+            
+            .budget-grid, .factors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Blockchain Mastery Roadmap</h1>
+            <p class="subtitle">A Comprehensive 4-Year Journey from Novice to Creating Your Own Successful Cryptocurrency</p>
+            <p>Inspired by Ethereum's Success Story & roadmap.sh | Daily Learning Plan with Projects</p>
+        </header>
+
+        <div class="timeline-visual">
+            <div class="timeline-phase">
+                <div class="phase-circle" style="background: var(--phase-1);">Y1</div>
+                <div class="phase-label">Foundation Builder</div>
+            </div>
+            <div class="timeline-phase">
+                <div class="phase-circle" style="background: var(--phase-2);">Y2</div>
+                <div class="phase-label">The Architect</div>
+            </div>
+            <div class="timeline-phase">
+                <div class="phase-circle" style="background: var(--phase-3);">Y3</div>
+                <div class="phase-label">The Builder</div>
+            </div>
+            <div class="timeline-phase">
+                <div class="phase-circle" style="background: var(--phase-4);">Y4</div>
+                <div class="phase-label">The Founder</div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--phase-1);"></div>
+                <span>Year 1: Foundation Building</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--phase-2);"></div>
+                <span>Year 2: Specialization</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--phase-3);"></div>
+                <span>Year 3: Development</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--phase-4);"></div>
+                <span>Year 4: Launch & Growth</span>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <!-- Phase 1: Foundation Building -->
+            <div class="phase phase-1">
+                <div class="phase-header" onclick="togglePhase(1)">
+                    <div class="phase-title">
+                        <i class="fas fa-graduation-cap"></i> Year 1: Foundation Building (Months 1-12)
+                    </div>
+                    <div class="toggle-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="phase-content" id="phase-1-content">
+                    <div class="year-container">
+                        <div class="year-header" onclick="toggleYear('year1')">
+                            <div class="year-title">Year 1: The Learner Phase</div>
+                            <div class="toggle-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Month 1-3 -->
+                        <div class="month-container" id="year1-month1">
+                            <div class="month-header" onclick="toggleMonth('year1-month1')">
+                                <div class="month-title">Months 1-3: Computer Science & Crypto Fundamentals</div>
+                                <div class="toggle-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Week 1-4 -->
+                            <div class="week-container" id="year1-month1-week1">
+                                <div class="week-header" onclick="toggleWeek('year1-month1-week1')">
+                                    <div class="week-title">Week 1-4: Programming Fundamentals</div>
+                                    <div class="toggle-icon">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="day-container" id="year1-month1-week1-day1">
+                                    <div class="day-header" onclick="toggleDay('year1-month1-week1-day1')">
+                                        <div class="day-title">Day 1: Python Basics - Variables, Data Types</div>
+                                        <div class="toggle-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="day-content">
+                                        <div class="topic"><strong>Learning:</strong> Python syntax, variables, data types (string, integer, float, boolean)</div>
+                                        <div class="topic"><strong>Practice:</strong> Write simple programs for basic calculations</div>
+                                        <div class="resources">
+                                            <div class="resource-item"><i class="fas fa-link resource-icon"></i> Resource: Python.org tutorial</div>
+                                            <div class="resource-item"><i class="fas fa-book resource-icon"></i> Book: "Python Crash Course"</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="day-container" id="year1-month1-week1-day2">
+                                    <div class="day-header" onclick="toggleDay('year1-month1-week1-day2')">
+                                        <div class="day-title">Day 2: Control Flow & Functions</div>
+                                        <div class="toggle-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="day-content">
+                                        <div class="topic"><strong>Learning:</strong> If/else statements, loops, function definition</div>
+                                        <div class="topic"><strong>Practice:</strong> Create a number guessing game</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="day-container" id="year1-month1-week1-day3">
+                                    <div class="day-header" onclick="toggleDay('year1-month1-week1-day3')">
+                                        <div class="day-title">Day 3: Data Structures - Lists, Dictionaries</div>
+                                        <div class="toggle-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="day-content">
+                                        <div class="topic"><strong>Learning:</strong> Lists, tuples, dictionaries, sets</div>
+                                        <div class="topic"><strong>Practice:</strong> Create a contact management system</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="day-container" id="year1-month1-week1-day4">
+                                    <div class="day-header" onclick="toggleDay('year1-month1-week1-day4')">
+                                        <div class="day-title">Day 4: Object-Oriented Programming Basics</div>
+                                        <div class="toggle-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="day-content">
+                                        <div class="topic"><strong>Learning:</strong> Classes, objects, inheritance</div>
+                                        <div class="topic"><strong>Practice:</strong> Create a simple banking system with classes</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="day-container" id="year1-month1-week1-day5">
+                                    <div class="day-header" onclick="toggleDay('year1-month1-week1-day5')">
+                                        <div class="day-title">Day 5: File Handling & Modules</div>
+                                        <div class="toggle-icon">
+                                            <i class="fas fa-chevron-down"></i>
+                                        </div>
+                                    </div>
+                                    <div class="day-content">
+                                        <div class="topic"><strong>Learning:</strong> Reading/writing files, importing modules</div>
+                                        <div class="topic"><strong>Practice:</strong> Create a simple data logging system</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="project-card">
+                                    <div class="project-title">Week 1 Project: CLI Calculator with Memory</div>
+                                    <p>Create a command-line calculator that can store previous calculations in a file and recall them.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Week 5-8 would continue here in actual implementation -->
+                            
+                            <div class="project-card">
+                                <div class="project-title">Month 1-2 Project: Build a Simple CLI Wallet in Python</div>
+                                <p>Create a command-line cryptocurrency wallet that can generate keys, create addresses, and simulate transactions (without real crypto).</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Month 4-6 -->
+                        <div class="month-container" id="year1-month4">
+                            <div class="month-header" onclick="toggleMonth('year1-month4')">
+                                <div class="month-title">Months 4-6: Ethereum & Smart Contract Development</div>
+                                <div class="toggle-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-title">Month 4-5 Project: Build 5 Basic Smart Contracts</div>
+                                <p>Token, Voting System, Simple Marketplace, Multi-signature Wallet, Lottery System</p>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-title">Month 6 Project: Full-Stack DApp with React Frontend</div>
+                                <p>Create a decentralized application with React frontend interacting with your smart contracts via Web3.js</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Month 7-9 -->
+                        <div class="month-container" id="year1-month7">
+                            <div class="month-header" onclick="toggleMonth('year1-month7')">
+                                <div class="month-title">Months 7-9: Advanced Smart Contracts & Security</div>
+                                <div class="toggle-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-title">Month 7 Project: Clone Uniswap V2 Core Functionality</div>
+                                <p>Implement basic Automated Market Maker (AMM) with liquidity pools and swapping</p>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-title">Month 8 Project: Complete Capture The Flag on Ethernaut</div>
+                                <p>Solve all security challenges on Ethernaut to understand common vulnerabilities</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Month 10-12 -->
+                        <div class="month-container" id="year1-month10">
+                            <div class="month-header" onclick="toggleMonth('year1-month10')">
+                                <div class="month-title">Months 10-12: Ecosystem & Scaling</div>
+                                <div class="toggle-icon">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-title">Month 10-11 Project: Build a dApp on Polygon or Optimism</div>
+                                <p>Deploy and interact with contracts on Layer 2 solutions</p>
+                            </div>
+                            
+                            <div class="project-card">
+                                <div class="project-title">Month 12 Project: Cross-Chain Token Bridge Prototype</div>
+                                <p>Create a basic bridge between two testnets (e.g., Goerli to Mumbai)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 2: Specialization -->
+            <div class="phase phase-2">
+                <div class="phase-header" onclick="togglePhase(2)">
+                    <div class="phase-title">
+                        <i class="fas fa-chess-board"></i> Year 2: Specialization & Research (Months 13-24)
+                    </div>
+                    <div class="toggle-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="phase-content" id="phase-2-content">
+                    <div class="year-container">
+                        <div class="year-header" onclick="toggleYear('year2')">
+                            <div class="year-title">Year 2: The Architect Phase</div>
+                            <div class="toggle-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-title">Year 2 Major Projects:</div>
+                            <ul>
+                                <li>Design and simulate your own consensus mechanism</li>
+                                <li>Build a minimal EVM implementation</li>
+                                <li>Create a private voting system using ZK proofs</li>
+                                <li>Comprehensive market analysis report and tokenomics model</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="day-container">
+                            <div class="day-content">
+                                <p><strong>Focus Areas:</strong></p>
+                                <ul>
+                                    <li>Advanced consensus mechanisms (PoS, DPoS, BFT variants)</li>
+                                    <li>Economic design (tokenomics, incentive mechanisms)</li>
+                                    <li>Ethereum internals & EVM deep dive</li>
+                                    <li>Zero-Knowledge & advanced cryptography</li>
+                                    <li>Team building & market research</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 3: Development -->
+            <div class="phase phase-3">
+                <div class="phase-header" onclick="togglePhase(3)">
+                    <div class="phase-title">
+                        <i class="fas fa-code"></i> Year 3: Development & Implementation (Months 25-36)
+                    </div>
+                    <div class="toggle-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="phase-content" id="phase-3-content">
+                    <div class="year-container">
+                        <div class="year-header" onclick="toggleYear('year3')">
+                            <div class="year-title">Year 3: The Builder Phase</div>
+                            <div class="toggle-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-title">Year 3 Major Milestones:</div>
+                            <ul>
+                                <li>Functional blockchain node with basic transactions</li>
+                                <li>Complete testnet with smart contract functionality</li>
+                                <li>Full developer suite with 10+ example dApps</li>
+                                <li>Public testnet with 100+ external validators</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="day-container">
+                            <div class="day-content">
+                                <p><strong>Development Focus:</strong></p>
+                                <ul>
+                                    <li>Core protocol development (Go/Rust)</li>
+                                    <li>Smart contract platform design</li>
+                                    <li>Ecosystem tooling (wallets, explorers, bridges)</li>
+                                    <li>Security audits & optimization</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Phase 4: Launch & Growth -->
+            <div class="phase phase-4">
+                <div class="phase-header" onclick="togglePhase(4)">
+                    <div class="phase-title">
+                        <i class="fas fa-rocket"></i> Year 4: Launch & Growth (Months 37-48)
+                    </div>
+                    <div class="toggle-icon">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="phase-content" id="phase-4-content">
+                    <div class="year-container">
+                        <div class="year-header" onclick="toggleYear('year4')">
+                            <div class="year-title">Year 4: The Founder Phase</div>
+                            <div class="toggle-icon">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="project-card">
+                            <div class="project-title">Year 4 Success Metrics:</div>
+                            <ul>
+                                <li>10,000+ member community pre-launch</li>
+                                <li>Successful mainnet with 50+ initial dApps</li>
+                                <li>$100M+ TVL and 100,000+ active addresses</li>
+                                <li>Major exchange listings</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="day-container">
+                            <div class="day-content">
+                                <p><strong>Launch Activities:</strong></p>
+                                <ul>
+                                    <li>Legal structure & regulatory compliance</li>
+                                    <li>Token distribution design</li>
+                                    <li>Marketing & community building</li>
+                                    <li>Genesis block creation & mainnet launch</li>
+                                    <li>Strategic partnerships & protocol upgrades</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Budget Section -->
+        <div class="budget-section">
+            <h2 class="budget-title">Realistic Budget & Funding Requirements</h2>
+            <div class="budget-grid">
+                <div class="budget-card budget-card-1">
+                    <div class="budget-card-title">Year 1-2: Learning Phase</div>
+                    <div class="budget-amount">$2,000 - $5,000</div>
+                    <ul class="budget-list">
+                        <li>Courses & Books: $500-$1,000</li>
+                        <li>Development Tools: $300</li>
+                        <li>Testnet Transactions: $200</li>
+                        <li>Conference Attendance: $500</li>
+                        <li>Hardware Upgrades: $1,000</li>
+                    </ul>
+                </div>
+                
+                <div class="budget-card budget-card-2">
+                    <div class="budget-card-title">Year 3: Development Phase</div>
+                    <div class="budget-amount">$50,000 - $150,000</div>
+                    <ul class="budget-list">
+                        <li>Core Team (3-5 people): $40k-$120k</li>
+                        <li>Legal Consultation: $10k-$20k</li>
+                        <li>Initial Infrastructure: $5k-$10k</li>
+                        <li>Miscellaneous: $5k</li>
+                    </ul>
+                </div>
+                
+                <div class="budget-card budget-card-3">
+                    <div class="budget-card-title">Year 4: Launch & Year 1 Ops</div>
+                    <div class="budget-amount">$500,000 - $2,000,000</div>
+                    <ul class="budget-list">
+                        <li>Security (15-20%): $75k-$400k</li>
+                        <li>Legal/Compliance (10-15%): $50k-$300k</li>
+                        <li>Marketing & Community (25-30%): $125k-$600k</li>
+                        <li>Developer Ecosystem (20-25%): $100k-$500k</li>
+                        <li>Team Expansion (30-35%): $150k-$700k</li>
+                    </ul>
+                </div>
+                
+                <div class="budget-card budget-card-4">
+                    <div class="budget-card-title">Growth Phase (Years 2-3)</div>
+                    <div class="budget-amount">$5,000,000 - $20,000,000</div>
+                    <ul class="budget-list">
+                        <li>Institutional Programs: $1M-$5M</li>
+                        <li>Exchange Listings: $500k-$2M each</li>
+                        <li>Enterprise Partnerships: $2M-$5M</li>
+                        <li>Foundation Creation: $1M-$3M</li>
+                        <li>Continued Development: $5M-$10M</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-title">Funding Strategy Recommendations</div>
+                <ul>
+                    <li><strong>Bootstrap Approach:</strong> $500k (very lean, high risk)</li>
+                    <li><strong>Well-Funded Approach:</strong> $2M (reasonable 2-year runway)</li>
+                    <li><strong>Venture-Backed Approach:</strong> $10M+ (aggressive growth targeting)</li>
+                    <li><strong>Community-First Approach:</strong> Fair launch with no VC dominance</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Success Factors -->
+        <div class="success-factors">
+            <h2 class="success-title">Critical Success Factors</h2>
+            <div class="factors-grid">
+                <div class="factor-card">
+                    <div class="factor-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="factor-title">Differentiation Strategy</div>
+                    <p>Solve a real problem better than existing solutions. Target specific verticals with technical innovation.</p>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon"><i class="fas fa-users"></i></div>
+                    <div class="factor-title">Community-First Approach</div>
+                    <p>Transparent development, fair token distribution, early community involvement, meaningful governance.</p>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="factor-title">Sustainable Economics</div>
+                    <p>Token utility beyond speculation, protocol-owned revenue, inflation controls, treasury management.</p>
+                </div>
+                
+                <div class="factor-card">
+                    <div class="factor-icon"><i class="fas fa-balance-scale"></i></div>
+                    <div class="factor-title">Regulatory Navigation</div>
+                    <p>Proactive compliance, jurisdiction selection, legal wrappers, transparent reporting.</p>
+                </div>
+            </div>
+            
+            <div class="project-card" style="margin-top: 20px;">
+                <div class="project-title">Realistic Timeline Expectations</div>
+                <ul>
+                    <li><strong>Years 1-2:</strong> Learning and preparation</li>
+                    <li><strong>Year 3:</strong> Serious development begins</li>
+                    <li><strong>Year 4:</strong> Launch and initial growth</li>
+                    <li><strong>Years 5-7:</strong> Maturation and ecosystem development</li>
+                    <li><strong>"Unicorn" Status (if achieved):</strong> Years 5-8</li>
+                </ul>
+                <p style="margin-top: 10px;"><em>Remember: Ethereum took 3+ years from concept to functional launch, and another 2-3 years to reach significant adoption. Your journey will be a marathon, not a sprint.</em></p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Blockchain Mastery Roadmap | Inspired by Ethereum's Journey & roadmap.sh</p>
+            <p>Designed for dedicated learners committed to a 4-year mastery path</p>
+            <p>© 2023 Blockchain Education Initiative</p>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle functions for the interactive roadmap
+        function togglePhase(phaseNumber) {
+            const content = document.getElementById(`phase-${phaseNumber}-content`);
+            const icon = content.previousElementSibling.querySelector('.toggle-icon i');
+            
+            content.classList.toggle('expanded');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        
+        function toggleYear(yearId) {
+            // This would toggle all months in that year
+            const months = document.querySelectorAll(`#${yearId} .month-container`);
+            months.forEach(month => {
+                month.classList.toggle('expanded');
+            });
+            
+            const icon = document.querySelector(`#${yearId} .year-header .toggle-icon i`);
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        
+        function toggleMonth(monthId) {
+            const month = document.getElementById(monthId);
+            const weeks = month.querySelectorAll('.week-container');
+            weeks.forEach(week => {
+                week.classList.toggle('expanded');
+            });
+            
+            const icon = month.querySelector('.month-header .toggle-icon i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        
+        function toggleWeek(weekId) {
+            const week = document.getElementById(weekId);
+            const days = week.querySelectorAll('.day-container');
+            days.forEach(day => {
+                day.classList.toggle('expanded');
+            });
+            
+            const icon = week.querySelector('.week-header .toggle-icon i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        
+        function toggleDay(dayId) {
+            const day = document.getElementById(dayId);
+            const content = day.querySelector('.day-content');
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            
+            const icon = day.querySelector('.day-header .toggle-icon i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+        
+        // Initialize with Phase 1 expanded
+        document.addEventListener('DOMContentLoaded', function() {
+            togglePhase(1);
+            
+            // Add sample data for demonstration (in a full implementation, this would be more extensive)
+            const phases = document.querySelectorAll('.phase');
+            phases.forEach((phase, index) => {
+                if (index !== 0) { // Collapse all except phase 1
+                    phase.querySelector('.phase-content').classList.remove('expanded');
+                    phase.querySelector('.toggle-icon i').classList.add('fa-chevron-down');
+                    phase.querySelector('.toggle-icon i').classList.remove('fa-chevron-up');
+                }
+            });
+        });
+        
+        // Generate sample week data for demonstration
+        function generateSampleWeek(weekNumber, topic, practice, resources) {
+            return `
+                <div class="week-container" id="sample-week-${weekNumber}">
+                    <div class="week-header" onclick="toggleWeek('sample-week-${weekNumber}')">
+                        <div class="week-title">Week ${weekNumber}: ${topic}</div>
+                        <div class="toggle-icon">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="day-container">
+                        <div class="day-content">
+                            <div class="topic"><strong>Learning:</strong> ${topic}</div>
+                            <div class="topic"><strong>Practice:</strong> ${practice}</div>
+                            <div class="resources">
+                                ${resources.map(resource => 
+                                    `<div class="resource-item"><i class="fas fa-link resource-icon"></i> ${resource}</div>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

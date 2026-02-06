@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Donate • Bultimore Foundation</title>
+
+<!-- Bootstrap & Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #FDDC5C;
+    --dark: #996515;
+    --light-dark: #b38b40;
+    --light: #fff8e1;
+    --gold-light: #FFE8A5;
+    --gold-mid: #D4AF37;
+    --gold-dark: #996515;
+    --gray: #f5f5f5;
+    --text-dark: #333;
+    --text-light: #666;
+    --topbar-h: 40px;
+    --nav-h: 70px;
+    --section-padding: 80px 0;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: calc(var(--topbar-h) + var(--nav-h));
+  }
+
+  a {
+    color: var(--dark);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  a:hover {
+    color: var(--light-dark);
+  }
+
+  /* TOP BAR - Match index.html */
+  .header-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .topbar {
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-mid));
+      padding: 6px 0;
+      color: white;
+      font-weight: 500;
+  }
+
+  .topbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(253, 220, 92, 0.1) 50%, 
+      transparent 100%);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .topbar-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #ccc;
+    transition: var(--transition);
+  }
+
+  .info-item i {
+    color: var(--primary);
+    font-size: 0.9rem;
+    width: 16px;
+    text-align: center;
+  }
+
+  .info-item a {
+    color: #fff;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .info-item a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .topbar-social {
+    display: flex;
+    gap: 8px;
+  }
+
+  .topbar-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    transition: var(--transition);
+    font-size: 0.9rem;
+  }
+
+  .topbar-social a:hover {
+    background: var(--primary);
+    color: var(--dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(253, 220, 92, 0.3);
+  }
+
+  /* HEADER & NAVIGATION */
+  .site-header {
+    height: var(--nav-h);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    transition: var(--transition);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .main-nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    color: var(--dark);
+    font-weight: 800;
+    font-size: 1.8rem;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-right: 10px;
+  }
+
+  .navbar-brand::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    border-radius: 2px;
+  }
+
+  .nav-link {
+    color: var(--dark);
+    font-weight: 600;
+    padding: 8px 16px !important;
+    text-decoration: none;
+    position: relative;
+    transition: var(--transition);
+    border-radius: 20px;
+    font-size: 0.95rem;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--dark);
+    background: var(--light);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--dark));
+    transition: var(--transition);
+    border-radius: 1px;
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 60%;
+  }
+
+  .btn-donate {
+    background: var(--light-dark);
+    color: var(--primary) !important;
+    padding: 10px 24px !important;
+    border-radius: 25px;
+    border: none;
+    transition: var(--transition) !important;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+
+  .btn-donate:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(153, 101, 21, 0.4);
+    background: linear-gradient(135deg, var(--light-dark), var(--dark));
+  }
+
+  .navbar-toggler {
+    border: none;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(253, 220, 92, 0.1);
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(153, 101, 21, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  /* DONATION HERO SECTION */
+  .donation-hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(253, 220, 92, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+    position: relative;
+  }
+
+  .section-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--dark);
+    position: relative;
+    padding-bottom: 15px;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--dark));
+    border-radius: 2px;
+  }
+
+  .eyebrow {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+
+  .lead-text {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 600px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 40px;
+    align-items: start;
+  }
+
+  @media (max-width: 992px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* DONATION CARD */
+  .donation-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 35px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 120px;
+    transition: var(--transition);
+  }
+
+  .donation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .cause-image-container {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    height: 200px;
+  }
+
+  .cause-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .cause-image-container:hover .cause-image {
+    transform: scale(1.05);
+  }
+
+  .cause-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 15px;
+    color: white;
+  }
+
+  .cause-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+  }
+
+  .cause-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: #fafafa;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .cause-btn:hover {
+    border-color: var(--primary);
+    background: rgba(253, 220, 92, 0.1);
+  }
+
+  .cause-btn.active {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(253, 220, 92, 0.15), transparent);
+    color: var(--dark);
+    font-weight: 700;
+  }
+
+  .preset-amounts {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+  }
+
+  .amt-btn {
+    flex: 1;
+    min-width: 70px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+  }
+
+  .amt-btn:hover {
+    border-color: var(--primary);
+    background: rgba(253, 220, 92, 0.1);
+  }
+
+  .amt-btn.active {
+    background: linear-gradient(135deg, var(--primary), var(--light-dark));
+    color: white;
+    border-color: var(--primary);
+    font-weight: 700;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(253, 220, 92, 0.3);
+  }
+
+  /* FORM STYLING */
+  .donate-form {
+    margin-top: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--dark);
+    font-size: 0.95rem;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: #fafafa;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(253, 220, 92, 0.2);
+  }
+
+  select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23996515' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 45px;
+  }
+
+  .donate-btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, var(--dark), var(--light-dark));
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .donate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(153, 101, 21, 0.4);
+    background: linear-gradient(135deg, var(--light-dark), var(--dark));
+  }
+
+  .donate-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .security-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(253, 220, 92, 0.05);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+  }
+
+  .security-note i {
+    color: var(--primary);
+    font-size: 1.2rem;
+  }
+
+  /* IMPACT SECTION */
+  .impact-section {
+    padding: 80px 0;
+    background: white;
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .impact-card {
+    background: linear-gradient(135deg, #f8f9fa, #fff);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-align: center;
+  }
+
+  .impact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-color: rgba(253, 220, 92, 0.3);
+  }
+
+  .impact-card h3 {
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin: 0 0 15px 0;
+    font-weight: 800;
+  }
+
+  .impact-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  /* STORIES & TESTIMONIALS */
+  .stories-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .stories-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .testimonial-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 35px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 4rem;
+    color: rgba(253, 220, 92, 0.2);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+  }
+
+  .author-info h4 {
+    margin: 0;
+    color: var(--dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .author-info p {
+    margin: 5px 0 0 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .stories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .story-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .story-card:hover {
+    transform: translateX(5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .story-image {
+    width: 100px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .story-content h4 {
+    margin: 0 0 8px 0;
+    color: var(--dark);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .story-content p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* FOOTER - Match other pages */
+  .footer {
+    background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+    color: white;
+    padding: 80px 0 30px;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  .footer-brand h3 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+
+  .footer-brand p {
+    color: #aaa;
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 15px;
+  }
+
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .footer-social a:hover {
+    background: var(--primary);
+    color: var(--dark);
+    transform: translateY(-3px);
+  }
+
+  .footer-links h4,
+  .footer-contact h4,
+  .footer-newsletter h4 {
+    color: var(--primary);
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 15px;
+  }
+
+  .footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+  }
+
+  .footer-contact p {
+    color: #ccc;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-contact i {
+    color: var(--primary);
+    width: 20px;
+  }
+
+  .footer-newsletter p {
+    color: #aaa;
+    margin-bottom: 20px;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form input::placeholder {
+    color: #888;
+  }
+
+  .newsletter-form button {
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    color: white;
+    border: none;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .newsletter-form button:hover {
+    transform: scale(1.1);
+  }
+
+  .payment-methods {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+    
+  .payment-methods i {
+    font-size: 1.5rem;
+    margin: 0 5px;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #888;
+    font-size: 0.9rem;
+  }
+
+  /* RESPONSIVE DESIGN */
+  @media (max-width: 768px) {
+    .topbar {
+      height: auto;
+      padding: 8px 0;
+    }
+    
+    .topbar .container {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+    
+    .topbar-left,
+    .topbar-info {
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .topbar-right {
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .section-title {
+      font-size: 2.2rem;
+    }
+    
+    .donation-card {
+      padding: 25px;
+      position: static;
+    }
+    
+    .cause-btn,
+    .amt-btn {
+      min-width: 100px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .section-title {
+      font-size: 1.8rem;
+    }
+    
+    .impact-card h3 {
+      font-size: 2rem;
+    }
+    
+    .story-card {
+      flex-direction: column;
+    }
+    
+    .story-image {
+      width: 100%;
+      height: 150px;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+  <!-- TOP BAR -->
+  <div class="header-wrap">
+    <div class="topbar d-none d-lg-block">
+      <div class="container">
+        <div class="topbar-left">
+          <div class="topbar-info">
+            <div class="info-item">
+              <i class="fa fa-map-marker-alt"></i>
+              <small>02 Cleopus Drive, Nalumunye</small>
+            </div>
+            <div class="info-item">
+              <i class="fa fa-phone-alt"></i>
+              <small><a href="tel:+256776533872">+256 776 533 872</a></small>
+            </div>
+            <div class="info-item">
+              <i class="fa fa-envelope-open"></i>
+              <small><a href="mailto:info@bultimore.com">info@bultimore.com</a></small>
+            </div>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-social">
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg main-nav">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">Bultimore</a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-center" id="navMenu">
+            <ul class="navbar-nav align-items-center gap-3">
+              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="gallery.html">Art Gallery</a></li>
+              <li class="nav-item"><a class="nav-link" href="archive.html">Archive</a></li>
+              <li class="nav-item"><a class="nav-link" href="library.html">Library</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">Programs</a>
+                <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+                  <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+                  <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+                  <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contacts</a></li>
+              <li class="nav-item"><a class="nav-link btn-donate active" href="donate.html">Donate</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
+
+  <!-- DONATION HERO SECTION -->
+  <section class="donation-hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left: Hero Content -->
+        <div class="hero-content fade-in">
+          <div class="eyebrow">Make a Difference</div>
+          <h1 class="section-title">Power a Child's Future</h1>
+          <p class="lead-text">Your donation brings books, meals, and mentorship to underserved communities. Every contribution helps us create lasting change through education, food security, and environmental programs.</p>
+          
+          <div style="margin-top: 30px;">
+            <h3 style="color: var(--dark); margin-bottom: 15px;">Why Donate?</h3>
+            <ul style="color: var(--text-light); line-height: 1.8;">
+              <li><strong>Direct Impact:</strong> 100% of donations go directly to program implementation</li>
+              <li><strong>Transparent Reporting:</strong> Regular updates on how your donation is used</li>
+              <li><strong>Sustainable Solutions:</strong> Building self-sufficient communities through education</li>
+              <li><strong>Tax Deductible:</strong> All donations are tax-deductible as per Ugandan law</li>
+            </ul>
+          </div>
+          
+          <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="#donationCard" class="btn-donate" style="display: inline-flex; align-items: center; gap: 8px;">
+              <i class="fa fa-heart"></i> Donate Now
+            </a>
+            <a href="#impact" style="padding: 12px 24px; border: 2px solid var(--dark); border-radius: 25px; color: var(--dark); font-weight: 600; text-decoration: none; transition: var(--transition);">
+              See Our Impact
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Donation Card -->
+        <div class="donation-card fade-in" id="donationCard">
+          <div class="cause-image-container">
+            <img id="causeImage" class="cause-image" src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Children's Education">
+            <div class="cause-image-overlay">
+              <h4 style="margin: 0; color: white;" id="selectedCauseLabel">Children's Education</h4>
+            </div>
+          </div>
+
+          <!-- Cause Selector -->
+          <div class="cause-selector" role="tablist" aria-label="Choose cause">
+            <button class="cause-btn active" data-cause="education" data-image="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" aria-pressed="true">
+              <i class="fa fa-book"></i> Education
+            </button>
+            <button class="cause-btn" data-cause="food" data-image="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+              <i class="fa fa-utensils"></i> Food Security
+            </button>
+            <button class="cause-btn" data-cause="environment" data-image="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+              <i class="fa fa-tree"></i> Environment
+            </button>
+          </div>
+
+          <!-- Preset Amounts -->
+          <div class="preset-amounts" aria-hidden="false">
+            <button class="amt-btn" data-amount="10">$10</button>
+            <button class="amt-btn" data-amount="25">$25</button>
+            <button class="amt-btn" data-amount="50">$50</button>
+            <button class="amt-btn" data-amount="100">$100</button>
+            <button class="amt-btn" data-amount="250">$250</button>
+            <button class="amt-btn" data-amount="500">$500</button>
+          </div>
+
+          <!-- Donation Form -->
+          <form id="donationForm" class="donate-form" autocomplete="on">
+            <div class="form-group">
+              <label for="amountInput" class="form-label">Donation Amount (USD)</label>
+              <input name="amount" id="amountInput" class="form-control" type="number" min="1" step="1" placeholder="Enter custom amount" value="50" required />
+            </div>
+
+            <div class="form-group">
+              <label for="donorName" class="form-label">Full Name</label>
+              <input name="name" id="donorName" class="form-control" type="text" placeholder="John Doe" required />
+            </div>
+
+            <div class="form-group">
+              <label for="donorEmail" class="form-label">Email Address</label>
+              <input name="email" id="donorEmail" class="form-control" type="email" placeholder="john@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="frequency" class="form-label">Donation Frequency</label>
+              <select name="frequency" id="frequency" class="form-control">
+                <option value="one_time">One-time Donation</option>
+                <option value="monthly">Monthly Recurring</option>
+                <option value="quarterly">Quarterly Recurring</option>
+                <option value="yearly">Yearly Recurring</option>
+              </select>
+            </div>
+
+            <button id="donateBtn" type="submit" class="donate-btn">
+              <i class="fa fa-lock"></i> Proceed to Secure Payment
+            </button>
+
+            <div class="security-note">
+              <i class="fa fa-shield-alt"></i>
+              <div>
+                <strong>100% Secure Payment:</strong> Your donation is processed through Stripe with bank-level security. We never store card details on our servers.
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT SECTION -->
+  <section class="impact-section" id="impact">
+    <div class="container">
+      <h2 class="section-title text-center">Our Impact in Numbers</h2>
+      <p class="lead-text text-center" style="max-width: 700px; margin: 0 auto 40px;">See how your donations have transformed lives and communities across Uganda.</p>
+      
+      <div class="impact-grid">
+        <div class="impact-card fade-in">
+          <h3>1,200+</h3>
+          <p>Students sponsored across multiple reading hubs and educational programs</p>
+        </div>
+        
+        <div class="impact-card fade-in">
+          <h3>10,000+</h3>
+          <p>Nutritional meals and food security kits delivered to families in need</p>
+        </div>
+        
+        <div class="impact-card fade-in">
+          <h3>5,000+</h3>
+          <p>Trees planted and environmental conservation projects supported</p>
+        </div>
+        
+        <div class="impact-card fade-in">
+          <h3>120+</h3>
+          <p>Community volunteers trained in literacy mentorship and sustainable practices</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORIES & TESTIMONIALS -->
+  <section class="stories-section">
+    <div class="container">
+      <div class="stories-grid">
+        <!-- Testimonials -->
+        <div>
+          <h2 class="section-title">Donor Testimonials</h2>
+          <p class="lead-text">Hear from those who have supported our mission and seen the difference their donations make.</p>
+          
+          <div class="testimonial-card fade-in" style="margin-top: 30px;">
+            <div class="testimonial-text">
+              "My monthly donation to Bultimore's education program has been the most rewarding investment I've ever made. Seeing the photos of children reading in the new library brought tears to my eyes."
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Sarah Johnson">
+              <div class="author-info">
+                <h4>Sarah Johnson</h4>
+                <p>Monthly Donor since 2022</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-card fade-in" style="margin-top: 30px;">
+            <div class="testimonial-text">
+              "As a former teacher, I know the power of education. Bultimore's transparent reporting and community-focused approach convinced me to make a significant donation. I'm proud to support real change."
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Michael Chen">
+              <div class="author-info">
+                <h4>Michael Chen</h4>
+                <p>Education Program Supporter</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Stories -->
+        <div>
+          <h2 class="section-title">Success Stories</h2>
+          <p class="lead-text">Read about the real-world impact of donations like yours.</p>
+          
+          <div class="stories-list">
+            <a href="#" class="story-card fade-in">
+              <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Reading Hub Launch" class="story-image">
+              <div class="story-content">
+                <h4>New Reading Hub Transforms Community</h4>
+                <p>How a small village in Wakiso District transformed an abandoned building into a vibrant learning space with donor support.</p>
+              </div>
+            </a>
+            
+            <a href="#" class="story-card fade-in">
+              <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Mobile Library" class="story-image">
+              <div class="story-content">
+                <h4>Mobile Library Reaches Remote Areas</h4>
+                <p>Our bookmobile program, funded by donations, now delivers educational materials to 15 remote communities monthly.</p>
+              </div>
+            </a>
+            
+            <a href="#" class="story-card fade-in">
+              <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="School Garden" class="story-image">
+              <div class="story-content">
+                <h4>School Garden Feeds & Educates</h4>
+                <p>A sustainable garden project teaches children about nutrition while providing fresh produce for school meals.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Bultimore Foundation</h3>
+          <p>Transforming communities through education, nutrition, and environmental sustainability. Your donations create lasting impact across Uganda.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Art Gallery</a></li>
+            <li><a href="library.html">Library</a></li>
+            <li><a href="programs.html">Our Programs</a></li>
+            <li><a href="donate.html">Donate</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>Contact Info</h4>
+          <p><i class="fas fa-map-marker-alt"></i> 02 Cleopus Drive, Nalumunye</p>
+          <p><i class="fas fa-phone"></i> +256 776 533 872</p>
+          <p><i class="fas fa-envelope"></i> info@bultimore.com</p>
+          <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM EAT</p>
+        </div>
+        
+        <div class="footer-newsletter">
+          <h4>Stay Connected</h4>
+          <p>Subscribe to receive impact reports and updates on how your donations are changing lives.</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Bultimore Foundation. All rights reserved. | Donations are tax-deductible</p>
+      </div>
+      <div class="payment-methods">
+        <span>Accepted Payments:</span>
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-amex"></i>
+        <i class="fab fa-cc-paypal"></i>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Donation Form Script -->
+  <script>
+    // Initialize animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = '0s';
+          entry.target.classList.add('fade-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Cause Selection
+    const causeButtons = document.querySelectorAll('.cause-btn');
+    const causeImage = document.getElementById('causeImage');
+    const selectedLabel = document.getElementById('selectedCauseLabel');
+    const causeDescriptions = {
+      education: "Provide books, school supplies, and educational resources to children in underserved communities.",
+      food: "Support nutrition programs and food security initiatives for families in need.",
+      environment: "Fund tree planting, conservation projects, and environmental education programs."
+    };
+
+    causeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        causeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Update image
+        const img = btn.getAttribute('data-image');
+        causeImage.src = img;
+        
+        // Update label
+        const label = btn.textContent.trim();
+        selectedLabel.textContent = label.replace(/<i.*?>.*?<\/i>\s*/g, '');
+        
+        // Store selected cause
+        document.getElementById('donationForm').dataset.cause = btn.dataset.cause;
+        
+        // Update form placeholder with cause description
+        const amountInput = document.getElementById('amountInput');
+        amountInput.placeholder = `Donate to ${selectedLabel.textContent}`;
+      });
+    });
+
+    // Preset Amount Selection
+    const amtBtns = document.querySelectorAll('.amt-btn');
+    const amountInput = document.getElementById('amountInput');
+    
+    amtBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        amtBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        amountInput.value = btn.dataset.amount;
+      });
+    });
+
+    // Custom amount input
+    amountInput.addEventListener('input', () => {
+      const value = amountInput.value;
+      amtBtns.forEach(b => {
+        if (b.dataset.amount === value) {
+          b.classList.add('active');
+        } else {
+          b.classList.remove('active');
+        }
+      });
+    });
+
+    // Form Validation and Submission
+    const donationForm = document.getElementById('donationForm');
+    const donateBtn = document.getElementById('donateBtn');
+    
+    donationForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Get form values
+      const name = donationForm.querySelector('input[name="name"]').value.trim();
+      const email = donationForm.querySelector('input[name="email"]').value.trim();
+      const rawAmount = parseFloat(donationForm.querySelector('input[name="amount"]').value) || 0;
+      const frequency = donationForm.querySelector('#frequency').value;
+      const cause = donationForm.dataset.cause || 'education';
+      const amount = Math.max(Math.round(rawAmount), 1);
+      
+      // Validation
+      if (!name || !email || amount < 1) {
+        alert('Please provide your name, email, and a donation amount of at least $1.');
+        return;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // Disable button and show loading state
+      const originalText = donateBtn.innerHTML;
+      donateBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing...';
+      donateBtn.disabled = true;
+      
+      try {
+        // Simulate API call (replace with actual Stripe integration)
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Prepare payload
+        const payload = {
+          name,
+          email,
+          amount,
+          currency: 'usd',
+          cause,
+          frequency
+        };
+        
+        // In a real implementation, you would:
+        // 1. POST to your server to create a Stripe Checkout Session
+        // 2. Redirect to Stripe payment page
+        // 3. Handle the redirect back with success/failure
+        
+        // For demo purposes, show success message
+        alert(`Thank you, ${name}! Your donation of $${amount} for ${cause} has been received. You will be redirected to the secure payment page.`);
+        
+        // Reset form
+        donationForm.reset();
+        amtBtns.forEach(b => b.classList.remove('active'));
+        amountInput.value = '50';
+        
+        // In production, you would redirect to Stripe:
+        // window.location.href = 'https://checkout.stripe.com/pay/...';
+        
+      } catch (error) {
+        console.error('Donation error:', error);
+        alert('Sorry, there was an error processing your donation. Please try again.');
+      } finally {
+        // Reset button state
+        donateBtn.innerHTML = originalText;
+        donateBtn.disabled = false;
+      }
+    });
+
+    // Add sample impact on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set initial cause
+      document.getElementById('donationForm').dataset.cause = 'education';
+      
+      // Animate impact numbers on scroll
+      const impactNumbers = document.querySelectorAll('.impact-card h3');
+      const impactObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const finalValue = element.textContent.replace(/[^0-9+]/g, '');
+            element.textContent = '0';
+            
+            let current = 0;
+            const increment = parseInt(finalValue) / 50;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= parseInt(finalValue)) {
+                element.textContent = finalValue;
+                clearInterval(timer);
+              } else {
+                element.textContent = Math.floor(current).toLocaleString();
+              }
+            }, 30);
+            
+            impactObserver.unobserve(element);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      impactNumbers.forEach(number => impactObserver.observe(number));
+    });
+  </script>
+</body>
+</html>
+
+ 

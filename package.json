@@ -1,0 +1,47 @@
+{
+    "name": "bultimore-website",
+    "version": "1.0.0",
+    "description": "Official website for bultimore - art marketplace, donation portal, blog, gallery, and community hub",
+    "main": "index.html",
+    "scripts": {
+        "start": "serve -s .",
+        "build": "echo 'Static site - no build required'",
+        "deploy": "echo 'Ready for deployment to Netlify/Vercel'",
+        "test": "echo 'No tests specified'"
+    },
+    "keywords": [
+        "art",
+        "community",
+        "gallery",
+        "blog",
+        "music",
+        "video",
+        "donations",
+        "marketplace"
+    ],
+    "author": "bultimore",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ashadhu-ingram/bultimore-website.git"
+    },
+    "homepage": "https://bultimore.com",
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ],
+    "directories": {
+        "lib": "lib"
+    },
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/ashadhu-ingram/bultimore-website/issues"
+    },
+    "dependencies": {
+        "toml": "^3.0.0"
+    }
+}

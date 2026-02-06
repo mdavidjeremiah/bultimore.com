@@ -1,0 +1,261 @@
+(cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF'
+diff --git a/store.html b/store.html
+--- a/store.html
++++ b/store.html
+@@ -0,0 +1,254 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Art Store - bultimore.com</title>
++    <meta name="description" content="Browse and purchase unique artworks from bultimore's collection">
++    <link rel="stylesheet" href="css/style.css">
++    <link rel="stylesheet" href="css/store.css">
++    <link rel="preconnect" href="https://fonts.googleapis.com">
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
++</head>
++<body>
++    <!-- Navigation -->
++    <nav class="navbar">
++        <div class="nav-container">
++            <div class="nav-logo">
++                <a href="index.html">bultimore</a>
++            </div>
++            <div class="nav-menu" id="nav-menu">
++                <a href="index.html" class="nav-link">Home</a>
++                <a href="store.html" class="nav-link active">Art Store</a>
++                <a href="blog.html" class="nav-link">Ideas</a>
++                <a href="gallery.html" class="nav-link">Gallery</a>
++                <a href="music.html" class="nav-link">Music</a>
++                <a href="video.html" class="nav-link">Video</a>
++                <a href="programs.html" class="nav-link">Programs</a>
++                <a href="library.html" class="nav-link">Library</a>
++                <a href="donate.html" class="nav-link donate-btn">Donate</a>
++            </div>
++            <div class="nav-actions">
++                <div class="cart-icon" onclick="openModal('cart-modal')">
++                    <i class="fas fa-shopping-cart"></i>
++                    <span class="cart-count">0</span>
++                </div>
++                <div class="hamburger" id="hamburger">
++                    <span class="bar"></span>
++                    <span class="bar"></span>
++                    <span class="bar"></span>
++                </div>
++            </div>
++        </div>
++    </nav>
++
++    <!-- Page Header -->
++    <header class="page-header">
++        <div class="container">
++            <h1>Art Store</h1>
++            <p>Discover unique artworks and support creative expression</p>
++        </div>
++    </header>
++
++    <!-- Store Controls -->
++    <section class="store-controls">
++        <div class="container">
++            <div class="controls-wrapper">
++                <div class="search-box">
++                    <input type="text" id="search-input" placeholder="Search artworks..." class="search-input">
++                    <button onclick="searchProducts()" class="search-btn">
++                        <i class="fas fa-search"></i>
++                    </button>
++                </div>
++                
++                <div class="filter-controls">
++                    <select id="category-filter" onchange="filterProducts()" class="filter-select">
++                        <option value="">All Categories</option>
++                        <option value="painting">Paintings</option>
++                        <option value="photography">Photography</option>
++                        <option value="digital">Digital Art</option>
++                        <option value="sculpture">Sculpture</option>
++                    </select>
++                    
++                    <select id="sort-select" onchange="sortProducts()" class="filter-select">
++                        <option value="newest">Newest First</option>
++                        <option value="oldest">Oldest First</option>
++                        <option value="price-low">Price: Low to High</option>
++                        <option value="price-high">Price: High to Low</option>
++                        <option value="name">Name A-Z</option>
++                    </select>
++                </div>
++            </div>
++        </div>
++    </section>
++
++    <!-- Products Grid -->
++    <section class="products-section">
++        <div class="container">
++            <div class="products-grid" id="products-grid">
++                <!-- Products will be loaded dynamically -->
++            </div>
++            
++            <div class="loading" id="products-loading" style="display: none;">
++                <div class="spinner"></div>
++            </div>
++            
++            <div class="no-results" id="no-results" style="display: none;">
++                <h3>No artworks found</h3>
++                <p>Try adjusting your search or filter criteria</p>
++            </div>
++        </div>
++    </section>
++
++    <!-- Shopping Cart Modal -->
++    <div id="cart-modal" class="modal">
++        <div class="modal-content">
++            <span class="modal-close" onclick="closeModal('cart-modal')">&times;</span>
++            <h2>Shopping Cart</h2>
++            
++            <div id="cart-items">
++                <!-- Cart items will be loaded here -->
++            </div>
++            
++            <div class="cart-summary">
++                <div class="cart-total">
++                    <strong>Total: <span id="cart-total">$0.00</span></strong>
++                </div>
++                <div class="cart-actions">
++                    <button onclick="clearCart()" class="btn btn-secondary">Clear Cart</button>
++                    <button onclick="proceedToCheckout()" class="btn btn-primary">Checkout</button>
++                </div>
++            </div>
++        </div>
++    </div>
++
++    <!-- Product Detail Modal -->
++    <div id="product-modal" class="modal">
++        <div class="modal-content product-modal-content">
++            <span class="modal-close" onclick="closeModal('product-modal')">&times;</span>
++            <div id="product-detail">
++                <!-- Product details will be loaded here -->
++            </div>
++        </div>
++    </div>
++
++    <!-- Checkout Modal -->
++    <div id="checkout-modal" class="modal">
++        <div class="modal-content">
++            <span class="modal-close" onclick="closeModal('checkout-modal')">&times;</span>
++            <h2>Checkout</h2>
++            
++            <form id="checkout-form" onsubmit="processPayment(event)">
++                <div class="checkout-sections">
++                    <div class="billing-info">
++                        <h3>Billing Information</h3>
++                        <div class="form-group">
++                            <label class="form-label">Full Name *</label>
++                            <input type="text" name="fullName" required class="form-input">
++                        </div>
++                        <div class="form-group">
++                            <label class="form-label">Email *</label>
++                            <input type="email" name="email" required class="form-input">
++                        </div>
++                        <div class="form-group">
++                            <label class="form-label">Phone</label>
++                            <input type="tel" name="phone" class="form-input">
++                        </div>
++                        <div class="form-group">
++                            <label class="form-label">Address</label>
++                            <textarea name="address" class="form-input form-textarea" rows="3"></textarea>
++                        </div>
++                    </div>
++                    
++                    <div class="payment-info">
++                        <h3>Payment Method</h3>
++                        <div class="payment-options">
++                            <label class="payment-option">
++                                <input type="radio" name="paymentMethod" value="mobile_money" checked>
++                                <span>Mobile Money</span>
++                            </label>
++                            <label class="payment-option">
++                                <input type="radio" name="paymentMethod" value="bank_transfer">
++                                <span>Bank Transfer</span>
++                            </label>
++                            <label class="payment-option">
++                                <input type="radio" name="paymentMethod" value="card">
++                                <span>Credit/Debit Card</span>
++                            </label>
++                        </div>
++                    </div>
++                </div>
++                
++                <div class="order-summary">
++                    <h3>Order Summary</h3>
++                    <div id="checkout-items"></div>
++                    <div class="checkout-total">
++                        <strong>Total: <span id="checkout-total">$0.00</span></strong>
++                    </div>
++                </div>
++                
++                <button type="submit" class="btn btn-primary checkout-btn">
++                    Complete Purchase
++                </button>
++            </form>
++        </div>
++    </div>
++
++    <!-- Footer -->
++    <footer class="footer">
++        <div class="container">
++            <div class="footer-content">
++                <div class="footer-section">
++                    <h4>bultimore</h4>
++                    <p>Art, ideas, and community coming together</p>
++                    <div class="social-links">
++                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
++                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
++                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
++                    </div>
++                </div>
++                
++                <div class="footer-section">
++                    <h4>Explore</h4>
++                    <ul>
++                        <li><a href="store.html">Art Store</a></li>
++                        <li><a href="gallery.html">Gallery</a></li>
++                        <li><a href="music.html">Music</a></li>
++                        <li><a href="video.html">Video</a></li>
++                    </ul>
++                </div>
++                
++                <div class="footer-section">
++                    <h4>Connect</h4>
++                    <ul>
++                        <li><a href="blog.html">Ideas & Blog</a></li>
++                        <li><a href="programs.html">Programs</a></li>
++                        <li><a href="library.html">Library</a></li>
++                        <li><a href="donate.html">Support</a></li>
++                    </ul>
++                </div>
++                
++                <div class="footer-section">
++                    <h4>Contact</h4>
++                    <p>Email: info@bultimore.com</p>
++                    <p>Phone: +1 (555) 123-4567</p>
++                </div>
++            </div>
++            
++            <div class="footer-bottom">
++                <p>&copy; 2024 bultimore. All rights reserved.</p>
++            </div>
++        </div>
++    </footer>
++
++    <!-- Scripts -->
++    <script src="js/main.js"></script>
++    <script src="js/content.js"></script>
++    <script src="js/store.js"></script>
++    
++    <!-- Flutterwave Integration -->
++    <script src="https://checkout.flutterwave.com/v3.js"></script>
++</body>
++</html>
+EOF
+)

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Bultimore - Cultural Hub</title>
+
+<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css' rel='stylesheet'>
+
+<link href='style.css' rel='stylesheet'>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <div class="header-wrap">
+    <div class="topbar d-none d-lg-block">
+      <div class='container d-flex justify-content-between align-items-center'>
+        <div class='d-flex align-items-center gap-4'>
+          <small><i class='fa fa-map-marker-alt me-2'></i>02 Cleopus Drive, Nalumunye</small>
+          <small><i class='fa fa-phone-alt me-2'></i><a href="tel:+256776533872">+256 776 533 872</a></small>
+          <small><i class='fa fa-envelope-open me-2'></i><a href="mailto:info@bultimore.com">info@bultimore.com</a></small>
+        </div>
+        <div class='topbar-social d-flex align-items-center gap-2'>
+          <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-twitter'></i></a>
+          <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-facebook-f'></i></a>
+          <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-instagram'></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg main-nav">
+        <div class='container d-flex align-items-center justify-content-between'>
+          <a class='navbar-brand' href='index.html'>Bultimore</a>
+
+          <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class='collapse navbar-collapse justify-content-center' id='navMenu'>
+            <ul class='navbar-nav align-items-center gap-3'>
+              <li><a class='nav-link active' href='index.html'>Home</a></li>
+              <li><a class='nav-link' href='gallery.html'>Art Gallery</a></li>
+              <li><a class='nav-link' href='archive.html'>Archive</a></li>
+              <li><a class='nav-link' href='library.html'>Library</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  Programs
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+                  <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+                  <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+                  <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+                </ul>
+              </li>    
+              <li><a class='nav-link' href='contact.html'>Contacts</a></li>
+              <li><a class='nav-link btn-donate' href='donate.html'>Donate</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Bultimore interior" loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Greater Grace</h1>
+      <p>A living archive of culture, design, and hospitality</p>
+    </div>
+    <div class="hero-scroll">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- CIRCLE CARDS SECTION -->
+  <section class="bultimore-circles section">
+    <div class="container">
+      <div class="circle-grid">
+        <a href="about.html" class="circle-card">
+          <div class="circle-icon">
+            <i class="fa-solid fa-landmark"></i>
+          </div>
+          <h4>Who We Are</h4>
+        </a>
+        <a href="outreach.html" class="circle-card">
+          <div class="circle-icon">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h4>Outreach</h4>
+        </a>
+        <a href="vision.html" class="circle-card">
+          <div class="circle-icon">
+            <i class="fa-solid fa-lightbulb"></i>
+          </div>
+          <h4>Vision</h4>
+        </a>
+        <a href="collaborate.html" class="circle-card">
+          <div class="circle-icon">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h4>Collaborate</h4>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPCOMING EVENTS SECTION -->
+  <section class="section upcoming" id="upcoming">
+    <div class="container">
+      <h2 class="section-title">Upcoming Events</h2>
+      <div class="upcoming-grid">
+        <div class="upcoming-item-container">
+          <div class="upcoming-list">
+            <h3>Community Workshops</h3>
+            <div class="upcoming-item">
+              <span class="date">MAR 22</span>
+              <div>
+                <h6>Dear Daughter Workshop</h6>
+                <p>Community storytelling & mentorship program.</p>
+              </div>
+            </div>
+            <div class="upcoming-item">
+              <span class="date">APR 05</span>
+              <div>
+                <h6>Ingram's Push Residency</h6>
+                <p>Artist residency and exhibition opening.</p>
+              </div>
+            </div>
+          </div>
+          <div class="container-img" style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+        </div>
+
+        <div class="upcoming-item-container">
+          <div class="upcoming-list">
+            <h3>Art Exhibitions</h3>
+            <div class="upcoming-item">
+              <span class="date">APR 12</span>
+              <div>
+                <h6>Contemporary Art Showcase</h6>
+                <p>Featuring local and international artists.</p>
+              </div>
+            </div>
+            <div class="upcoming-item">
+              <span class="date">APR 18</span>
+              <div>
+                <h6>Digital Art Exhibition</h6>
+                <p>Exploring technology in modern art forms.</p>
+              </div>
+            </div>
+          </div>
+          <div class="container-img" style="background-image: url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL FEEDS SECTION -->
+  <section class="section social-feeds">
+    <div class="container">
+      <div class="social-header">
+        <h2 class="section-title">Live Social Feed</h2>
+        <p class="section-subtitle">Join the conversation. Follow our journey in real-time.</p>
+      </div>
+      
+      <div class="social-grid">
+        <!-- Instagram Feed -->
+        <div class="social-card instagram-card">
+          <div class="social-card-header">
+            <div class="platform-icon">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <div class="platform-info">
+              <h4>@BultimoreCulture</h4>
+              <span class="followers">12.5k followers</span>
+            </div>
+            <a href="#" class="follow-btn">Follow</a>
+          </div>
+          <div class="social-card-content">
+            <div class="social-post">
+              <p class="post-text">"Behind the scenes at our latest exhibition setup! 🎨 #ArtCommunity #BultimoreCulture"</p>
+              <div class="post-meta">
+                <span class="post-time"><i class="far fa-clock"></i> 2 hours ago</span>
+                <span class="post-likes"><i class="far fa-heart"></i> 248</span>
+              </div>
+            </div>
+            <div class="social-images">
+              <div class="image-grid">
+                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Instagram post">
+                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Instagram post">
+                <img src="https://images.unsplash.com/photo-1542773998-9325f0a098d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Instagram post">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Twitter Feed -->
+        <div class="social-card twitter-card">
+          <div class="social-card-header">
+            <div class="platform-icon">
+              <i class="fab fa-twitter"></i>
+            </div>
+            <div class="platform-info">
+              <h4>@BultimoreHub</h4>
+              <span class="followers">8.3k followers</span>
+            </div>
+            <a href="#" class="follow-btn">Follow</a>
+          </div>
+          <div class="social-card-content">
+            <div class="social-post">
+              <p class="post-text">"Excited to announce our new community garden project! Join us this Saturday for the launch. #CommunityBuilding #UrbanGreens"</p>
+              <div class="post-meta">
+                <span class="post-time"><i class="far fa-clock"></i> 5 hours ago</span>
+                <span class="post-likes"><i class="far fa-heart"></i> 89</span>
+                <span class="post-retweets"><i class="fas fa-retweet"></i> 42</span>
+              </div>
+            </div>
+            <div class="twitter-mentions">
+              <div class="mention-item">
+                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="User">
+                <div>
+                  <strong>@ArtLover23</strong>
+                  <p>"Amazing initiative! Can't wait to participate."</p>
+                </div>
+              </div>
+              <div class="mention-item">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="User">
+                <div>
+                  <strong>@CreativeMind</strong>
+                  <p>"This is exactly what our community needs!"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Facebook Feed -->
+        <div class="social-card facebook-card">
+          <div class="social-card-header">
+            <div class="platform-icon">
+              <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="platform-info">
+              <h4>Bultimore Cultural Center</h4>
+              <span class="followers">15.2k followers</span>
+            </div>
+            <a href="#" class="follow-btn">Like Page</a>
+          </div>
+          <div class="social-card-content">
+            <div class="social-post">
+              <p class="post-text">"Our youth mentorship program is accepting applications! Help us shape the next generation of creative leaders. Deadline: April 30th."</p>
+              <div class="post-meta">
+                <span class="post-time"><i class="far fa-clock"></i> 1 day ago</span>
+                <span class="post-likes"><i class="far fa-thumbs-up"></i> 412</span>
+                <span class="post-comments"><i class="far fa-comment"></i> 56</span>
+              </div>
+            </div>
+            <div class="facebook-stats">
+              <div class="stat-item">
+                <i class="fas fa-eye"></i>
+                <span>2.1k views</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-share"></i>
+                <span>128 shares</span>
+              </div>
+              <div class="stat-item">
+                <i class="fas fa-user-friends"></i>
+                <span>45 attending</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS SECTION -->
+  <section class="live-feed" id="live-feed">
+    <div class="aside-container">
+      <div class="highlights">
+        <div class="highlights-header">
+          <h3>Community Highlights</h3>
+          <p class="highlights-subtitle">Discover featured stories, events, and contributions from our vibrant community</p>
+        </div>
+        
+        <div class="highlights-grid">
+          <!-- Highlight 1 -->
+          <div class="highlight-card">
+            <div class="highlight-image">
+              <img src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cultural Exchange">
+              <div class="highlight-overlay"></div>
+              <span class="highlight-badge">Featured</span>
+            </div>
+            <div class="highlight-content">
+              <h4>Cultural Exchange Program</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi dicta autem pariatur. Join our latest cultural exchange initiative connecting artists worldwide.</p>
+              <a href="#" class="highlight-link">
+                <span>View Details</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Highlight 2 -->
+          <div class="highlight-card">
+            <div class="highlight-image">
+              <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Art Exhibition">
+              <div class="highlight-overlay"></div>
+              <span class="highlight-badge">New</span>
+            </div>
+            <div class="highlight-content">
+              <h4>Art Exhibition Opening</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nisi minima culpa impedit, saepe accusantium. Experience contemporary African art.</p>
+              <a href="#" class="highlight-link">
+                <span>Register Now</span>
+                <i class="fas fa-calendar-alt"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Highlight 3 -->
+          <div class="highlight-card">
+            <div class="highlight-image">
+              <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Workshop">
+              <div class="highlight-overlay"></div>
+              <span class="highlight-badge">Popular</span>
+            </div>
+            <div class="highlight-content">
+              <h4>Creative Workshop Series</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor tenetur, veritatis sed accusantium inventore at nihil? Join our hands-on creative sessions.</p>
+              <a href="#" class="highlight-link">
+                <span>Learn More</span>
+                <i class="fas fa-graduation-cap"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Highlight 4 -->
+          <div class="highlight-card">
+            <div class="highlight-image">
+              <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Collaboration">
+              <div class="highlight-overlay"></div>
+              <span class="highlight-badge">Collaboration</span>
+            </div>
+            <div class="highlight-content">
+              <h4>Community Garden Project</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci vel fugiat qui assumenda rerum facere eveniet. Join our urban gardening initiative.</p>
+              <a href="#" class="highlight-link">
+                <span>Get Involved</span>
+                <i class="fas fa-hands-helping"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Highlight 5 -->
+          <div class="highlight-card">
+            <div class="highlight-image">
+              <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Success Story">
+              <div class="highlight-overlay"></div>
+              <span class="highlight-badge">Success Story</span>
+            </div>
+            <div class="highlight-content">
+              <h4>Youth Mentorship Program</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero earum dolores voluptatibus? Read about our successful mentorship program graduates.</p>
+              <a href="#" class="highlight-link">
+                <span>Read Story</span>
+                <i class="fas fa-book-open"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Indicators -->
+        <div class="highlight-indicators">
+          <span class="highlight-indicator active"></span>
+          <span class="highlight-indicator"></span>
+          <span class="highlight-indicator"></span>
+          <span class="highlight-indicator"></span>
+          <span class="highlight-indicator"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Bultimore</h3>
+          <p>A living archive of culture, design, and hospitality</p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Art Gallery</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="library.html">Library</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <p><i class="fas fa-map-marker-alt"></i> 02 Cleopus Drive, Nalumunye</p>
+          <p><i class="fas fa-phone"></i> +256 776 533 872</p>
+          <p><i class="fas fa-envelope"></i> info@bultimore.com</p>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Stay Updated</h4>
+          <p>Subscribe to our newsletter for latest updates</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Bultimore Cultural Center. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'></script>
+  <script src='script.js'></script>
+</body>
+</html>

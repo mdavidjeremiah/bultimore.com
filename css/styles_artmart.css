@@ -1,0 +1,974 @@
+/* RESET */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,Arial,sans-serif;background:#fff;color:#222;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+
+
+/* ============================================
+   Page content spacing and layout improvement
+   ============================================ */
+
+   body {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
+
+/* Optional — max width for readable content */
+.main-content,
+.page-content,
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* Add spacing between sections */
+section {
+    padding: 60px 0 !important;
+}
+
+
+/* CONTAINERS */
+.container{max-width:1200px;margin:0 auto;padding:0 18px}
+
+
+/* HERO */
+.hero {
+  height: 100vh;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.4));
+}
+.hero .content {
+  position: relative;
+  z-index: 3;
+  padding-top: 30vh;
+}   
+/* Reset translations from imported Next.js styles */
+nav ul li .submenu,
+nav ul li .megabox {
+    transform-origin: top center !important;
+    translate: none !important;
+}
+
+
+/* SUBMENUS */
+.submenu, .megabox{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #eee;border-radius:8px;box-shadow:0 8px 30px rgba(0,0,0,0.06);padding:12px;z-index:200}
+.has-sub:hover > .submenu,
+.has-sub.mega:hover > .megabox{display:block}
+
+.submenu a{display:block;padding:8px 0;color:#222;text-decoration:none}
+
+/* MEGA MENU */
+.megabox{width:700px;padding:18px}
+.mega-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.artist{display:flex;gap:10px;text-decoration:none;color:#000}
+.artist img{width:60px;height:60px;border-radius:6px;object-fit:cover}
+.artist div span{font-size:13px;color:#666}
+
+/* MOBILE */
+.mobile-toggle{display:none;font-size:24px;background:#eee;border:0;padding:6px 12px;border-radius:6px}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;padding:40px 0;align-items:center}
+.hero-left h1{font-size:40px;line-height:1.1;margin-bottom:12px}
+.hero-left p{color:#666;margin-bottom:18px}
+.hero-actions{display:flex;gap:12px;margin-bottom:18px}
+
+.btn{padding:10px 14px;border-radius:8px;text-decoration:none;display:inline-block}
+.btn.primary{background:#e94560;color:#fff}
+.btn.outline{border:1px solid #ddd;color:#111}
+
+.stats{display:flex;gap:18px;margin-top:18px}
+.stat strong{font-size:20px;display:block}
+.stat span{font-size:13px;color:#666}
+
+/* STYLE SWITCHER BAR */
+/* =========================
+   Advanced Effects v3
+   (Append to styles_artmart.css)
+   ========================= */
+
+/* Base variables used by the theme switcher + Material You adaptive colors */
+:root{
+  --accent: #e94560;            /* default accent */
+  --accent-600: #e94560;
+  --bg-surface: #ffffff;
+  --glass-bg: rgba(255,255,255,0.55);
+  --glass-border: rgba(0,0,0,0.06);
+  --glass-blur: 10px;
+  --switch-width: 72px;
+  --switch-gap: 6px;
+  --switch-radius: 18px;
+  --switch-z: 9999;
+  --transition-fast: 180ms;
+  --transition-medium: 300ms;
+}
+
+/* -------------------------
+   Glassmorphism + container
+   ------------------------- */
+.tt-style-switch.v3{
+  position: fixed;
+  left: 18px;
+  top: 120px;
+  width: var(--switch-width);
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  gap: var(--switch-gap);
+  padding:10px 8px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.55), rgba(255,255,255,0.30));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 30px rgba(12,12,20,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+  backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  z-index: var(--switch-z);
+  transform: translateY(-6px);
+  opacity: 0;
+  animation: v3-enter .42s cubic-bezier(.2,.9,.2,1) forwards;
+  will-change: transform, opacity;
+}
+
+/* entrance */
+@keyframes v3-enter {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* compact layout hidden under 992px */
+@media (max-width:991px){
+  .tt-style-switch.v3 { display: none !important; }
+}
+
+/* -------------------------
+   Buttons (Light/Dark)
+   ------------------------- */
+.tt-style-switch.v3 .switch-btn{
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  padding:6px 6px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: #222;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+  position: relative;
+  overflow: visible;
+  outline: none;
+  line-height: 1;
+  font-size: 12px;
+}
+
+/* icon styling inside */
+.tt-style-switch.v3 .switch-btn .icon {
+  display:block;
+  width:18px; height:18px;
+  border-radius:50%;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+/* Light button style */
+.tt-style-switch.v3 .switch-btn.light .icon-sun{
+  background: radial-gradient(circle at center, #fdd835 40%, #f9a825 100%);
+}
+/* Dark icon style */
+.tt-style-switch.v3 .switch-btn.dark .icon-moon{
+  background: radial-gradient(circle at 4px 4px, #cfd8dc 40%, #b0bec5 80%);
+  clip-path: circle(50% at 60% 40%);
+}
+
+/* small hover magnetic effect (applies transform) */
+.tt-style-switch.v3 .switch-btn:hover{
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* active (selected) */
+.tt-style-switch.v3 .switch-btn.active{
+  background: linear-gradient(180deg, var(--accent-600), color-mix(in srgb, var(--accent-600) 75%, black 5%));
+  color: #fff;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 30%, rgba(0,0,0,0.2));
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ripple effect (iOS-like) */
+.tt-style-switch.v3 .switch-btn::after{
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 400ms ease, height 400ms ease, opacity 400ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.tt-style-switch.v3 .switch-btn:active::after{
+  width: 160px;
+  height: 160px;
+  opacity: 1;
+}
+
+/* -------------------------
+   Round iOS-style toggle
+   ------------------------- */
+.toggle-row { width:100%; display:flex; justify-content:center; align-items:center; padding:2px 0; }
+.ios-toggle { width:54px; height:30px; border-radius:30px; display:inline-flex; align-items:center; cursor:pointer; }
+.ios-track { width:100%; height:100%; background: linear-gradient(180deg,#f4f4f4,#fff); border-radius:30px; padding:3px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); position:relative; }
+.ios-track .ios-thumb { width:22px; height:22px; border-radius:50%; background:#fff; box-shadow:0 6px 16px rgba(15,15,15,0.12); transform: translateX(0); transition: transform var(--transition-medium) cubic-bezier(.2,.9,.2,1); }
+
+/* toggled state */
+.ios-toggle[aria-checked="true"] .ios-thumb { transform: translateX(24px); background: var(--accent); box-shadow: 0 6px 14px color-mix(in srgb,var(--accent) 30%, rgba(0,0,0,0.22)); }
+
+/* accessibility focus */
+.ios-toggle:focus { outline: 2px dashed color-mix(in srgb, var(--accent) 50%, #fff); outline-offset: 3px; }
+
+/* -------------------------
+   Palette knob (Material You adaptive colors)
+   ------------------------- */
+.palette-knob { display:flex; gap:6px; width:100%; justify-content:center; padding:6px 4px; }
+.palette-knob .pal { width:16px; height:16px; border-radius:50%; border: 2px solid rgba(255,255,255,0.6); cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: transform .18s ease, box-shadow .18s ease; }
+.palette-knob .pal:hover { transform: translateY(-4px) scale(1.06); }
+.palette-knob .pal.active { box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 30%, rgba(0,0,0,0.18)); transform: translateY(-2px) scale(1.08); border-color: color-mix(in srgb, var(--accent) 30%, #fff); }
+
+/* default pal colors — updateable via data-color but good fallback */
+.palette-knob .pal-1{ background:#e94560; }
+.palette-knob .pal-2{ background:#3b82f6; }
+.palette-knob .pal-3{ background:#10b981; }
+.palette-knob .pal-4{ background:#f59e0b; }
+.palette-knob .pal-5{ background:#a78bfa; }
+
+/* -------------------------
+   Neon rainbow mode (animated)
+   ------------------------- */
+.tt-style-switch.v3.neon { box-shadow: 0 18px 50px rgba(0,0,0,0.18); }
+.tt-style-switch.v3.neon .switch-btn.active {
+  animation: neonPulse 2.6s ease-in-out infinite;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.2), 0 0 16px color-mix(in srgb, var(--accent) 60%, rgba(0,0,0,0.1));
+}
+@keyframes neonPulse {
+  0% { filter: drop-shadow(0 0 2px color-mix(in srgb, var(--accent) 30%, #fff)); transform: translateY(-1px) scale(1.02); }
+  50% { filter: drop-shadow(0 0 14px color-mix(in srgb, var(--accent) 80%, #fff)); transform: translateY(-2px) scale(1.06); }
+  100% { filter: drop-shadow(0 0 2px color-mix(in srgb, var(--accent) 30%, #fff)); transform: translateY(-1px) scale(1.02); }
+}
+
+/* rainbow animated tint when neon:on */
+.tt-style-switch.v3.neon .pal { animation: rainbowShift 5s linear infinite; }
+@keyframes rainbowShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* -------------------------
+   Auto-hide + reveal on hover (collapsed by default)
+   ------------------------- */
+.tt-style-switch.v3.collapsed { transform: translateX(-70%); opacity: 0.06; transition: transform .35s ease, opacity .35s ease; }
+.tt-style-switch.v3:not(.collapsed):hover { transform: translateY(0) scale(1); opacity: 1; }
+.tt-style-switch.v3 .collapse-handle { background: transparent; border: none; font-size:14px; color:#999; cursor:pointer; margin-top:2px; }
+
+/* -------------------------
+   Scroll-aware parallax (subtle)
+   ------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .tt-style-switch.v3 { transition: transform .2s ease; will-change: transform; }
+}
+
+/* -------------------------
+   Crossfade theme + blur (200ms)
+   ------------------------- */
+:root { transition: color 200ms ease, background 200ms ease; }
+body { transition: background 200ms ease, color 200ms ease; }
+
+/* Smooth blur fade when toggling */
+body.theme-fading {
+  transition: background 200ms ease, color 200ms ease;
+  filter: blur(0px);
+}
+body.theme-fading.fade-blur { animation: themeBlur 220ms linear; }
+@keyframes themeBlur {
+  0% { filter: blur(6px); opacity: 0.94; }
+  100% { filter: blur(0px); opacity: 1; }
+}
+
+/* -------------------------
+   Accessibility adjustments
+   ------------------------- */
+.tt-style-switch.v3 .switch-btn { min-height: 36px; }
+.tt-style-switch.v3 .switch-btn .label { font-size: 11px; }
+.tt-style-switch.v3 .switch-btn:focus { outline: 3px solid color-mix(in srgb, var(--accent) 30%, #fff); outline-offset:3px; }
+
+/* -------------------------
+   Ensure dark-mode uses accent variables
+   ------------------------- */
+body.dark-mode { --bg-surface: #0d0d0d; --glass-bg: rgba(20,20,20,0.45); --glass-border: rgba(255,255,255,0.04); }
+
+/* -------------------------
+   Utility: tiny helper for chroma safe text contrast
+   ------------------------- */
+.contrast-light { color: #fff; }
+
+/* dark mode */
+
+  body.dark-mode {
+    background: #0d0d0d;
+    color: #e8e8e8;
+  }
+  
+  /* Header / menus */
+  .dark-mode .header,
+  .dark-mode .topbar {
+    background: #111;
+    border-color: #2e2e2e;
+  }
+  
+  .dark-mode .menu-link {
+    color: #e4e4e4;
+  }
+  .dark-mode .menu-link:hover {
+    background: #222;
+  }
+  
+  /* Mega / sub menus */
+  .dark-mode .submenu,
+  .dark-mode .megabox {
+    background: #111;
+    border-color: #333;
+  }
+  .dark-mode .artist div span {
+    color: #cfcfcf;
+  }
+  
+  /* Cards */
+  .dark-mode .card,
+  .dark-mode .featured-card {
+    background: #161616;
+    border-color: #333;
+  }
+  
+  /* Text adjustments */
+  .dark-mode .muted {
+    color: #a9a9a9;
+  }
+  
+  .dark-mode .featured-card .caption h3 {
+    color: #fff;
+  }
+  
+  /* Footer */
+  .dark-mode .footer {
+    background: #111;
+    border-color: #2e2e2e;
+  }
+
+
+/* FEATURED CARD */
+.featured-card{border:1px solid #eee;border-radius:12px;overflow:hidden}
+.featured-card img{height:280px;object-fit:cover;width:100%}
+.featured-card .caption{padding:12px}
+.featured-card h3{margin-bottom:4px}
+.muted{color:#666}
+
+/* SECTION */
+.section{padding:40px 0}
+.section-head{text-align:left;margin-bottom:18px}
+.section-head h2{margin-bottom:6px}
+
+/* CATALOG GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{border:1px solid #eee;border-radius:10px;overflow:hidden;background:#fff}
+.card-body{padding:12px}
+.card-body h3{font-size:18px;margin-bottom:4px}
+.card-body p{margin-bottom:12px}
+
+/* META */
+.meta{display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.price strong{color:#e94560}
+
+/* SLIDER */
+.slider{display:flex;align-items:center;gap:12px;overflow:hidden;position:relative}
+.slide-track{display:flex;gap:20px;transition:transform .3s ease}
+.slide{min-width:260px;border:1px solid #eee;border-radius:10px;padding:10px;background:#fff}
+.slider button{background:#eee;border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:20px;cursor:pointer}
+
+/* FAQ */
+.faq-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.faq-item h4{margin-bottom:6px}
+
+/* FOOTER */
+.footer{border-top:1px solid #eee;padding:30px 0;margin-top:40px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer img{height:32px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .mobile-toggle{display:block}
+  .nav .menu{display:none;flex-direction:column;background:#fff;border:1px solid #eee;border-radius:8px;padding:12px;margin-top:10px}
+  nav.nav{margin-left:0}
+  .hero{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   ART MART — ULTRA CLEAN TRANSPARENT HEADER (STYLE A)
+   ============================================================ */
+
+/* Header base */
+header,
+.topbar,
+.navbar,
+nav {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    position: relative;
+    z-index: 9999;
+    width: 100%;
+}
+
+/* Make navbar float cleanly over background images */
+header {
+    padding: 20px 0 !important;
+}
+
+/* -------------------------------------------
+   NAV SPACING & CENTER ALIGNMENT
+-------------------------------------------- */
+nav ul {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 36px !important;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style: none;
+    position: relative !important;
+}
+
+/* -------------------------------------------
+   NAV LINKS — modern minimal aesthetic
+-------------------------------------------- */
+nav ul li a {
+    color: #ffffff !important;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 6px 4px;
+    position: relative;
+    transition: color 0.25s ease;
+}
+
+/* Soft underline hover animation */
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.25s ease;
+}
+
+nav ul li:hover a::after {
+    width: 100%;
+}
+
+/* -------------------------------------------
+   DROPDOWN FIX — alignment under item
+-------------------------------------------- */
+nav ul li .submenu,
+nav ul li .menu-dropdown,
+nav ul li .dropdown-menu,
+nav ul li .mega-menu,
+nav ul li .megabox {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    margin: 0 !important;
+    background: rgba(0,0,0,0.35) !important;
+    backdrop-filter: blur(8px) !important;
+    border-radius: 10px !important;
+    padding: 16px 20px !important;
+    min-width: 200px !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 99999 !important;
+}
+
+/* Dropdown menu links */
+nav ul li .submenu a,
+nav ul li .mega-menu a,
+nav ul li .megabox a {
+    color: #fff !important;
+    padding: 8px 0 !important;
+    display: block;
+}
+
+/* -------------------------------------------
+   PAGE CONTENT MARGINS (PROFESSIONAL LOOK)
+-------------------------------------------- */
+body {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+}
+
+/* Center main content area */
+.main-content,
+.page-content,
+.container,
+.wrapper {
+    max-width: 1300px !important;
+    margin: 0 auto !important;
+}
+
+/* -------------------------------------------
+   MOBILE NAV IMPROVEMENTS
+-------------------------------------------- */
+@media (max-width: 991px) {
+    nav ul {
+        flex-direction: column !important;
+        gap: 18px !important;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li .submenu,
+    nav ul li .megabox {
+        position: relative !important;
+        backdrop-filter: none !important;
+        background: rgba(0,0,0,0.6) !important;
+        box-shadow: none !important;
+    }
+
+    header {
+        padding: 10px 0 !important;
+    }
+}
+
+/* ============================================================
+   HEADER ANIMATION PACK v3
+   Ultra-smooth scroll, hover, and load animations
+============================================================ */
+
+/* Fade-in on page load */
+header {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: headerLoadFade .8s ease-out forwards;
+}
+
+@keyframes headerLoadFade {
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* -----------------------------------------------------------
+ STICKY SCROLL SHRINK EFFECT
+------------------------------------------------------------ */
+
+/* Shrinks header when scrolling down */
+header.scrolled {
+  padding: 10px 0 !important;
+  background: rgba(0,0,0,0.25) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  transition: all .35s ease;
+}
+
+/* Logo shrink on scroll */
+header.scrolled .logo img {
+  transform: scale(0.85);
+  opacity: 0.85;
+  transition: all .35s ease;
+}
+
+
+
+/* -----------------------------------------------------------
+ MENU ITEMS STAGGER ANIMATION (Pro aesthetic)
+------------------------------------------------------------ */
+
+
+
+/* ============================================================
+   CFR.ORG STYLE ARTICLES MEGA DROPDOWN
+============================================================ */
+
+.articles-dropdown {
+  position: relative !important;
+}
+
+.articles-dropdown .articles-mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 750px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 25px;
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all .35s ease;
+  z-index: 99999;
+}
+
+/* Show on hover */
+.articles-dropdown:hover .articles-mega {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.articles-mega-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 25px;
+}
+
+/* FEATURED AREA */
+.articles-featured .featured-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #fff;
+  margin-bottom: 15px;
+  opacity: .8;
+}
+
+.featured-article {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.featured-thumb img {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+}
+
+.featured-headline {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.featured-excerpt {
+  margin-top: 6px;
+  color: #eee;
+  font-size: 14px;
+  line-height: 1.45;
+  max-width: 380px;
+}
+
+/* ARTICLE GRID */
+.articles-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.article-link {
+  display: block;
+  color: #fff !important;
+  padding: 6px 0;
+  font-size: 15px;
+  transition: opacity .2s ease;
+}
+
+.article-link:hover {
+  opacity: 0.6;
+}
+
+/* MOBILE */
+@media (max-width: 991px) {
+  .articles-dropdown .articles-mega {
+      position: relative;
+      width: 100%;
+      backdrop-filter: none;
+  }
+  .articles-mega-inner {
+      grid-template-columns: 1fr;
+  }
+}
+
+/* ===================================================================
+   FIXED ARTICLES MEGA DROPDOWN — NO THIRD COLUMN
+   Featured: stacked (image → headline → text)
+=================================================================== */
+
+.articles-dropdown {
+  position: relative;
+}
+
+.articles-dropdown .articles-mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 650px;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 25px;
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all .35s ease;
+  z-index: 99999;
+}
+
+.articles-dropdown:hover .articles-mega {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* strict 2-column layout */
+.articles-mega-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* FEATURED COLUMN (stack vertically) */
+.featured-article-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featured-thumb img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.featured-title {
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.featured-headline {
+  color: #fff;
+  font-size: 17px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.featured-excerpt {
+  color: #eee;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ARTICLE LINK COLUMN */
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.article-link {
+  color: #fff !important;
+  font-size: 15px;
+  padding: 4px 0;
+  display: inline-block;
+  position: relative;
+  transition: all .2s ease;
+}
+
+/* White underline hover — same as your nav */
+.article-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  transition: width .25s ease;
+}
+
+.article-link:hover::after {
+  width: 60%;
+}
+
+
+/* mobile fallback */
+@media (max-width: 991px) {
+  .articles-mega {
+      position: relative;
+      width: 100%;
+  }
+  .articles-mega-inner {
+      grid-template-columns: 1fr;
+  }
+}
+
+:root {
+  --primary: #FDDC5C;
+  --dark: #996515;
+  --nav-h: 90px;
+}
+
+/* TOPBAR */
+.topbar {
+  background: var(--dark);
+  padding: 6px 0;
+  color: white;
+}
+
+/* HEADER BACKGROUND IMAGE */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: 0.3s ease;
+  background-image: url("assets/digital_archieve.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* When scrolled: fade white overlay but keep image behind */
+.site-header.scrolled {
+  background-color: rgba(255,255,255,0.92);
+  background-blend-mode: lighten;
+}
+
+/* NAVBAR */
+.main-nav {
+  background: transparent !important;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  transition: 0.3s ease;
+}
+
+/* Brand */
+.navbar-brand {
+  color: white;
+  font-weight: 700;
+  font-size: 1.6rem;
+  transition: 0.3s;
+}
+.site-header.scrolled .navbar-brand {
+  color: var(--dark);
+}
+
+/* NAV LINKS */
+.nav-link {
+  text-decoration: none !important;
+  white-space: nowrap;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 6px;
+  transition: 0.3s;
+  position: relative;
+  line-height: 1;
+}
+
+.nav-link:hover,
+.nav-link:active,
+.nav-link:focus {
+  text-decoration: none !important;
+}
+
+/* Animated underline */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--dark));
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.site-header.scrolled .nav-link {
+  color: var(--dark);
+}
+
+/* HAMBURGER */
+.custom-toggler {
+  border: none;
+  background: transparent;
+  display: none;
+}
+.hamburger {
+  width: 24px;
+  height: 20px;
+  position: relative;
+}
+.hamburger span {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: white;
+  left: 0;
+  transition: 0.3s;
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 8px; }
+.hamburger span:nth-child(3) { top: 16px; }
+
+.site-header.scrolled .hamburger span {
+  background: var(--dark);
+}
+
+.custom-toggler.open .hamburger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.custom-toggler.open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.custom-toggler.open .hamburger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media(max-width: 992px){
+  .custom-toggler { display: block; }
+  .navbar-collapse {
+    background: white;
+    padding: 20px;
+  }
+  .nav-link {
+    color: var(--dark) !important;
+  }
+}

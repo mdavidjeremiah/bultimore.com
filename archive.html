@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bultimore Archive | Digital Repository</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <!-- Animate.css -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #d4af37;
+      --dark: #996515;
+      --light: rgb(244, 239, 201);
+      --gold-light: #FFE8A5;
+      --gold-mid: #D4AF37;
+      --gold-dark: #996515;
+      --nav-h: 90px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      font-family: 'Segoe UI', 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-mid));
+      padding: 6px 0;
+      color: white;
+      font-weight: 500;
+    }
+
+    /* HEADER BACKGROUND IMAGE */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      transition: var(--transition);
+      background-image: url("assets/digital_archieve.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .site-header.scrolled {
+      background-color: rgba(255,255,255,0.95);
+      background-blend-mode: lighten;
+      backdrop-filter: blur(10px);
+    }
+
+    /* NAVBAR */
+    .main-nav {
+      background: transparent !important;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    /* Brand */
+    .navbar-brand {
+      color: white;
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+    }
+    
+    .navbar-brand:hover {
+      color: var(--primary);
+    }
+    
+    .site-header.scrolled .navbar-brand {
+      color: var(--dark);
+    }
+
+    /* NAV LINKS */
+    .nav-link {
+      text-decoration: none !important;
+      white-space: nowrap;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 10px 12px;
+      margin: 0 2px;
+      transition: var(--transition);
+      position: relative;
+      border-radius: 4px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--primary);
+    }
+
+    .site-header.scrolled .nav-link {
+      color: var(--dark);
+    }
+
+    .site-header.scrolled .nav-link:hover {
+      color: var(--primary);
+    }
+
+    /* HAMBURGER */
+    .custom-toggler {
+      border: none;
+      background: transparent;
+      display: none;
+    }
+
+    @media(max-width: 992px) {
+      .custom-toggler {
+        display: block;
+      }
+      .navbar-collapse {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+    }
+
+    /* MAIN CONTENT */
+    .archive-header {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(153, 101, 21, 0.7) 100%),
+                  url('assets/digital_archieve.jpg') center/cover no-repeat fixed;
+      color: white;
+      text-align: center;
+      padding: 8rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .archive-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(0,0,0,0.6) 100%);
+    }
+
+    .archive-header h1 {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .archive-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      opacity: 0.95;
+    }
+
+    /* SEARCH SECTION */
+    .archive-search {
+      margin-top: -60px;
+      position: relative;
+      z-index: 100;
+    }
+
+    .search-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .search-container .input-group {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border-radius: 50px;
+      overflow: hidden;
+      border: 1px solid #e0e0e0;
+    }
+
+    .search-container input {
+      border: none;
+      padding: 1.2rem 1.5rem;
+      font-size: 1.1rem;
+      background: #f8f8f8;
+    }
+
+    .search-container .btn {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      border: none;
+      color: white;
+      padding: 0 2.5rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .search-container .btn:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      text-align: center;
+      margin: 3rem auto;
+      padding: 1rem;
+    }
+
+    .filter-buttons {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      background: white;
+      padding: 1rem;
+      border-radius: 50px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .filter-btn {
+      border-radius: 50px;
+      padding: 0.8rem 1.8rem;
+      font-weight: 600;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      background: #f8f8f8;
+      color: var(--dark);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    /* ARCHIVE GRID */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem auto;
+    }
+
+    .archive-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .archive-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary);
+    }
+
+    .item-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .archive-item:hover .item-image {
+      transform: scale(1.05);
+    }
+
+    .image-container {
+      overflow: hidden;
+      height: 220px;
+      position: relative;
+    }
+
+    .item-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--primary);
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .item-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .item-content h5 {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+      font-size: 1.25rem;
+    }
+
+    .item-content p {
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .item-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .item-action {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
+    }
+
+    .item-action:hover {
+      color: var(--dark);
+      gap: 10px;
+    }
+
+    /* STATS SECTION */
+    .archive-stats {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(153, 101, 21, 0.05) 100%);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 4rem auto;
+      max-width: 1000px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* FOOTER - Match index.html */
+    .footer {
+      background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+      color: white;
+      padding: 80px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand h3 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-weight: 800;
+    }
+
+    .footer-brand p {
+      color: #aaa;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--primary);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+
+    .footer-links h4,
+    .footer-contact h4,
+    .footer-newsletter h4 {
+      color: var(--primary);
+      margin-bottom: 25px;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .footer-contact p {
+      color: #ccc;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-contact i {
+      color: var(--primary);
+      width: 20px;
+    }
+
+    .footer-newsletter p {
+      color: #aaa;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #888;
+    }
+
+    .newsletter-form button {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      border: none;
+      width: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-form button:hover {
+      transform: scale(1.1);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    /* ANIMATIONS */
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .animate-slide-up {
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* LOADING SKELETON */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <div class='topbar d-none d-lg-block'>
+    <div class='container d-flex justify-content-between align-items-center'>
+      <div class='d-flex align-items-center gap-4'>
+        <small><i class='fa fa-map-marker-alt me-2'></i>02 Cleopus Drive, Nalumunye</small>
+        <small><i class='fa fa-phone-alt me-2'></i>+256 776 533 872</small>
+        <small><i class='fa fa-envelope-open me-2'></i>info@bultimore.com</small>
+      </div>
+      <div class='d-flex align-items-center gap-2'>
+        <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-twitter'></i></a>
+        <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-facebook-f'></i></a>
+        <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-instagram'></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER WITH BACKGROUND IMAGE -->
+  <header class='site-header'>
+    <nav class='navbar navbar-expand-lg main-nav'>
+      <div class='container d-flex align-items-center justify-content-between'>
+        <a class='navbar-brand' href='index.html'>Bultimore</a>
+        <button class='navbar-toggler custom-toggler' type='button'>
+          <span class='hamburger'><span></span><span></span><span></span></span>
+        </button>
+        <div class='collapse navbar-collapse justify-content-center' id='navMenu'>
+          <ul class='navbar-nav align-items-center gap-3'>
+            <li><a class='nav-link' href='index.html'>Home</a></li>
+            <li><a class='nav-link' href='gallery.html'>Art Gallery</a></li>
+            <li><a class='nav-link active' href='archive.html'>Archive</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button"
+                 data-bs-toggle="dropdown" aria-expanded="false">
+                Programs
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+                <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+                <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+                <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+              </ul>
+            </li>    
+            <li><a class='nav-link' href='library.html'>Library</a></li>
+            <li><a class='nav-link' href='contact.html'>Contacts</a></li>
+            <li><a class='nav-link' href='donate.html'>Donate</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="animate-fade-in">
+    <!-- HERO SECTION -->
+    <header class="archive-header">
+      <div class="container position-relative">
+        <h1 class="animate__animated animate__fadeInDown">Digital Archive</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Explore historical documents, recordings, and moments that shaped Bultimore Residents. Preserving our legacy for future generations.</p>
+      </div>
+    </header>
+
+    <!-- SEARCH SECTION -->
+    <div class="archive-search">
+      <div class="container">
+        <div class="search-container animate__animated animate__slideInUp">
+          <h5 class="text-center mb-4" style="color: var(--dark);">
+            <i class="fas fa-search me-2"></i>Discover Our History
+          </h5>
+          <form class="d-flex">
+            <div class="input-group">
+              <input type="search" class="form-control" placeholder="Search archives... (e.g. Ashadhu, 2019, Music, Hotel, Documents, Photos)" />
+              <button class="btn px-4" type="submit">
+                <i class="fa fa-search me-2"></i>Search
+              </button>
+            </div>
+          </form>
+          <div class="text-center mt-3">
+            <small class="text-muted">Browse through 500+ archived items</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS SECTION -->
+    <div class="archive-stats animate__animated animate__fadeIn">
+      <div class="row text-center">
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Archived Items</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number">120</div>
+            <div class="stat-label">Video Records</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number">250</div>
+            <div class="stat-label">Photographs</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number">85</div>
+            <div class="stat-label">Audio Files</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+      <div class="filter-buttons">
+        <button class="filter-btn active">All Items</button>
+        <button class="filter-btn">Photographs</button>
+        <button class="filter-btn">Video Records</button>
+        <button class="filter-btn">Documents</button>
+        <button class="filter-btn">Audio Files</button>
+        <button class="filter-btn">Artifacts</button>
+        <button class="filter-btn">Publications</button>
+      </div>
+    </div>
+
+    <!-- ARCHIVE GRID -->
+    <div class="container pb-5">
+      <div class="archive-grid">
+        <!-- Item 1 -->
+        <div class="archive-item animate-slide-up">
+          <div class="image-container">
+            <img src="assets/Digital_achieve.jpg" alt="Bultimore Hotel Opening" class="item-image">
+            <span class="item-badge">Video</span>
+          </div>
+          <div class="item-content">
+            <h5>Opening of Bultimore Hotel</h5>
+            <p>Video footage, 2021. A grand look back at the official inauguration of the residence with speeches and celebrations.</p>
+            <div class="item-meta">
+              <span><i class="far fa-calendar me-1"></i> March 15, 2021</span>
+              <a href="#" class="item-action">View <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="archive-item animate-slide-up" style="animation-delay: 0.1s">
+          <div class="image-container">
+            <img src="img/archive2.jpg" alt="Ingram's Speech" class="item-image">
+            <span class="item-badge">Audio</span>
+          </div>
+          <div class="item-content">
+            <h5>Ingram's Speech: "Vision and Responsibility"</h5>
+            <p>Audio recording, 2020. A defining talk on design, duty, and destiny that inspired a generation.</p>
+            <div class="item-meta">
+              <span><i class="far fa-calendar me-1"></i> June 30, 2020</span>
+              <a href="#" class="item-action">Listen <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="archive-item animate-slide-up" style="animation-delay: 0.2s">
+          <div class="image-container">
+            <img src="img/archive3.jpg" alt="Architectural Sketches" class="item-image">
+            <span class="item-badge">Document</span>
+          </div>
+          <div class="item-content">
+            <h5>Architectural Sketches of Winston Center</h5>
+            <p>Digitized drawings, 2018. Early plans and concepts that influenced the center's revolutionary design.</p>
+            <div class="item-meta">
+              <span><i class="far fa-calendar me-1"></i> September 12, 2018</span>
+              <a href="#" class="item-action">Explore <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="archive-item animate-slide-up" style="animation-delay: 0.3s">
+          <div class="image-container">
+            <img src="img/archive4.jpg" alt="Press Article" class="item-image">
+            <span class="item-badge">Publication</span>
+          </div>
+          <div class="item-content">
+            <h5>Press Article: The Making of Bultimore</h5>
+            <p>Newspaper, 2019. Original Daily Monitor feature article introducing the vision to the public.</p>
+            <div class="item-meta">
+              <span><i class="far fa-calendar me-1"></i> January 22, 2019</span>
+              <a href="#" class="item-action">Read <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="archive-item animate-slide-up" style="animation-delay: 0.4s">
+          <div class="image-container">
+            <img src="img/archive5.jpg" alt="Dear Daughter Demo" class="item-image">
+            <span class="item-badge">Audio</span>
+          </div>
+          <div class="item-content">
+            <h5>Dear Daughter — Early Demo Recording</h5>
+            <p>Music file, 2022. The first acoustic version of the now iconic song before studio production.</p>
+            <div class="item-meta">
+              <span><i class="far fa-calendar me-1"></i> May 8, 2022</span>
+              <a href="#" class="item-action">Play <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="archive-item animate-slide-up" style="animation-delay: 0.5s">
+          <div class="image-container">
+            <img src="img/archive6.jpg" alt="Community Meeting" class="item-image">
+            <span class="item-badge">Photograph</span>
+          </div>
+          <div class="item-content">
+            <h5>First Community Assembly Meeting</h5>
+            <p>Photograph collection, 2017. Capturing the inaugural gathering of Bultimore residents.</p>
+            <div class="item-meta">
+              <span><i class="far fa-calendar me-1"></i> November 5, 2017</span>
+              <a href="#" class="item-action">View <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LOAD MORE BUTTON -->
+      <div class="text-center mt-5">
+        <button class="btn btn-lg" style="
+          background: linear-gradient(135deg, var(--primary), var(--dark));
+          color: white;
+          padding: 0.8rem 2.5rem;
+          border-radius: 50px;
+          font-weight: 600;
+          border: none;
+          transition: var(--transition);
+        ">
+          <i class="fas fa-history me-2"></i>Load More Archives
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Bultimore</h3>
+        <p>A living archive of culture, design, and hospitality. Preserving and promoting Uganda's rich cultural heritage through art, education, and community engagement.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Art Gallery</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="library.html">Library</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Info</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 02 Cleopus Drive, Nalumunye</p>
+        <p><i class="fas fa-phone"></i> +256 776 533 872</p>
+        <p><i class="fas fa-envelope"></i> info@bultimore.com</p>
+        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-5PM</p>
+      </div>
+      
+      <div class="footer-newsletter">
+        <h4>Stay Updated</h4>
+        <p>Subscribe to our newsletter for the latest exhibitions, events, and cultural programs.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Bultimore Cultural Center. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--primary);"></i> for cultural preservation</p>
+    </div>
+  </div>
+</footer>
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Scroll effect for header
+    window.addEventListener("scroll", function () {
+      const header = document.querySelector(".site-header");
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // Filter button active state
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+    // Toggle mobile menu
+    document.querySelector('.custom-toggler').addEventListener('click', function() {
+      this.classList.toggle('open');
+      const menu = document.getElementById('navMenu');
+      menu.classList.toggle('show');
+    });
+
+    // Animate items on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all archive items
+    document.querySelectorAll('.archive-item').forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(item);
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

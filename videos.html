@@ -1,0 +1,186 @@
+(cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF'
+diff --git a/video.html b/video.html
+--- a/video.html
++++ b/video.html
+@@ -0,0 +1,179 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>Video - bultimore.com</title>
++    <meta name="description" content="Watch creative content and behind-the-scenes footage from bultimore">
++    <link rel="stylesheet" href="css/style.css">
++    <link rel="stylesheet" href="css/video.css">
++    <link rel="preconnect" href="https://fonts.googleapis.com">
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
++    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
++</head>
++<body>
++    <!-- Navigation -->
++    <nav class="navbar">
++        <div class="nav-container">
++            <div class="nav-logo">
++                <a href="index.html">bultimore</a>
++            </div>
++            <div class="nav-menu" id="nav-menu">
++                <a href="index.html" class="nav-link">Home</a>
++                <a href="store.html" class="nav-link">Art Store</a>
++                <a href="blog.html" class="nav-link">Ideas</a>
++                <a href="gallery.html" class="nav-link">Gallery</a>
++                <a href="music.html" class="nav-link">Music</a>
++                <a href="video.html" class="nav-link active">Video</a>
++                <a href="programs.html" class="nav-link">Programs</a>
++                <a href="library.html" class="nav-link">Library</a>
++                <a href="donate.html" class="nav-link donate-btn">Donate</a>
++            </div>
++            <div class="hamburger" id="hamburger">
++                <span class="bar"></span>
++                <span class="bar"></span>
++                <span class="bar"></span>
++            </div>
++        </div>
++    </nav>
++
++    <!-- Page Header -->
++    <header class="page-header video-header">
++        <div class="container">
++            <h1>Video Gallery</h1>
++            <p>Creative content, tutorials, and behind-the-scenes footage</p>
++        </div>
++    </header>
++
++    <!-- Featured Video -->
++    <section class="featured-video">
++        <div class="container">
++            <div class="featured-video-container" id="featured-video-container">
++                <!-- Featured video will be loaded here -->
++            </div>
++        </div>
++    </section>
++
++    <!-- Video Categories -->
++    <section class="video-categories">
++        <div class="container">
++            <div class="category-tabs">
++                <button class="category-tab active" onclick="filterVideos('all')" data-category="all">
++                    All Videos
++                </button>
++                <button class="category-tab" onclick="filterVideos('tutorials')" data-category="tutorials">
++                    Tutorials
++                </button>
++                <button class="category-tab" onclick="filterVideos('behind-scenes')" data-category="behind-scenes">
++                    Behind the Scenes
++                </button>
++                <button class="category-tab" onclick="filterVideos('performances')" data-category="performances">
++                    Performances
++                </button>
++                <button class="category-tab" onclick="filterVideos('community')" data-category="community">
++                    Community
++                </button>
++            </div>
++        </div>
++    </section>
++
++    <!-- Video Grid -->
++    <section class="video-gallery">
++        <div class="container">
++            <div class="video-controls">
++                <div class="search-box">
++                    <input type="text" id="search-input" placeholder="Search videos..." class="search-input">
++                    <button onclick="searchVideos()" class="search-btn">
++                        <i class="fas fa-search"></i>
++                    </button>
++                </div>
++                
++                <div class="view-controls">
++                    <button onclick="setView('grid')" class="view-btn active" id="grid-view-btn">
++                        <i class="fas fa-th"></i> Grid
++                    </button>
++                    <button onclick="setView('list')" class="view-btn" id="list-view-btn">
++                        <i class="fas fa-list"></i> List
++                    </button>
++                </div>
++            </div>
++            
++            <div class="videos-grid" id="videos-grid">
++                <!-- Videos will be loaded dynamically -->
++            </div>
++            
++            <div class="loading" id="videos-loading" style="display: none;">
++                <div class="spinner"></div>
++            </div>
++            
++            <div class="no-results" id="no-results" style="display: none;">
++                <h3>No videos found</h3>
++                <p>Try adjusting your search or category filter</p>
++            </div>
++        </div>
++    </section>
++
++    <!-- Video Modal -->
++    <div id="video-modal" class="modal video-modal">
++        <div class="modal-content video-modal-content">
++            <span class="modal-close" onclick="closeVideoModal()">&times;</span>
++            <div id="video-detail">
++                <!-- Video details will be loaded here -->
++            </div>
++        </div>
++    </div>
++
++    <!-- Footer -->
++    <footer class="footer">
++        <div class="container">
++            <div class="footer-content">
++                <div class="footer-section">
++                    <h4>bultimore</h4>
++                    <p>Art, ideas, and community coming together</p>
++                    <div class="social-links">
++                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
++                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
++                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
++                    </div>
++                </div>
++                
++                <div class="footer-section">
++                    <h4>Explore</h4>
++                    <ul>
++                        <li><a href="store.html">Art Store</a></li>
++                        <li><a href="gallery.html">Gallery</a></li>
++                        <li><a href="music.html">Music</a></li>
++                        <li><a href="video.html">Video</a></li>
++                    </ul>
++                </div>
++                
++                <div class="footer-section">
++                    <h4>Connect</h4>
++                    <ul>
++                        <li><a href="blog.html">Ideas & Blog</a></li>
++                        <li><a href="programs.html">Programs</a></li>
++                        <li><a href="library.html">Library</a></li>
++                        <li><a href="donate.html">Support</a></li>
++                    </ul>
++                </div>
++                
++                <div class="footer-section">
++                    <h4>Contact</h4>
++                    <p>Email: info@bultimore.com</p>
++                    <p>Phone: +1 (555) 123-4567</p>
++                </div>
++            </div>
++            
++            <div class="footer-bottom">
++                <p>&copy; 2024 bultimore. All rights reserved.</p>
++            </div>
++        </div>
++    </footer>
++
++    <!-- Scripts -->
++    <script src="js/main.js"></script>
++    <script src="js/content.js"></script>
++    <script src="js/video.js"></script>
++</body>
++</html>
+EOF
+)

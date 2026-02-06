@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bultimore Virtual Art Gallery</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href='style.css' rel='stylesheet'>
+
+<style>
+  :root {
+    --primary: #FDDC5C;
+    --gold-light: #FFE8A5;
+    --gold-mid: #D4AF37;
+    --gold-dark: #996515;
+    --nav-h: 90px;
+    --accent: #ee7728;
+    --bg-dark: #0e0e10;
+    --txt: #996515;
+    --room1-bg: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    --room2-bg: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+    --room3-bg: linear-gradient(135deg, #111111 0%, #222222 100%);
+    --room-transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  /* TOPBAR */
+  .topbar {
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-mid));
+    padding: 6px 0;
+    color: white;
+    font-weight: 500;
+  }
+  .topbar-social {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    float: right;
+    padding: -8px 0;
+  }
+    
+  .topbar-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.9rem;
+  }
+    
+  .topbar-social a:hover {
+    color: var(--primary-gold);
+    transform: translateY(-2px);
+  }
+  /* =========================
+     HEADER & NAVIGATION
+     ========================= */
+  
+     .site-header {
+    height: var(--nav-h);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    transition: var(--transition);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .site-header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    color: var(--dark);
+    font-weight: 800;
+    font-size: 1.8rem;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-right: 10px;
+  }
+  
+  .navbar-brand::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    border-radius: 2px;
+  }
+  
+  .nav-link {
+    color: var(--dark);
+    font-weight: 600;
+    padding: 8px 16px !important;
+    text-decoration: none;
+    position: relative;
+    transition: var(--transition);
+    border-radius: 20px;
+    font-size: 0.95rem;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--dark);
+    background: rgba(253, 220, 92, 0.15);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--dark));
+    transition: var(--transition);
+    border-radius: 1px;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 60%;
+  }
+  
+  .btn-donate {
+    background: linear-gradient(135deg, var(--dark), var(--light-dark));
+    color: white !important;
+    padding: 10px 24px !important;
+    border-radius: 25px;
+    border: none;
+    transition: var(--transition) !important;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+  
+  .btn-donate:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(153, 101, 21, 0.4);
+    background: linear-gradient(135deg, var(--light-dark), var(--dark));
+  }
+  
+  .navbar-toggler {
+    border: none;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(253, 220, 92, 0.1);
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+  
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(153, 101, 21, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+  
+  /* HERO */
+  .hero-gallery {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)), 
+                url('img/HEADER-ARCHIEVEMENT1.jpg') center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-gallery::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(212,175,55,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(253,220,92,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .caption {
+    background: rgba(20,20,20,0.7);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212,175,55,0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+    max-width: 700px;
+    z-index: 2;
+  }
+  
+  .caption h3 {
+    color: var(--gold-light);
+    margin: 0 0 15px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+  
+  .caption h1 {
+    color: var(--primary);
+    margin: 0 0 30px;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    background: linear-gradient(90deg, var(--primary), var(--gold-mid));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .btn-explore {
+    background: linear-gradient(90deg, var(--gold-mid), var(--primary));
+    border: none;
+    color: #111;
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+  }
+  
+  .btn-explore:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(212,175,55,0.4);
+  }
+
+  /* VIRTUAL GALLERY - Modern Gold Theme */
+  .virtual-gallery {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  /* GALLERY CONTAINER - 3D Perspective */
+  .gallery-container {
+    width: 300vw;
+    height: 100%;
+    display: flex;
+    transform-style: preserve-3d;
+    transition: transform var(--room-transition);
+    will-change: transform;
+    position: relative;
+  }
+
+  /* INDIVIDUAL ROOMS */
+  .room {
+    width: 100vw;
+    height: 100vh;
+    flex: 0 0 100vw;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  /* ROOM 1: GOLDEN HALL */
+  .room-1 {
+    background: var(--room1-bg);
+    position: relative;
+  }
+
+  .room-1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(212,175,55,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(253,220,92,0.05) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 30%);
+    pointer-events: none;
+  }
+
+  /* ROOM 2: CONTEMPORARY VAULT */
+  .room-2 {
+    background: var(--room2-bg);
+  }
+
+  .room-2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(45deg, rgba(20,20,20,0.9) 0%, transparent 100%),
+      radial-gradient(circle at center, rgba(212,175,55,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ROOM 3: LUMINOUS CHAMBER */
+  .room-3 {
+    background: var(--room3-bg);
+  }
+
+  .room-3::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 50% 20%, rgba(253,220,92,0.07) 0%, transparent 60%),
+      linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+    pointer-events: none;
+  }
+
+  /* ROOM TITLES */
+  .room-title {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .room-title h2 {
+    color: var(--gold-light);
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+  .room-title .subtitle {
+    color: var(--gold-mid);
+    font-size: 1rem;
+    margin-top: 10px;
+    letter-spacing: 3px;
+    opacity: 0.7;
+  }
+
+  /* ARTWORK DISPLAYS - Modern Grid Layout */
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    z-index: 2;
+  }
+
+  .art-piece {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    height: 380px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #1a1a1a;
+    border: 1px solid rgba(212,175,55,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .art-piece:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(212,175,55,0.3);
+    border-color: rgba(212,175,55,0.3);
+  }
+
+  .art-piece.active {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4),
+                0 0 0 2px rgba(253,220,92,0.4);
+  }
+
+  .art-image {
+    width: 100%;
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .art-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 20px;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+
+  .art-piece:hover .art-overlay {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .art-title {
+    color: var(--gold-light);
+    font-size: 1.3rem;
+    margin: 0 0 5px;
+    font-weight: 600;
+  }
+
+  .art-year {
+    color: var(--gold-mid);
+    font-size: 0.9rem;
+    margin: 0 0 10px;
+  }
+
+  .art-desc {
+    color: #aaa;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* GOLD ACCENTS */
+  .gold-accent {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .accent-1 {
+    top: 20%;
+    left: 5%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(253,220,92,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .accent-2 {
+    bottom: 10%;
+    right: 10%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  /* NAVIGATION CONTROLS */
+  .room-nav {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    background: rgba(30,30,30,0.7);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--gold-light);
+    padding: 12px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-btn:hover {
+    background: rgba(212,175,55,0.2);
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  }
+
+  /* ROOM INDICATOR */
+  .room-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 100;
+  }
+
+  .room-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(212,175,55,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .room-dot.active {
+    background: var(--primary);
+    border-color: var(--gold-light);
+    transform: scale(1.3);
+    box-shadow: 0 0 15px rgba(253,220,92,0.5);
+  }
+
+  .room-label {
+    position: absolute;
+    left: 30px;
+    color: var(--gold-mid);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .room-dot:hover .room-label {
+    opacity: 1;
+  }
+
+  /* BACK BUTTON */
+  .back-hero {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 1000;
+  }
+
+  .back-hero button {
+    background: rgba(30,30,30,0.7);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--gold-light);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+  }
+
+  .back-hero button:hover {
+    background: rgba(212,175,55,0.2);
+    border-color: var(--primary);
+  }
+
+  /* DETAIL VIEW MODAL */
+  .art-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, #1a1a1a, #252525);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 90%;
+    border: 1px solid rgba(212,175,55,0.3);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    overflow: hidden;
+    animation: modalAppear 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  @keyframes modalAppear {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .modal-header {
+    background: rgba(0,0,0,0.5);
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-title {
+    color: var(--gold-light);
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  .close-modal {
+    background: transparent;
+    border: none;
+    color: var(--gold-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+
+  .close-modal:hover {
+    background: rgba(212,175,55,0.2);
+  }
+
+  .modal-body {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .modal-image {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    border: 1px solid rgba(212,175,55,0.2);
+  }
+
+  .modal-info {
+    color: #ddd;
+  }
+
+  .modal-info h4 {
+    color: var(--primary);
+    margin-top: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1200px) {
+    .art-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .caption h1 {
+      font-size: 2.5rem;
+    }
+    
+    .art-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    .modal-body {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .room-title h2 {
+      font-size: 2rem;
+    }
+    
+    .nav-btn {
+      padding: 10px 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .caption {
+      padding: 25px;
+      margin: 20px;
+    }
+    
+    .caption h1 {
+      font-size: 2rem;
+    }
+    
+    .btn-explore {
+      padding: 14px 30px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="container-fluid topbar d-none d-lg-block">
+    <div class="row gx-0">
+      <div class="col-lg-8 text-start ps-5">
+        <small class="me-3"><i class="fa fa-map-marker-alt"></i> 02 Cleopus Drive, Nalumunye, Kampala</small>
+        <small class="me-3"><i class="fa fa-phone-alt"></i> +256 776 533 872</small>
+        <small><i class="fa fa-envelope-open"></i> info@bultimore.com</small>
+      </div>
+      <div class="topbar-social col-lg-4 text-end pe-5">
+        <a class="btn btn-sm btn-outline-light rounded-circle href="#"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-sm btn-outline-light rounded-circle" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-sm btn-outline-light rounded-circle href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <nav class="navbar navbar-expand-lg main-nav">
+        <div class='container d-flex align-items-center justify-content-between'>
+          <a class='navbar-brand' href='index.html'>Bultimore</a>
+
+          <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class='collapse navbar-collapse justify-content-center' id='navMenu'>
+            <ul class='navbar-nav align-items-center gap-3'>
+              <li><a class='nav-link' href='index.html'>Home</a></li>
+              <li><a class='nav-link active' href='gallery.html'>Art Gallery</a></li>
+              <li><a class='nav-link' href='archive.html'>Archive</a></li>
+              <li><a class='nav-link' href='library.html'>Library</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                  Programs
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+                  <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+                  <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+                  <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+                </ul>
+              </li>    
+              <li><a class='nav-link' href='contact.html'>Contacts</a></li>
+              <li><a class='nav-link btn-donate' href='donate.html'>Donate</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+  <!-- HERO -->
+  <section class="hero-gallery" id="hero">
+    <div class="caption">
+      <h3>EXPERIENCE DIGITAL ART REDEFINED</h3>
+      <h1>GOLDEN ERA VIRTUAL GALLERY</h1>
+      <a href="artmart_bultimore.html" class="btn btn-warning btn-lg mt-3 px-4 py-2 fw-bold" 
+         style="background:linear-gradient(90deg, var(--gold-mid), var(--primary)); border:none; color:#111; margin-right: 15px;">
+        Explore Collection
+      </a>
+      <button class="btn-explore" id="start-tour">
+        <i class="fas fa-vr-cardboard" style="margin-right: 8px;"></i>
+        Start Virtual Tour
+      </button>
+      <p style="color: #aaa; margin-top: 25px; font-size: 0.9rem;">
+        Navigate through three exclusive gold-themed contemporary spaces
+      </p>
+    </div>
+  </section>
+
+  <!-- VIRTUAL GALLERY -->
+  <div class="virtual-gallery" id="virtual-gallery" aria-hidden="true">
+    <div class="back-hero">
+      <button id="backToHero">
+        <i class="fas fa-arrow-left" style="margin-right: 8px;"></i>
+        Exit Gallery
+      </button>
+    </div>
+
+    <div class="gallery-container" id="gallery-container">
+      <!-- ROOM 1: GOLDEN HALL -->
+      <div class="room room-1" data-room-index="0">
+        <div class="gold-accent accent-1"></div>
+        <div class="gold-accent accent-2"></div>
+        
+        <div class="room-title">
+          <h2>GOLDEN HALL</h2>
+          <div class="subtitle">CONTEMPORARY MASTERPIECES</div>
+        </div>
+
+        <div class="art-grid">
+          <!-- Art Piece 1 -->
+          <div class="art-piece" data-art-id="1" onclick="showArtDetail(1)">
+            <div class="art-image" style="background-image: url('img/concierge.jpg');"></div>
+            <div class="art-overlay">
+              <h3 class="art-title">Concierge</h3>
+              <div class="art-year">2024</div>
+              <p class="art-desc">Digital classic reimagined — mixed media exploration of service and luxury</p>
+            </div>
+          </div>
+          
+          <!-- Art Piece 2 -->
+          <div class="art-piece" data-art-id="2" onclick="showArtDetail(2)">
+            <div class="art-image" style="background-image: url('img/HEADER-ARCHIEVEMENT1.jpg');"></div>
+            <div class="art-overlay">
+              <h3 class="art-title">Achievement</h3>
+              <div class="art-year">2021</div>
+              <p class="art-desc">Moments of triumph captured in digital brushstrokes — archival print</p>
+            </div>
+          </div>
+          
+          <!-- Art Piece 3 -->
+          <div class="art-piece" data-art-id="3" onclick="showArtDetail(3)">
+            <div class="art-image" style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); display: flex; align-items: center; justify-content: center; color: var(--gold-mid);">
+              <i class="fas fa-palette" style="font-size: 4rem;"></i>
+            </div>
+            <div class="art-overlay">
+              <h3 class="art-title">Golden Reflections</h3>
+              <div class="art-year">2023</div>
+              <p class="art-desc">Interactive digital installation exploring light and shadow</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOM 2: CONTEMPORARY VAULT -->
+      <div class="room room-2" data-room-index="1">
+        <div class="room-title">
+          <h2>CONTEMPORARY VAULT</h2>
+          <div class="subtitle">DIGITAL INNOVATIONS</div>
+        </div>
+
+        <div class="art-grid">
+          <!-- Art Piece 4 -->
+          <div class="art-piece" data-art-id="4" onclick="showArtDetail(4)">
+            <div class="art-image" style="background: linear-gradient(135deg, #2d2d2d, #1a1a1a); display: flex; align-items: center; justify-content: center;">
+              <div style="text-align: center; color: var(--gold-light); padding: 20px;">
+                <i class="fas fa-robot" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                <h4 style="margin: 0;">AI Genesis</h4>
+              </div>
+            </div>
+            <div class="art-overlay">
+              <h3 class="art-title">AI Genesis</h3>
+              <div class="art-year">2023</div>
+              <p class="art-desc">Machine learning meets traditional artistry — limited edition NFT</p>
+            </div>
+          </div>
+          
+          <!-- Art Piece 5 -->
+          <div class="art-piece" data-art-id="5" onclick="showArtDetail(5)">
+            <div class="art-image" style="background: linear-gradient(135deg, #333, #222); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+              <i class="fas fa-code-branch" style="font-size: 4rem;"></i>
+            </div>
+            <div class="art-overlay">
+              <h3 class="art-title">Digital Weave</h3>
+              <div class="art-year">2024</div>
+              <p class="art-desc">Generative art exploring the intersection of code and creativity</p>
+            </div>
+          </div>
+          
+          <!-- Art Piece 6 -->
+          <div class="art-piece" data-art-id="6" onclick="showArtDetail(6)">
+            <div class="art-image" style="background: linear-gradient(45deg, #252525, #151515); display: flex; align-items: center; justify-content: center;">
+              <div style="color: var(--gold-mid); text-align: center;">
+                <i class="fas fa-network-wired" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                <div>Neural Pathways</div>
+              </div>
+            </div>
+            <div class="art-overlay">
+              <h3 class="art-title">Neural Pathways</h3>
+              <div class="art-year">2023</div>
+              <p class="art-desc">Interactive projection mapping exploring consciousness</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOM 3: LUMINOUS CHAMBER -->
+      <div class="room room-3" data-room-index="2">
+        <div class="room-title">
+          <h2>LUMINOUS CHAMBER</h2>
+          <div class="subtitle">IMMERSIVE INSTALLATIONS</div>
+        </div>
+
+        <div class="art-grid">
+          <!-- Art Piece 7 -->
+          <div class="art-piece" data-art-id="7" onclick="showArtDetail(7)">
+            <div class="art-image" style="background: linear-gradient(135deg, #1a1a1a, #0a0a0a); display: flex; align-items: center; justify-content: center;">
+              <div style="color: var(--primary); text-align: center;">
+                <i class="fas fa-lightbulb" style="font-size: 3.5rem; margin-bottom: 15px;"></i>
+                <h4 style="margin: 0;">Luminous Field</h4>
+              </div>
+            </div>
+            <div class="art-overlay">
+              <h3 class="art-title">Luminous Field</h3>
+              <div class="art-year">2024</div>
+              <p class="art-desc">Kinetic light installation responding to viewer movement</p>
+            </div>
+          </div>
+          
+          <!-- Art Piece 8 -->
+          <div class="art-piece" data-art-id="8" onclick="showArtDetail(8)">
+            <div class="art-image" style="background: linear-gradient(135deg, #222, #111); display: flex; align-items: center; justify-content: center; color: var(--gold-light);">
+              <i class="fas fa-water" style="font-size: 4rem;"></i>
+            </div>
+            <div class="art-overlay">
+              <h3 class="art-title">Digital Tides</h3>
+              <div class="art-year">2023</div>
+              <p class="art-desc">Projection mapping simulating aquatic environments</p>
+            </div>
+          </div>
+          
+          <!-- Art Piece 9 -->
+          <div class="art-piece" data-art-id="9" onclick="showArtDetail(9)">
+            <div class="art-image" style="background: linear-gradient(45deg, #2a2a2a, #1a1a1a); display: flex; align-items: center; justify-content: center;">
+              <div style="color: var(--gold-mid); text-align: center;">
+                <i class="fas fa-infinity" style="font-size: 3.5rem; margin-bottom: 15px;"></i>
+                <div>Eternal Loop</div>
+              </div>
+            </div>
+            <div class="art-overlay">
+              <h3 class="art-title">Eternal Loop</h3>
+              <div class="art-year">2024</div>
+              <p class="art-desc">Generative sound and visual installation exploring infinity</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROOM INDICATOR -->
+    <div class="room-indicator">
+      <div class="room-dot active" data-room="0" onclick="goToRoom(0)">
+        <span class="room-label">Golden Hall</span>
+      </div>
+      <div class="room-dot" data-room="1" onclick="goToRoom(1)">
+        <span class="room-label">Contemporary Vault</span>
+      </div>
+      <div class="room-dot" data-room="2" onclick="goToRoom(2)">
+        <span class="room-label">Luminous Chamber</span>
+      </div>
+    </div>
+
+    <!-- NAVIGATION CONTROLS -->
+    <div class="room-nav">
+      <button class="nav-btn" id="prev-room">
+        <i class="fas fa-chevron-left" style="margin-right: 8px;"></i>
+        Previous Room
+      </button>
+      <button class="nav-btn" id="next-room">
+        Next Room
+        <i class="fas fa-chevron-right" style="margin-left: 8px;"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ART DETAIL MODAL -->
+  <div class="art-modal" id="artModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalArtTitle">Artwork Title</h3>
+        <button class="close-modal" onclick="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER NOTE -->
+  <footer style="position:absolute;right:20px;bottom:20px;color:#6d6d6d;font-size:12px;z-index:20;pointer-events:none;">
+    <div>Use ← → arrows or click dots to navigate • Click artworks for details</div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // DOM Elements
+    const startBtn = document.getElementById('start-tour');
+    const hero = document.getElementById('hero');
+    const gallery = document.getElementById('virtual-gallery');
+    const galleryContainer = document.getElementById('gallery-container');
+    const prevBtn = document.getElementById('prev-room');
+    const nextBtn = document.getElementById('next-room');
+    const backToHero = document.getElementById('backToHero');
+    const roomDots = document.querySelectorAll('.room-dot');
+    const artModal = document.getElementById('artModal');
+
+    // Gallery State
+    let currentRoom = 0;
+    const totalRooms = 3;
+
+    // Art Data
+    const artworks = {
+      1: {
+        title: "Concierge",
+        year: "2024",
+        medium: "Digital Mixed Media",
+        size: "120cm × 90cm",
+        description: "A reimagined digital classic exploring the intersection of traditional service and modern luxury. This piece uses layered digital techniques to create depth and texture reminiscent of oil paintings, while incorporating contemporary digital elements.",
+        artist: "Bultimore Digital Collective",
+        price: "Available upon request"
+      },
+      2: {
+        title: "Achievement",
+        year: "2021",
+        medium: "Archival Digital Print",
+        size: "100cm × 150cm",
+        description: "Capturing moments of triumph through digital brushstrokes, this piece represents the culmination of creative endeavor. The archival quality ensures this digital artwork will maintain its vibrancy for generations.",
+        artist: "Bultimore Studio",
+        price: "Edition of 50"
+      },
+      3: {
+        title: "Golden Reflections",
+        year: "2023",
+        medium: "Interactive Digital Installation",
+        size: "Variable Dimensions",
+        description: "An immersive installation that responds to viewer presence, creating dynamic reflections using projection mapping and motion sensors. The gold elements shift and change based on ambient light and movement.",
+        artist: "Interactive Arts Lab",
+        price: "Installation Commission"
+      },
+      4: {
+        title: "AI Genesis",
+        year: "2023",
+        medium: "Generative AI Art, NFT",
+        size: "Digital",
+        description: "Where machine learning algorithms meet human creativity. This piece was co-created with a neural network trained on classical art, resulting in unique patterns that evolve over time.",
+        artist: "Bultimore AI Division",
+        price: "Limited Edition NFT"
+      },
+      5: {
+        title: "Digital Weave",
+        year: "2024",
+        medium: "Generative Code Art",
+        size: "Variable",
+        description: "Created using custom algorithms that generate intricate patterns based on mathematical principles. Each viewing reveals new details in the ever-changing digital tapestry.",
+        artist: "Code & Canvas Collective",
+        price: "Algorithm License Available"
+      },
+      6: {
+        title: "Neural Pathways",
+        year: "2023",
+        medium: "Projection Mapping",
+        size: "Site-specific",
+        description: "Exploring the concept of consciousness through light and shadow. This installation creates the illusion of neural networks firing and connecting in real-time.",
+        artist: "NeuroArt Collective",
+        price: "Museum Installation"
+      },
+      7: {
+        title: "Luminous Field",
+        year: "2024",
+        medium: "Kinetic Light Installation",
+        size: "300cm × 300cm × 200cm",
+        description: "An array of programmable LEDs creates a field of light that responds to viewer movement. The installation explores how light can define and transform space.",
+        artist: "Light Space Studio",
+        price: "Exhibition Only"
+      },
+      8: {
+        title: "Digital Tides",
+        year: "2023",
+        medium: "Projection Mapping with Sound",
+        size: "Variable",
+        description: "Simulating aquatic environments through synchronized projection and sound. The piece creates a meditative experience of being underwater, with gentle movements and ambient sounds.",
+        artist: "Aqua Digital Arts",
+        price: "Commission Based"
+      },
+      9: {
+        title: "Eternal Loop",
+        year: "2024",
+        medium: "Generative Sound & Visual",
+        size: "Variable",
+        description: "An exploration of infinity through never-repeating patterns and ambient soundscapes. The installation creates a sense of timelessness and continuity.",
+        artist: "Infinite Arts Collective",
+        price: "Museum Collection"
+      }
+    };
+
+    // Initialize Gallery
+    function initGallery() {
+      updateRoomIndicator();
+      updateNavButtons();
+    }
+
+    // Navigate to Room
+    function goToRoom(roomIndex) {
+      currentRoom = Math.max(0, Math.min(totalRooms - 1, roomIndex));
+      
+      // Smooth transition
+      galleryContainer.style.transform = `translateX(-${currentRoom * 100}vw)`;
+      
+      // Update indicator
+      updateRoomIndicator();
+      
+      // Update navigation buttons
+      updateNavButtons();
+    }
+
+    // Update Room Indicator
+    function updateRoomIndicator() {
+      roomDots.forEach((dot, index) => {
+        if (index === currentRoom) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    // Update Navigation Buttons
+    function updateNavButtons() {
+      prevBtn.disabled = currentRoom === 0;
+      nextBtn.disabled = currentRoom === totalRooms - 1;
+      
+      // Visual feedback for disabled buttons
+      if (prevBtn.disabled) {
+        prevBtn.style.opacity = '0.5';
+        prevBtn.style.cursor = 'not-allowed';
+      } else {
+        prevBtn.style.opacity = '1';
+        prevBtn.style.cursor = 'pointer';
+      }
+      
+      if (nextBtn.disabled) {
+        nextBtn.style.opacity = '0.5';
+        nextBtn.style.cursor = 'not-allowed';
+      } else {
+        nextBtn.style.opacity = '1';
+        nextBtn.style.cursor = 'pointer';
+      }
+    }
+
+    // Show Art Detail Modal
+    function showArtDetail(artId) {
+      const art = artworks[artId];
+      if (!art) return;
+      
+      // Set modal title
+      document.getElementById('modalArtTitle').textContent = `${art.title} (${art.year})`;
+      
+      // Create modal content
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <div class="modal-image" style="background-image: url('${artId <= 2 ? `img/${artId === 1 ? 'concierge' : 'HEADER-ARCHIEVEMENT1'}.jpg` : ''}'); background-color: #1a1a1a;">
+          ${artId > 2 ? `
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--gold-light);">
+              <i class="fas fa-${artId === 4 ? 'robot' : artId === 5 ? 'code-branch' : artId === 6 ? 'network-wired' : artId === 7 ? 'lightbulb' : artId === 8 ? 'water' : 'infinity'}" 
+                 style="font-size: 5rem; opacity: 0.7;"></i>
+            </div>
+          ` : ''}
+        </div>
+        <div class="modal-info">
+          <h4>About This Artwork</h4>
+          <p>${art.description}</p>
+          
+          <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+            <div>
+              <h4>Details</h4>
+              <p><strong>Artist:</strong> ${art.artist}</p>
+              <p><strong>Medium:</strong> ${art.medium}</p>
+              <p><strong>Dimensions:</strong> ${art.size}</p>
+            </div>
+            <div>
+              <h4>Acquisition</h4>
+              <p><strong>Availability:</strong> ${art.price}</p>
+              <p><strong>Year Created:</strong> ${art.year}</p>
+              <p><strong>Location:</strong> Room ${Math.floor((artId - 1) / 3) + 1}</p>
+            </div>
+          </div>
+          
+          <div style="margin-top: 30px; padding: 20px; background: rgba(212,175,55,0.1); border-radius: 10px;">
+            <h4>Viewing Information</h4>
+            <p>This artwork is part of our rotating digital exhibition. For purchase inquiries or to schedule a private viewing, please contact our gallery.</p>
+            <button style="background: linear-gradient(90deg, var(--gold-mid), var(--primary)); 
+                    border: none; color: #111; padding: 10px 20px; border-radius: 8px; 
+                    font-weight: 600; margin-top: 10px; cursor: pointer;">
+              <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+              Inquire About This Piece
+            </button>
+          </div>
+        </div>
+      `;
+      
+      // Show modal
+      artModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close Modal
+    function closeModal() {
+      artModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Event Listeners
+    startBtn.addEventListener('click', () => {
+      hero.style.display = 'none';
+      gallery.style.display = 'block';
+      gallery.setAttribute('aria-hidden', 'false');
+      initGallery();
+      
+      // Add entrance animation
+      galleryContainer.style.transition = 'none';
+      galleryContainer.style.transform = 'translateX(0)';
+      setTimeout(() => {
+        galleryContainer.style.transition = 'transform var(--room-transition)';
+      }, 50);
+    });
+
+    backToHero.addEventListener('click', () => {
+      gallery.style.display = 'none';
+      hero.style.display = '';
+      gallery.setAttribute('aria-hidden', 'true');
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentRoom > 0) {
+        goToRoom(currentRoom - 1);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentRoom < totalRooms - 1) {
+        goToRoom(currentRoom + 1);
+      }
+    });
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      if (gallery.style.display === 'block') {
+        if (e.key === 'ArrowRight' && currentRoom < totalRooms - 1) {
+          goToRoom(currentRoom + 1);
+        }
+        if (e.key === 'ArrowLeft' && currentRoom > 0) {
+          goToRoom(currentRoom - 1);
+        }
+        if (e.key === 'Escape') {
+          closeModal();
+          if (artModal.style.display === 'none') {
+            backToHero.click();
+          }
+        }
+        if (e.key === '1' || e.key === '2' || e.key === '3') {
+          const roomIndex = parseInt(e.key) - 1;
+          if (roomIndex < totalRooms) {
+            goToRoom(roomIndex);
+          }
+        }
+      }
+    });
+
+    // Close modal when clicking outside
+    artModal.addEventListener('click', (e) => {
+      if (e.target === artModal) {
+        closeModal();
+      }
+    });
+
+    // Touch Swipe for Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    galleryContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    galleryContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0 && currentRoom < totalRooms - 1) {
+          // Swipe left - next room
+          goToRoom(currentRoom + 1);
+        } else if (diff < 0 && currentRoom > 0) {
+          // Swipe right - previous room
+          goToRoom(currentRoom - 1);
+        }
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      initGallery();
+      
+      // Add hover effect to art pieces
+      const artPieces = document.querySelectorAll('.art-piece');
+      artPieces.forEach(piece => {
+        piece.addEventListener('mouseenter', function() {
+          this.classList.add('active');
+        });
+        
+        piece.addEventListener('mouseleave', function() {
+          this.classList.remove('active');
+        });
+      });
+      
+      // Add tooltip to room dots
+      roomDots.forEach(dot => {
+        dot.addEventListener('mouseenter', function() {
+          const label = this.querySelector('.room-label');
+          if (label) {
+            label.style.opacity = '1';
+          }
+        });
+        
+        dot.addEventListener('mouseleave', function() {
+          const label = this.querySelector('.room-label');
+          if (label && !this.classList.contains('active')) {
+            label.style.opacity = '0';
+          }
+        });
+      });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      goToRoom(currentRoom);
+    });
+  </script>
+
+</body>
+</html>

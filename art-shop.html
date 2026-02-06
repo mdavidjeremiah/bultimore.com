@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bultimore Art Shop</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  <!-- Lightbox -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.4.1/index.min.css" rel="stylesheet" />
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+
+:root {
+    --primary: #d4af37;
+    --dark: #996515;
+    --light:rgb(244, 239, 201); /* Primrose */
+    --gold-light: #FFE8A5;
+    --gold-mid: #D4AF37;
+    --gold-dark: #996515;
+    ---nav-h: 75px;
+  }
+
+  /* TOPBAR */
+.topbar {
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-mid));
+  padding: 6px 0;
+  color: white;
+  font-weight: 500;
+}
+@media (max-width: 991px) {
+.topbar {
+  display: none !important;
+  height: 0 !important;
+}
+}
+
+/* HEADER BACKGROUND IMAGE */
+.site-header {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: var(--nav-h);
+background-image: url("assets/digital_archieve.jpg");
+z-index: 1000;
+}
+
+
+/* When scrolled: fade white overlay but keep image behind */
+.site-header.scrolled {
+  background-color: rgba(255,255,255,0.92);
+  background-blend-mode: lighten;
+}
+.hero,
+.hero-slider,
+.main-banner {
+margin-top: var(--nav-h);
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    font-family: "Segoe UI", sans-serif;
+    overflow-x: hidden;
+    padding-top: 0 !important;
+  }
+    /* --- HEADER (DP.LA Style) --- */
+  header {
+    background-color: #003049;
+    color: white;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* NAVBAR */
+.main-nav {
+height: var(--nav-h);
+display: flex;
+align-items: center;
+}
+.navbar-nav .nav-link {
+padding: 6px 10px;
+line-height: 1.1;
+}
+/* Brand */
+.navbar-brand {
+  color: white;
+  font-weight: 700;
+  font-size: 1.6rem;
+  transition: 0.3s;
+  }
+  .navbar-brand:hover {
+color: var(--dark);
+}
+.site-header.scrolled .navbar-brand {
+  color: var(--dark);
+}
+
+/* NAV LINKS */
+.nav-link {
+  text-decoration: none !important;
+  white-space: nowrap;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 6px;
+  transition: 0.3s;
+  position: relative;
+  line-height: 1;
+}
+
+.nav-link:hover,
+.nav-link:active,
+.nav-link:focus {
+  text-decoration: none !important;
+  color: var(--dark);
+}
+.navbar-brand:hover {
+color: var(--dark);
+}
+/* Animated underline */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--dark));
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+
+  /* --- HERO SEARCH SECTION --- */
+.hero-slider {
+position: relative;
+height: 100vh;
+min-height: 600px;
+}
+
+.hero-slider .slide {
+position: absolute;
+inset: 0;
+background-size: contain;
+background-position: top center;
+background-repeat: no-repeat;
+opacity: 0;
+transition: opacity 1s ease;
+}
+
+.hero-slider .slide.active {
+opacity: 1;
+}
+
+.hero,
+.hero-slider,
+.main-banner {
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+.hero-content {
+position: relative;
+z-index: 2;
+color: white;
+max-width: 800px;
+padding-top: 40px;
+margin-top: 0;
+}
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
+
+  .search-bar input {
+    width: 50%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  .search-bar button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #fcbf49;
+    color: #003049;
+    font-weight: 600;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+
+  .search-bar button:hover {
+    background-color: #f77f00;
+    color: white;
+  }
+
+  /* --- BROWSE BY TOPIC (Lower Section) --- */
+  .topics {
+    padding: 60px 80px;
+    background-color: #f9f9f9;
+  }
+
+  .topics h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #003049;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .topic-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .topic-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+
+  .topic-card h3 {
+    font-size: 1.1rem;
+    margin: 15px 0;
+    color: #003049;
+  }
+  
+  .site-header,
+  .navbar {
+min-height: 75px;
+padding-top: 8px;
+padding-bottom: 8px;
+position: sticky;
+}
+
+.site-header.scrolled {
+background: white;
+box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+
+/* HAMBURGER */
+.custom-toggler {
+  border: none;
+  background: transparent;
+  display: none;
+}
+.hamburger {
+  width: 24px;
+  height: 20px;
+  position: relative;
+}
+.hamburger span {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: white;
+  left: 0;
+  transition: 0.3s;
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 8px; }
+.hamburger span:nth-child(3) { top: 16px; }
+
+.site-header.scrolled .hamburger span {
+  background: var(--dark);
+}
+
+.custom-toggler.open .hamburger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.custom-toggler.open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.custom-toggler.open .hamburger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media(max-width: 992px){
+  .custom-toggler { display: block; }
+  .navbar-collapse {
+    background: white;
+    padding: 20px;
+  }
+  .nav-link {
+    color: var(--dark) !important;
+  }
+}
+footer {
+    background: var(--dark);
+    color: var(--light);
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  /* FORCE hover color over Bootstrap */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:active {
+color:rgb(20, 18, 18) !important;
+}
+
+/* Force brand hover */
+.navbar .navbar-brand:hover {
+color: rgb(20, 18, 18) !important;
+}
+
+.page,
+.layout,
+.container-main {
+display: flex;
+flex-direction: column;
+width: 100%;
+}
+.sidebar,
+.left-nav,
+.nav-column {
+position: relative;
+width: 100%;
+max-width: none;
+}
+.main-content {
+display: flex;
+flex-direction: column;
+}
+/* Fix top bar visibility */
+.topbar, .site-header {
+overflow: visible !important;
+height: auto !important;
+z-index: 10000;
+}
+
+/* Force horizontal main nav */
+.navbar-nav {
+gap: 14px;
+align-items: center;
+}
+.navbar-nav .nav-item {
+display: inline-flex;
+}
+.navbar-nav {
+list-style: none !important;
+padding-left: 0 !important;
+margin-left: 0 !important;
+}
+
+.navbar-nav li {
+list-style: none !important;
+}
+/* Desktop: horizontal */
+@media (min-width: 992px) {
+.navbar-expand-lg .navbar-collapse {
+  display: flex !important;
+}
+.navbar-expand-lg .navbar-nav {
+  flex-direction: row !important;
+  gap: 16px;
+}
+}
+
+/* Mobile: let Bootstrap control it */
+@media (max-width: 991px) {
+.navbar-collapse {
+  display: none;
+}
+.navbar-collapse.show {
+  display: block;
+  background: white;
+  padding: 12px 0;
+}
+.navbar-nav {
+  flex-direction: column !important;
+}
+}
+.navbar-toggler {
+border: none;
+}
+
+.navbar-toggler-icon {
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+/* Remove any accidental top spacing before hero */
+.hero,
+.hero-slider,
+.main-banner,
+section:first-of-type {
+margin-top: 0 !important;
+padding-top: 0 !important;
+}
+/* === 2V PACK STYLE FOR MOBILE NAV === */
+@media (max-width: 991px) {
+.navbar-collapse {
+  margin-top: 8px;
+  width: 50vw;          /* half of viewport */
+  max-width: 320px;     /* optional safety cap */
+  margin-left: auto;   /* align to right */
+  margin-right: 8px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.12),
+    0 2px 6px rgba(0,0,0,0.08);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+.navbar-collapse .nav-link {
+  padding: 14px 18px;
+  font-size: 1.05rem;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.navbar-collapse .nav-link:last-child {
+  border-bottom: none;
+}
+
+.navbar-collapse .nav-link:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.navbar-collapse .dropdown-menu {
+  border-radius: 10px;
+  margin: 6px 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+}
+
+</style>
+</head>
+<body>
+<!-- TOPBAR -->
+<div class='topbar d-none d-lg-block'>
+  <div class='container d-flex justify-content-between align-items-center'>
+      <div class='d-flex align-items-center gap-4'>
+        <small><i class='fa fa-map-marker-alt me-2'></i>02 Cleopus Drive, Nalumunye</small>
+        <small><i class='fa fa-phone-alt me-2'></i>+256 776 533 872</small>
+        <small><i class='fa fa-envelope-open me-2'></i>info@bultimore.com</small>
+      </div>
+      <div class='d-flex align-items-center gap-2'>
+        <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-twitter'></i></a>
+        <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-facebook-f'></i></a>
+        <a class='btn btn-sm btn-outline-light rounded-circle' href='#'><i class='fab fa-instagram'></i></a>
+      </div>
+  </div>
+</div>
+
+<!-- HEADER WITH BACKGROUND IMAGE -->
+<header class='site-header'>
+  <nav class='navbar navbar-expand-lg main-nav navbar-dark'>
+    <div class='container d-flex align-items-center justify-content-between'>
+      <a class='navbar-brand' href='index.html'>Bultimore</a>
+
+      <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navMenu"
+      aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+      <div class='collapse navbar-collapse justify-content-center' id='navMenu'>
+        <ul class='navbar-nav align-items-center gap-3'>
+          <li><a class='nav-link' href='index.html'>Home</a></li>
+          <li><a class='nav-link' href='gallery.html'>Art Gallery</a></li>
+          <li><a class='nav-link' href='archive.html'>Archive</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button"
+               data-bs-toggle="dropdown" aria-expanded="false">
+              Programs
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+              <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+              <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+              <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+            </ul>
+          </li>            
+          <li><a class='nav-link' href='library.html'>Library</a></li>
+          <li><a class='nav-link' href='contact.html'>Contacts</a></li>
+          <li><a class='nav-link' href='donate.html'>Donate</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<section class="hero-slider">
+  <div class="slide active" style="background-image:url('img/slide1.PNG')"></div>
+  <div class="slide" style="background-image:url('img/slide2.PNG')"></div>
+  <div class="slide" style="background-image:url('img/slide3.PNG')"></div>
+</section>
+
+  <!-- Hero -->
+  <section class="hero-shop">
+    <div class="content">
+      <h1>Discover Our Collection</h1>
+      <p>Browse exclusive artworks curated for collectors. Join live auctions and own a masterpiece.</p>
+      <a href="#collection" class="btn btn-warning px-4 py-2">Explore Collection</a>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <div class="container filter-bar mt-4">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-4">
+        <select id="filterCategory" class="form-select">
+          <option value="all">All Categories</option>
+          <option value="painting">Painting</option>
+          <option value="digital">Digital</option>
+          <option value="sculpture">Sculpture</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select id="filterYear" class="form-select">
+          <option value="all">All Years</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <select id="filterPrice" class="form-select">
+          <option value="all">All Prices</option>
+          <option value="low">Below UGX 500K</option>
+          <option value="mid">UGX 500K – 1M</option>
+          <option value="high">Above UGX 1M</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Art Collection -->
+  <section id="collection" class="py-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Artwork 1 -->
+        <div class="col-md-6 col-lg-4 art-item" data-category="digital" data-year="2024" data-price="high">
+          <div class="card-art" data-fslightbox="gallery" href="img/concierge.jpg">
+            <span class="auction-badge" data-countdown="2025-11-10T18:00:00">Live Auction</span>
+            <img src="img/concierge.jpg" alt="Concierge Art">
+            <div class="card-body">
+              <h5 class="card-title">Concierge</h5>
+              <p class="mb-1 text-muted">By Artist Name • 2024</p>
+              <p class="price">UGX 1,200,000</p>
+              <button class="buy-btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artwork 2 -->
+        <div class="col-md-6 col-lg-4 art-item" data-category="painting" data-year="2021" data-price="mid">
+          <div class="card-art" data-fslightbox="gallery" href="img/HEADER-ARCHIEVEMENT1.jpg">
+            <span class="auction-badge" data-countdown="2025-11-09T15:00:00">Live Auction</span>
+            <img src="img/HEADER-ARCHIEVEMENT1.jpg" alt="Achievement Art">
+            <div class="card-body">
+              <h5 class="card-title">Achievement</h5>
+              <p class="mb-1 text-muted">By Artist Name • 2021</p>
+              <p class="price">UGX 950,000</p>
+              <button class="buy-btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">Buy Now</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Buy Now Modal -->
+  <div class="modal fade" id="buyNowModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title">Buy This Artwork</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confirm your interest to purchase this artwork. A representative will contact you for payment and delivery.</p>
+          <input type="text" class="form-control mb-3" placeholder="Your Name">
+          <input type="email" class="form-control mb-3" placeholder="Email Address">
+          <button class="btn btn-warning w-100">Confirm Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4 bg-dark text-light text-center">
+    <div class="container">
+      <small>© 2025 Bultimore Art Gallery • All Rights Reserved</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.4.1/index.min.js"></script>
+  <script>
+    // --- Countdown timers ---
+    document.querySelectorAll('[data-countdown]').forEach(el => {
+      const end = new Date(el.dataset.countdown).getTime();
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const diff = end - now;
+        if (diff <= 0) { el.textContent = 'Auction Ended'; clearInterval(timer); return; }
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+        el.textContent = `Live Auction • ${h}h ${m}m ${s}s`;
+      }, 1000);
+    });
+
+    // --- Filter logic ---
+    function filterArtworks() {
+      const cat = document.getElementById('filterCategory').value;
+      const year = document.getElementById('filterYear').value;
+      const price = document.getElementById('filterPrice').value;
+      document.querySelectorAll('.art-item').forEach(item => {
+        const matchCat = (cat === 'all' || item.dataset.category === cat);
+        const matchYear = (year === 'all' || item.dataset.year === year);
+        const matchPrice = (price === 'all' || item.dataset.price === price);
+        item.style.display = (matchCat && matchYear && matchPrice) ? '' : 'none';
+      });
+    }
+    document.querySelectorAll('#filterCategory,#filterYear,#filterPrice')
+      .forEach(el => el.addEventListener('change', filterArtworks));
+  </script>
+</body>
+</html>

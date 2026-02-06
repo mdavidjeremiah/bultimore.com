@@ -1,0 +1,988 @@
+(cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF'
+diff --git a/css/admin.css b/css/admin.css
+--- a/css/admin.css
++++ b/css/admin.css
+@@ -0,0 +1,981 @@
++/* Admin panel styles */
++.admin-body {
++    background: #f5f6fa;
++    margin: 0;
++    padding: 0;
++}
++
++/* Admin Header */
++.admin-header {
++    background: #2c3e50;
++    color: white;
++    padding: 0;
++    position: fixed;
++    top: 0;
++    left: 0;
++    right: 0;
++    z-index: 1000;
++    height: 70px;
++}
++
++.admin-nav {
++    display: flex;
++    justify-content: space-between;
++    align-items: center;
++    padding: 0 2rem;
++    height: 100%;
++}
++
++.admin-logo {
++    display: flex;
++    align-items: center;
++    gap: 1rem;
++}
++
++.admin-logo a {
++    font-size: 1.8rem;
++    font-weight: 700;
++    color: white;
++    text-decoration: none;
++}
++
++.admin-badge {
++    background: #e74c3c;
++    color: white;
++    padding: 0.25rem 0.75rem;
++    border-radius: 15px;
++    font-size: 0.8rem;
++    font-weight: 600;
++}
++
++.admin-user {
++    display: flex;
++    align-items: center;
++    gap: 1rem;
++}
++
++.logout-btn {
++    background: #e74c3c;
++    color: white;
++    border: none;
++    padding: 0.5rem;
++    border-radius: 6px;
++    cursor: pointer;
++    transition: background 0.3s ease;
++}
++
++.logout-btn:hover {
++    background: #c0392b;
++}
++
++/* Admin Sidebar */
++.admin-sidebar {
++    position: fixed;
++    top: 70px;
++    left: 0;
++    width: 250px;
++    height: calc(100vh - 70px);
++    background: white;
++    border-right: 1px solid #ddd;
++    overflow-y: auto;
++    z-index: 999;
++}
++
++.admin-menu {
++    padding: 2rem 0;
++}
++
++.admin-menu-item {
++    display: flex;
++    align-items: center;
++    gap: 1rem;
++    padding: 1rem 2rem;
++    text-decoration: none;
++    color: #666;
++    transition: all 0.3s ease;
++    border-left: 4px solid transparent;
++}
++
++.admin-menu-item:hover {
++    background: #f8f9fa;
++    color: #2c3e50;
++}
++
++.admin-menu-item.active {
++    background: rgba(231, 76, 60, 0.1);
++    color: #e74c3c;
++    border-left-color: #e74c3c;
++    font-weight: 600;
++}
++
++.admin-menu-item i {
++    width: 20px;
++    text-align: center;
++}
++
++/* Main Content */
++.admin-main {
++    margin-left: 250px;
++    margin-top: 70px;
++    padding: 2rem;
++    min-height: calc(100vh - 70px);
++}
++
++.admin-section {
++    display: none;
++}
++
++.admin-section.active {
++    display: block;
++}
++
++.section-header {
++    display: flex;
++    justify-content: space-between;
++    align-items: center;
++    margin-bottom: 2rem;
++    padding-bottom: 1rem;
++    border-bottom: 2px solid #eee;
++}
++
++.section-header h1 {
++    font-size: 2.5rem;
++    color: #2c3e50;
++    margin: 0;
++}
++
++.section-header p {
++    color: #666;
++    margin: 0.5rem 0 0 0;
++}
++
++/* Dashboard Widgets */
++.quick-stats {
++    display: grid;
++    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
++    gap: 2rem;
++    margin-bottom: 3rem;
++}
++
++.stat-widget {
++    background: white;
++    padding: 2rem;
++    border-radius: 15px;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
++    display: flex;
++    align-items: center;
++    gap: 1.5rem;
++}
++
++.stat-widget .stat-icon {
++    width: 60px;
++    height: 60px;
++    background: linear-gradient(135deg, #e74c3c, #c0392b);
++    border-radius: 50%;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    color: white;
++    font-size: 1.5rem;
++}
++
++.stat-content {
++    flex: 1;
++}
++
++.stat-number {
++    font-size: 2rem;
++    font-weight: 700;
++    color: #2c3e50;
++    margin-bottom: 0.25rem;
++}
++
++.stat-label {
++    color: #666;
++    font-weight: 500;
++}
++
++.dashboard-widgets {
++    display: grid;
++    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
++    gap: 2rem;
++}
++
++.widget {
++    background: white;
++    padding: 2rem;
++    border-radius: 15px;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
++}
++
++.widget h3 {
++    margin-bottom: 1.5rem;
++    color: #2c3e50;
++    font-size: 1.3rem;
++}
++
++/* Tables */
++.admin-table {
++    width: 100%;
++    background: white;
++    border-radius: 15px;
++    overflow: hidden;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
++    border-collapse: collapse;
++}
++
++.admin-table th {
++    background: #f8f9fa;
++    padding: 1rem;
++    text-align: left;
++    font-weight: 600;
++    color: #2c3e50;
++    border-bottom: 2px solid #eee;
++}
++
++.admin-table td {
++    padding: 1rem;
++    border-bottom: 1px solid #eee;
++    vertical-align: middle;
++}
++
++.admin-table tr:hover {
++    background: #f8f9fa;
++}
++
++.table-image {
++    width: 60px;
++    height: 60px;
++    object-fit: cover;
++    border-radius: 8px;
++}
++
++.table-actions {
++    display: flex;
++    gap: 0.5rem;
++}
++
++.table-btn {
++    background: #f8f9fa;
++    border: 1px solid #ddd;
++    padding: 0.5rem;
++    border-radius: 4px;
++    cursor: pointer;
++    transition: all 0.3s ease;
++    color: #666;
++}
++
++.table-btn:hover {
++    background: #e74c3c;
++    color: white;
++    border-color: #e74c3c;
++}
++
++.table-btn.danger {
++    color: #dc3545;
++}
++
++.table-btn.danger:hover {
++    background: #dc3545;
++    color: white;
++}
++
++/* Form Styles */
++.form-row {
++    display: grid;
++    grid-template-columns: 1fr 1fr;
++    gap: 1rem;
++}
++
++.admin-section .form-input {
++    border: 2px solid #ddd;
++    border-radius: 8px;
++    padding: 0.75rem;
++    font-size: 1rem;
++    transition: border-color 0.3s ease;
++}
++
++.admin-section .form-input:focus {
++    outline: none;
++    border-color: #e74c3c;
++}
++
++/* Settings Grid */
++.settings-grid {
++    display: grid;
++    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
++    gap: 2rem;
++}
++
++.settings-card {
++    background: white;
++    padding: 2rem;
++    border-radius: 15px;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
++}
++
++.settings-card h3 {
++    margin-bottom: 1.5rem;
++    color: #2c3e50;
++    font-size: 1.3rem;
++}
++
++/* Analytics Widgets */
++.analytics-widgets {
++    display: grid;
++    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
++    gap: 2rem;
++}
++
++.analytics-widget {
++    background: white;
++    padding: 2rem;
++    border-radius: 15px;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
++}
++
++.analytics-widget h3 {
++    margin-bottom: 1.5rem;
++    color: #2c3e50;
++}
++
++/* Donations Summary */
++.donations-summary {
++    display: flex;
++    gap: 2rem;
++    align-items: center;
++}
++
++.summary-item {
++    display: flex;
++    flex-direction: column;
++    gap: 0.25rem;
++}
++
++.summary-label {
++    font-size: 0.9rem;
++    color: #666;
++}
++
++.summary-value {
++    font-size: 1.5rem;
++    font-weight: 700;
++    color: #e74c3c;
++}
++
++/* Status Badges */
++.status-badge {
++    padding: 0.25rem 0.75rem;
++    border-radius: 15px;
++    font-size: 0.8rem;
++    font-weight: 600;
++    text-transform: uppercase;
++}
++
++.status-badge.completed {
++    background: #d4edda;
++    color: #155724;
++}
++
++.status-badge.pending {
++    background: #fff3cd;
++    color: #856404;
++}
++
++.status-badge.failed {
++    background: #f8d7da;
++    color: #721c24;
++}
++
++.status-badge.featured {
++    background: #e74c3c;
++    color: white;
++}
++
++/* Activity Feed */
++.activity-item {
++    display: flex;
++    align-items: center;
++    gap: 1rem;
++    padding: 1rem;
++    border-bottom: 1px solid #eee;
++}
++
++.activity-item:last-child {
++    border-bottom: none;
++}
++
++.activity-icon {
++    width: 40px;
++    height: 40px;
++    background: #f8f9fa;
++    border-radius: 50%;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    color: #666;
++}
++
++.activity-content {
++    flex: 1;
++}
++
++.activity-title {
++    font-weight: 600;
++    color: #2c3e50;
++    margin-bottom: 0.25rem;
++}
++
++.activity-meta {
++    font-size: 0.8rem;
++    color: #999;
++}
++
++/* Empty States */
++.empty-state {
++    text-align: center;
++    padding: 3rem;
++    color: #666;
++}
++
++.empty-state i {
++    font-size: 3rem;
++    margin-bottom: 1rem;
++    color: #ddd;
++}
++
++.empty-state h3 {
++    margin-bottom: 0.5rem;
++    color: #333;
++}
++
++/* Charts and Graphs */
++.chart-container {
++    height: 300px;
++    background: #f8f9fa;
++    border-radius: 10px;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    color: #666;
++    margin-bottom: 1rem;
++}
++
++.metric-row {
++    display: flex;
++    justify-content: space-between;
++    align-items: center;
++    padding: 0.75rem 0;
++    border-bottom: 1px solid #eee;
++}
++
++.metric-row:last-child {
++    border-bottom: none;
++}
++
++.metric-label {
++    font-weight: 500;
++    color: #2c3e50;
++}
++
++.metric-value {
++    font-weight: 600;
++    color: #e74c3c;
++}
++
++/* Responsive Design */
++@media (max-width: 768px) {
++    .admin-sidebar {
++        transform: translateX(-100%);
++        transition: transform 0.3s ease;
++    }
++
++    .admin-sidebar.mobile-open {
++        transform: translateX(0);
++    }
++
++    .admin-main {
++        margin-left: 0;
++        padding: 1rem;
++    }
++
++    .section-header {
++        flex-direction: column;
++        gap: 1rem;
++        align-items: flex-start;
++    }
++
++    .quick-stats {
++        grid-template-columns: repeat(2, 1fr);
++        gap: 1rem;
++    }
++
++    .dashboard-widgets {
++        grid-template-columns: 1fr;
++    }
++
++    .settings-grid {
++        grid-template-columns: 1fr;
++    }
++
++    .analytics-widgets {
++        grid-template-columns: 1fr;
++    }
++
++    .form-row {
++        grid-template-columns: 1fr;
++    }
++
++    .donations-summary {
++        flex-direction: column;
++        gap: 1rem;
++        align-items: flex-start;
++    }
++
++    .admin-nav {
++        padding: 0 1rem;
++    }
++
++    .admin-table {
++        font-size: 0.9rem;
++    }
++
++    .admin-table th,
++    .admin-table td {
++        padding: 0.75rem 0.5rem;
++    }
++}
++
++@media (max-width: 480px) {
++    .quick-stats {
++        grid-template-columns: 1fr;
++    }
++
++    .stat-widget {
++        padding: 1.5rem;
++    }
++
++    .widget {
++        padding: 1.5rem;
++    }
++
++    .settings-card {
++        padding: 1.5rem;
++    }
++
++    .modal-content {
++        margin: 2% auto;
++        width: 95%;
++        padding: 1.5rem;
++    }
++
++    .table-actions {
++        flex-direction: column;
++        gap: 0.25rem;
++    }
++}
++
++/* Mobile Menu Toggle */
++.mobile-menu-toggle {
++    display: none;
++    background: none;
++    border: none;
++    color: white;
++    font-size: 1.5rem;
++    cursor: pointer;
++}
++
++@media (max-width: 768px) {
++    .mobile-menu-toggle {
++        display: block;
++    }
++}
++
++/* Loading States */
++.admin-loading {
++    display: flex;
++    align-items: center;
++    justify-content: center;
++    padding: 3rem;
++    color: #666;
++}
++
++.admin-loading i {
++    font-size: 2rem;
++    margin-right: 1rem;
++    animation: spin 1s linear infinite;
++}
++
++/* Success/Error Messages for Admin */
++.admin-message {
++    position: fixed;
++    top: 90px;
++    right: 2rem;
++    padding: 1rem 1.5rem;
++    border-radius: 8px;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
++    z-index: 2000;
++    display: flex;
++    align-items: center;
++    gap: 0.5rem;
++    font-weight: 500;
++}
++
++.admin-message.success {
++    background: #d4edda;
++    color: #155724;
++    border-left: 4px solid #28a745;
++}
++
++.admin-message.error {
++    background: #f8d7da;
++    color: #721c24;
++    border-left: 4px solid #dc3545;
++}
++
++/* Bulk Actions */
++.bulk-actions {
++    background: white;
++    padding: 1rem 2rem;
++    border-radius: 10px;
++    margin-bottom: 2rem;
++    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
++    display: none;
++}
++
++.bulk-actions.active {
++    display: flex;
++    align-items: center;
++    gap: 1rem;
++}
++
++.bulk-select-all {
++    margin-right: 1rem;
++}
++
++.bulk-action-btn {
++    background: #6c757d;
++    color: white;
++    border: none;
++    padding: 0.5rem 1rem;
++    border-radius: 4px;
++    cursor: pointer;
++    transition: background 0.3s ease;
++}
++
++.bulk-action-btn:hover {
++    background: #5a6268;
++}
++
++.bulk-action-btn.danger {
++    background: #dc3545;
++}
++
++.bulk-action-btn.danger:hover {
++    background: #c82333;
++}
++
++/* File Upload Areas */
++.upload-zone {
++    border: 2px dashed #ddd;
++    border-radius: 10px;
++    padding: 2rem;
++    text-align: center;
++    background: #fafafa;
++    transition: all 0.3s ease;
++    cursor: pointer;
++    margin-bottom: 1rem;
++}
++
++.upload-zone:hover,
++.upload-zone.dragover {
++    border-color: #e74c3c;
++    background: rgba(231, 76, 60, 0.05);
++}
++
++.upload-zone i {
++    font-size: 2rem;
++    color: #ddd;
++    margin-bottom: 1rem;
++}
++
++.upload-zone h4 {
++    margin-bottom: 0.5rem;
++    color: #2c3e50;
++}
++
++.upload-zone p {
++    color: #666;
++}
++
++/* Progress Bars */
++.progress-container {
++    background: #f8f9fa;
++    border-radius: 10px;
++    padding: 1rem;
++    margin-bottom: 1rem;
++}
++
++.progress-bar-admin {
++    background: #e9ecef;
++    height: 8px;
++    border-radius: 4px;
++    overflow: hidden;
++    margin-bottom: 0.5rem;
++}
++
++.progress-fill-admin {
++    background: linear-gradient(135deg, #e74c3c, #c0392b);
++    height: 100%;
++    transition: width 0.3s ease;
++}
++
++.progress-text {
++    display: flex;
++    justify-content: space-between;
++    font-size: 0.9rem;
++    color: #666;
++}
++
++/* Data Export */
++.export-options {
++    background: white;
++    padding: 2rem;
++    border-radius: 15px;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
++    margin-bottom: 2rem;
++}
++
++.export-options h3 {
++    margin-bottom: 1.5rem;
++    color: #2c3e50;
++}
++
++.export-buttons {
++    display: flex;
++    gap: 1rem;
++    flex-wrap: wrap;
++}
++
++.export-btn {
++    background: #28a745;
++    color: white;
++    border: none;
++    padding: 0.75rem 1.5rem;
++    border-radius: 8px;
++    cursor: pointer;
++    transition: all 0.3s ease;
++    display: flex;
++    align-items: center;
++    gap: 0.5rem;
++}
++
++.export-btn:hover {
++    background: #218838;
++    transform: translateY(-2px);
++}
++
++/* Quick Actions */
++.quick-actions {
++    position: fixed;
++    bottom: 2rem;
++    right: 2rem;
++    display: flex;
++    flex-direction: column;
++    gap: 1rem;
++    z-index: 1000;
++}
++
++.quick-action-btn {
++    width: 60px;
++    height: 60px;
++    border-radius: 50%;
++    border: none;
++    color: white;
++    font-size: 1.2rem;
++    cursor: pointer;
++    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
++    transition: all 0.3s ease;
++}
++
++.quick-action-btn:hover {
++    transform: scale(1.1);
++}
++
++.quick-action-btn.primary {
++    background: #e74c3c;
++}
++
++.quick-action-btn.secondary {
++    background: #3498db;
++}
++
++.quick-action-btn.success {
++    background: #28a745;
++}
++
++/* Toggle Switches */
++.toggle-switch {
++    position: relative;
++    display: inline-block;
++    width: 50px;
++    height: 24px;
++}
++
++.toggle-switch input {
++    opacity: 0;
++    width: 0;
++    height: 0;
++}
++
++.toggle-slider {
++    position: absolute;
++    cursor: pointer;
++    top: 0;
++    left: 0;
++    right: 0;
++    bottom: 0;
++    background-color: #ccc;
++    transition: 0.3s;
++    border-radius: 24px;
++}
++
++.toggle-slider:before {
++    position: absolute;
++    content: "";
++    height: 18px;
++    width: 18px;
++    left: 3px;
++    bottom: 3px;
++    background-color: white;
++    transition: 0.3s;
++    border-radius: 50%;
++}
++
++input:checked + .toggle-slider {
++    background-color: #e74c3c;
++}
++
++input:checked + .toggle-slider:before {
++    transform: translateX(26px);
++}
++
++/* Search and Filters */
++.admin-filters {
++    background: white;
++    padding: 1.5rem 2rem;
++    border-radius: 10px;
++    margin-bottom: 2rem;
++    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
++    display: flex;
++    gap: 1rem;
++    align-items: center;
++    flex-wrap: wrap;
++}
++
++.admin-search {
++    flex: 1;
++    min-width: 250px;
++}
++
++.admin-search input {
++    width: 100%;
++    padding: 0.75rem 1rem;
++    border: 2px solid #ddd;
++    border-radius: 8px;
++    font-size: 1rem;
++}
++
++.filter-group {
++    display: flex;
++    gap: 0.5rem;
++    align-items: center;
++}
++
++.filter-select {
++    padding: 0.75rem;
++    border: 2px solid #ddd;
++    border-radius: 8px;
++    background: white;
++    cursor: pointer;
++}
++
++/* Notification System */
++.notification-center {
++    position: relative;
++}
++
++.notification-bell {
++    background: none;
++    border: none;
++    color: white;
++    font-size: 1.2rem;
++    cursor: pointer;
++    position: relative;
++}
++
++.notification-count {
++    position: absolute;
++    top: -5px;
++    right: -5px;
++    background: #e74c3c;
++    color: white;
++    border-radius: 50%;
++    width: 18px;
++    height: 18px;
++    font-size: 0.7rem;
++    display: flex;
++    align-items: center;
++    justify-content: center;
++}
++
++.notification-dropdown {
++    position: absolute;
++    top: 100%;
++    right: 0;
++    background: white;
++    border: 1px solid #ddd;
++    border-radius: 10px;
++    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
++    width: 300px;
++    max-height: 400px;
++    overflow-y: auto;
++    z-index: 1001;
++    display: none;
++}
++
++.notification-dropdown.active {
++    display: block;
++}
++
++.notification-item {
++    padding: 1rem;
++    border-bottom: 1px solid #eee;
++    cursor: pointer;
++    transition: background 0.3s ease;
++}
++
++.notification-item:hover {
++    background: #f8f9fa;
++}
++
++.notification-item:last-child {
++    border-bottom: none;
++}
++
++.notification-title {
++    font-weight: 600;
++    margin-bottom: 0.25rem;
++    color: #2c3e50;
++}
++
++.notification-text {
++    font-size: 0.9rem;
++    color: #666;
++    margin-bottom: 0.25rem;
++}
++
++.notification-time {
++    font-size: 0.8rem;
++    color: #999;
++}
+EOF
+)

@@ -1,0 +1,182 @@
+/* =====================================================
+   ROOT (ONLY ALLOWED VARIABLES)
+   ===================================================== */
+
+:root {
+  --primary: #FDDC5C;
+  --dark: #996515;
+  --light: #F6F1C1; /* Primrose */
+}
+
+/* =====================================================
+   GLOBAL BASE
+   ===================================================== */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  background-color: #ffffff;
+  color: #111111;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* =====================================================
+   ICON THEME BUTTONS (TOPBAR)
+   ===================================================== */
+
+.theme-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.theme-icon:hover,
+.theme-icon.active {
+  background-color: var(--primary);
+  color: #111111;
+}
+
+/* =====================================================
+   LIGHT THEME (DEFAULT)
+   ===================================================== */
+
+body.theme-light {
+  background-color: var(--light);
+  color: #111111;
+}
+
+body.theme-light a {
+  color: #111111;
+}
+
+/* =====================================================
+   DARK THEME (AFFECTS EVERYTHING)
+   ===================================================== */
+
+body.theme-dark {
+  background-color: var(--dark);
+  color: #ffffff;
+}
+
+/* Typography */
+body.theme-dark h1,
+body.theme-dark h2,
+body.theme-dark h3,
+body.theme-dark h4,
+body.theme-dark h5,
+body.theme-dark h6,
+body.theme-dark p,
+body.theme-dark span,
+body.theme-dark li {
+  color: #ffffff;
+}
+
+/* Links */
+body.theme-dark a {
+  color: var(--primary);
+}
+
+body.theme-dark a:hover {
+  color: #ffffff;
+}
+
+/* =====================================================
+   TOPBAR + NAVBAR
+   ===================================================== */
+
+.topbar,
+.site-header,
+.navbar {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body.theme-dark .topbar,
+body.theme-dark .site-header,
+body.theme-dark .navbar {
+  background-color: var(--dark);
+}
+
+/* Navbar text */
+body.theme-dark .navbar-brand,
+body.theme-dark .nav-link {
+  color: var(--primary);
+}
+
+body.theme-dark .nav-link:hover {
+  color: #ffffff;
+}
+
+/* =====================================================
+   CONTENT SURFACES (CARDS / SECTIONS)
+   ===================================================== */
+
+.card,
+.archive-item,
+section {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body.theme-dark .card,
+body.theme-dark .archive-item {
+  background-color: #7d5f10;
+  color: #ffffff;
+}
+
+/* =====================================================
+   FORMS
+   ===================================================== */
+
+input,
+textarea,
+select {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+body.theme-dark input,
+body.theme-dark textarea,
+body.theme-dark select {
+  background-color: #7d5f10;
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.btn {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+body.theme-dark .btn {
+  background-color: transparent;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+body.theme-dark .btn:hover {
+  background-color: var(--primary);
+  color: #111111;
+}
+
+/* =====================================================
+   FOOTER (INCLUDED)
+   ===================================================== */
+
+footer {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body.theme-dark footer {
+  background-color: #5c440c;
+  color: #ffffff;
+}

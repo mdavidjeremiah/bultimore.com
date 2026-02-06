@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artmart | Art Marketplace & Auctions | Bultimore Foundation</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-gold: #d4af37;
+      --gold-light: #FFE8A5;
+      --gold-mid: #D4AF37;
+      --gold-dark: #996515;
+      --dark-brown: #996515;
+      --black: #1a1a1a;
+      --light-bg: #fefefe;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      padding-top: 0;
+      overflow-x: hidden;
+      background: #f8f9fa;
+    }
+    
+    /* TOPBAR STYLING */
+    .topbar {
+      background: linear-gradient(135deg, var(--dark-brown) 0%, #7a5312 100%);
+      color: white;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1001;
+    }
+    
+    .topbar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-gold), transparent 30%, transparent 70%, var(--primary-gold));
+    }
+    
+    .topbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .topbar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    
+    .topbar-item i {
+      color: var(--primary-gold);
+      font-size: 0.9rem;
+      width: 18px;
+      text-align: center;
+    }
+    
+    /* Social links with rounded borders and spacing */
+    .topbar-social {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .topbar-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .topbar-social a:hover {
+      color: var(--primary-gold);
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    /* NAVBAR STYLING */
+    .navbar-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--dark-brown);
+      transition: var(--transition);
+    }
+    
+    .navbar-brand span {
+      color: var(--primary-gold);
+    }
+    
+    .nav-link {
+      color: var(--dark-brown) !important;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 10px 16px !important;
+      margin: 0 5px;
+      position: relative;
+      transition: var(--transition);
+      border-radius: 4px;
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+      color: var(--black) !important;
+    }
+    
+    /* Golden underline animation */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+      transition: var(--transition);
+      opacity: 0;
+    }
+    
+    .nav-link:hover::after {
+      width: 80%;
+      opacity: 1;
+    }
+    
+    /* Navbar toggler */
+    .navbar-toggler {
+      border: none;
+      padding: 8px;
+    }
+    
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+    
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(153, 101, 21, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+    
+    /* Mobile menu */
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border-radius: 0 0 10px 10px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        margin-top: 10px;
+      }
+      
+      .nav-link {
+        color: var(--dark-brown) !important;
+        margin: 5px 0;
+      }
+    }
+    
+    /* HERO SECTION */
+    .hero-section {
+      position: relative;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1928&q=80') center/cover no-repeat;
+      color: white;
+      padding: 120px 0 80px;
+      margin-top: 0;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary-gold);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    
+    /* SECTION STYLING */
+    .section-padding {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-brown);
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-gold);
+      border-radius: 2px;
+    }
+    
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      line-height: 1.8;
+    }
+    
+    /* FEATURED ART CARD */
+    .featured-art {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      margin-top: -100px;
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .featured-content {
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+    
+    @media (max-width: 768px) {
+      .featured-content {
+        flex-direction: column;
+        padding: 2rem;
+      }
+    }
+    
+    .featured-img {
+      flex: 1;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .featured-img img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .featured-img img:hover {
+      transform: scale(1.05);
+    }
+    
+    .featured-details {
+      flex: 1;
+    }
+    
+    .featured-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--dark-brown);
+      margin-bottom: 1rem;
+    }
+    
+    .featured-artist {
+      color: var(--primary-gold);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    
+    .featured-description {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    
+    .bid-info {
+      background: #f9f7f0;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    
+    .current-bid {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--dark-brown);
+      margin-bottom: 0.5rem;
+    }
+    
+    .bid-label {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    /* COUNTDOWN TIMER STYLES */
+    .countdown-timer {
+      font-family: 'Courier New', monospace;
+      font-weight: 700;
+      color: var(--primary-gold);
+      background: rgba(212, 175, 55, 0.1);
+      padding: 8px 15px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .countdown-timer.expiring {
+      color: #ff4444;
+      background: rgba(255, 68, 68, 0.1);
+      animation: pulse 1.5s infinite;
+    }
+    
+    .countdown-timer.ended {
+      color: #666;
+      background: rgba(102, 102, 102, 0.1);
+    }
+    
+    .countdown-timer i {
+      font-size: 1.1rem;
+    }
+    
+    .countdown-unit {
+      display: inline-block;
+      min-width: 25px;
+      text-align: center;
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    
+    .bid-info .countdown-timer {
+      font-size: 1.4rem;
+      padding: 12px 20px;
+      margin: 15px 0;
+    }
+    
+    .auction-meta .countdown-timer {
+      font-size: 0.9rem;
+      padding: 6px 10px;
+    }
+    
+    .bid-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      border: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      display: inline-block;
+      text-decoration: none;
+    }
+    
+    .bid-btn:hover {
+      background: var(--gold-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+      color: var(--dark-brown);
+    }
+    
+    /* AUCTION GRID */
+    .auction-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 3rem;
+    }
+    
+    .auction-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    
+    .auction-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary-gold);
+    }
+    
+    .auction-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--primary-gold);
+    }
+    
+    .auction-content {
+      padding: 1.5rem;
+    }
+    
+    .auction-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+      margin-bottom: 0.5rem;
+    }
+    
+    .auction-artist {
+      color: var(--primary-gold);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .auction-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .auction-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--dark-brown);
+    }
+    
+    /* ARTICLES SECTION */
+    .articles-section {
+      background: #f9f7f0;
+    }
+    
+    .articles-slider {
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    
+    .articles-track {
+      display: flex;
+      gap: 30px;
+      transition: transform 0.5s ease;
+    }
+    
+    .article-card {
+      flex: 0 0 calc(33.333% - 20px);
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+    }
+    
+    @media (max-width: 992px) {
+      .article-card {
+        flex: 0 0 calc(50% - 15px);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .article-card {
+        flex: 0 0 100%;
+      }
+    }
+    
+    .article-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .article-content {
+      padding: 1.5rem;
+    }
+    
+    .article-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    
+    .article-meta {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .article-excerpt {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .article-link {
+      color: var(--primary-gold);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
+    }
+    
+    .article-link:hover {
+      color: var(--dark-brown);
+    }
+    
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 2rem;
+    }
+    
+    .slider-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: white;
+      border: 2px solid var(--primary-gold);
+      color: var(--primary-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .slider-btn:hover {
+      background: var(--primary-gold);
+      color: white;
+    }
+    
+    /* FAQ SECTION */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 3rem;
+    }
+    
+    .faq-item {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid var(--primary-gold);
+    }
+    
+    .faq-question {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+      margin-bottom: 1rem;
+    }
+    
+    .faq-answer {
+      color: #666;
+      line-height: 1.7;
+    }
+    
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, var(--dark-brown) 0%, #7a5312 100%);
+      color: white;
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.05"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+      background-size: cover;
+    }
+    
+    .cta-title {
+      color: var(--primary-gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-text {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.95;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      transition: var(--transition);
+      border: 2px solid var(--primary-gold);
+      font-size: 1.1rem;
+    }
+    
+    .cta-btn.outline {
+      background: transparent;
+      color: var(--primary-gold);
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+    }
+    
+    .cta-btn.outline:hover {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+    }
+    
+    /* FOOTER STYLING */
+    .footer {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #ddd;
+      padding: 60px 0 30px;
+      position: relative;
+    }
+    
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-gold), var(--dark-brown), var(--primary-gold));
+    }
+    
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .footer-tagline {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--primary-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .footer-social a:hover {
+      background: var(--primary-gold);
+      color: #1a1a1a;
+      transform: translateY(-3px);
+    }
+    
+    .footer-heading {
+      color: var(--primary-gold);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--primary-gold);
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #bbb;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-gold);
+      padding-left: 5px;
+    }
+    
+    .footer-contact {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+      color: #bbb;
+    }
+    
+    .footer-contact i {
+      color: var(--primary-gold);
+      font-size: 1.1rem;
+      width: 20px;
+      margin-top: 3px;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      margin-top: 1.5rem;
+    }
+    
+    .newsletter-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
+    }
+    
+    .newsletter-input::placeholder {
+      color: #999;
+    }
+    
+    .newsletter-btn {
+      background: var(--primary-gold);
+      color: var(--dark-brown);
+      border: none;
+      padding: 0 20px;
+      border-radius: 0 4px 4px 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-btn:hover {
+      background: var(--gold-light);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+      font-size: 0.9rem;
+    }
+    
+    .payment-methods {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    
+    .payment-methods i {
+      font-size: 1.5rem;
+      margin: 0 5px;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      .hero-stats {
+        gap: 2rem;
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .cta-title {
+        font-size: 2.2rem;
+      }
+      
+      .footer-brand {
+        font-size: 2rem;
+      }
+      
+      .topbar-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      
+      .topbar-left {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cta-btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar d-none d-lg-block">
+    <div class="container">
+      <div class="topbar-content">
+        <div class="topbar-left">
+          <div class="topbar-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>02 Cleopus Drive, Nalumunye</span>
+          </div>
+          <div class="topbar-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>+256 776 533 872</span>
+          </div>
+          <div class="topbar-item">
+            <i class="fas fa-envelope-open"></i>
+            <span>info@bultimore.com</span>
+          </div>
+        </div>
+        <div class="topbar-social">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-wrapper">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span>Bultimore</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Art Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archive.html">Archive</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="library.html">Library</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="programsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Programs
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="programsDropdown">
+              <li><a class="dropdown-item" href="push.html">Ingram's Push</a></li>
+              <li><a class="dropdown-item" href="dear-dgtr.html">Dear Daughter</a></li>
+              <li><a class="dropdown-item" href="programs.html">All Programs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="artmart_bultimore.html">Artmart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contacts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="donate.html">Donate</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Artmart Marketplace & Auctions</h1>
+        <p class="hero-subtitle">
+          Discover original artworks, join live auctions, and connect with artists worldwide. 
+          Invest in creativity while supporting cultural preservation.
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">65,000+</span>
+            <span class="stat-label">Collectors</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1,500+</span>
+            <span class="stat-label">Collections</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">800+</span>
+            <span class="stat-label">Auctions</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">$2.5M+</span>
+            <span class="stat-label">Total Sales</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTWORK -->
+  <div class="container">
+    <div class="featured-art">
+      <div class="featured-content">
+        <div class="featured-img">
+          <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Featured Artwork">
+        </div>
+        <div class="featured-details">
+          <h2 class="featured-title">Tropical Dreams</h2>
+          <span class="featured-artist">By Frida Kahlo • Oil on Canvas</span>
+          <p class="featured-description">
+            A vibrant masterpiece that invites you to dream. This painting captures the essence of tropical beauty 
+            with rich colors and intricate details that tell a story of cultural heritage and artistic vision.
+          </p>
+          <div class="bid-info">
+            <div class="current-bid">$200.00</div>
+            <span class="bid-label">Current Bid • 12 Bids</span>
+            <div class="countdown-timer" id="featuredCountdown" data-end="2025-09-20T12:00:00">
+              <i class="fas fa-clock"></i>
+              <span class="countdown-days">00</span>d 
+              <span class="countdown-hours">00</span>h 
+              <span class="countdown-minutes">00</span>m 
+              <span class="countdown-seconds">00</span>s
+            </div>
+            <a href="#bid" class="bid-btn">Place Your Bid</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE AUCTIONS -->
+  <section class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Live Auctions</h2>
+      <p class="section-subtitle">Join these exciting auctions ending soon. Don't miss your chance to own these unique pieces.</p>
+      
+      <div class="auction-grid">
+        <!-- Auction 1 -->
+        <div class="auction-card">
+          <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e388?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Picasso Masterpiece" class="auction-img">
+          <div class="auction-content">
+            <h3 class="auction-title">Cubist Portrait</h3>
+            <span class="auction-artist">Pablo Picasso</span>
+            <p>A masterpiece that invites you to dream, exploring the boundaries of cubist expression.</p>
+            <div class="auction-meta">
+              <div class="auction-price">$218.00</div>
+              <div class="countdown-timer" data-end="2025-09-18T12:00:00">
+                <i class="fas fa-clock"></i>
+                <span class="countdown-days">00</span>d 
+                <span class="countdown-hours">00</span>h 
+                <span class="countdown-minutes">00</span>m
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Auction 2 -->
+        <div class="auction-card">
+          <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Abstract" class="auction-img">
+          <div class="auction-content">
+            <h3 class="auction-title">Bright Colors on Summer Wind</h3>
+            <span class="auction-artist">Joan Miró</span>
+            <p>Mixed media piece capturing the vibrant energy of summer with abstract forms.</p>
+            <div class="auction-meta">
+              <div class="auction-price">$256.00</div>
+              <div class="countdown-timer" data-end="2025-09-25T18:00:00">
+                <i class="fas fa-clock"></i>
+                <span class="countdown-days">00</span>d 
+                <span class="countdown-hours">00</span>h 
+                <span class="countdown-minutes">00</span>m
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Auction 3 -->
+        <div class="auction-card">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="African Art" class="auction-img">
+          <div class="auction-content">
+            <h3 class="auction-title">Masai Warrior</h3>
+            <span class="auction-artist">Contemporary African Art</span>
+            <p>A powerful representation of Masai culture with traditional symbols and modern techniques.</p>
+            <div class="auction-meta">
+              <div class="auction-price">$189.00</div>
+              <div class="countdown-timer" data-end="2025-10-05T14:00:00">
+                <i class="fas fa-clock"></i>
+                <span class="countdown-days">00</span>d 
+                <span class="countdown-hours">00</span>h 
+                <span class="countdown-minutes">00</span>m
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Auction 4 -->
+        <div class="auction-card">
+          <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Abstract Expression" class="auction-img">
+          <div class="auction-content">
+            <h3 class="auction-title">Abstract Expression</h3>
+            <span class="auction-artist">Jackson Pollock</span>
+            <p>Drip painting technique creating unique patterns and emotional depth.</p>
+            <div class="auction-meta">
+              <div class="auction-price">$325.00</div>
+              <div class="countdown-timer" data-end="2025-09-22T15:30:00">
+                <i class="fas fa-clock"></i>
+                <span class="countdown-days">00</span>d 
+                <span class="countdown-hours">00</span>h 
+                <span class="countdown-minutes">00</span>m
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Auction 5 -->
+        <div class="auction-card">
+          <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Renaissance Portrait" class="auction-img">
+          <div class="auction-content">
+            <h3 class="auction-title">Renaissance Portrait</h3>
+            <span class="auction-artist">Leonardo da Vinci</span>
+            <p>Classic portrait study with masterful use of light and shadow techniques.</p>
+            <div class="auction-meta">
+              <div class="auction-price">$450.00</div>
+              <div class="countdown-timer" data-end="2025-09-19T09:00:00">
+                <i class="fas fa-clock"></i>
+                <span class="countdown-days">00</span>d 
+                <span class="countdown-hours">00</span>h 
+                <span class="countdown-minutes">00</span>m
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Auction 6 (ending soon example) -->
+        <div class="auction-card">
+          <img src="https://images.unsplash.com/photo-1543857778-c4a1a569e388?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Sculpture" class="auction-img">
+          <div class="auction-content">
+            <h3 class="auction-title">Modern Sculpture</h3>
+            <span class="auction-artist">Henry Moore</span>
+            <p>Bronze sculpture exploring organic forms and negative space.</p>
+            <div class="auction-meta">
+              <div class="auction-price">$275.00</div>
+              <div class="countdown-timer" data-end="2025-09-17T23:59:59">
+                <i class="fas fa-clock"></i>
+                <span class="countdown-days">00</span>d 
+                <span class="countdown-hours">00</span>h 
+                <span class="countdown-minutes">00</span>m
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLES SECTION -->
+  <section class="articles-section section-padding">
+    <div class="container">
+      <h2 class="section-title">Latest Articles</h2>
+      <p class="section-subtitle">Thought pieces and insights from our art editors and market experts.</p>
+      
+      <div class="articles-slider">
+        <div class="articles-track" id="articlesTrack">
+          <!-- Article 1 -->
+          <div class="article-card">
+            <img src="https://images.unsplash.com/photo-1578301978018-3005759f48f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Art Market Trends" class="article-img">
+            <div class="article-content">
+              <h3 class="article-title">The State of Contemporary African Art Markets</h3>
+              <div class="article-meta">31 July, 2024 • 2 Comments</div>
+              <p class="article-excerpt">A look at rising trends and the rapid evolution of the modern African art market.</p>
+              <a href="#" class="article-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <!-- Article 2 -->
+          <div class="article-card">
+            <img src="https://images.unsplash.com/photo-1548438294-1ad5d5f4f063?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Art as Therapy" class="article-img">
+            <div class="article-content">
+              <h3 class="article-title">Art as Therapy: Healing Through Creativity</h3>
+              <div class="article-meta">25 July, 2024 • 6 Comments</div>
+              <p class="article-excerpt">Exploring how artistic expression contributes to mental health and wellbeing.</p>
+              <a href="#" class="article-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <!-- Article 3 -->
+          <div class="article-card">
+            <img src="https://images.unsplash.com/photo-1536922246289-88c42f957773?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Digital Art" class="article-img">
+            <div class="article-content">
+              <h3 class="article-title">Digital Art & NFTs Explained for Traditional Collectors</h3>
+              <div class="article-meta">18 July, 2024 • 3 Comments</div>
+              <p class="article-excerpt">Understanding the intersection of traditional art collecting and digital innovation.</p>
+              <a href="#" class="article-link">Read More <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="slider-nav">
+          <button class="slider-btn prev-slide">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-btn next-slide">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know about buying, selling, and bidding on Artmart.</p>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3 class="faq-question">How does bidding work?</h3>
+          <p class="faq-answer">Register an account, browse available auctions, place your bid, and if you're the highest bidder when the auction closes, you win the artwork. We'll notify you immediately.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3 class="faq-question">What payment methods are accepted?</h3>
+          <p class="faq-answer">We accept credit cards (Visa, Mastercard, AmEx), bank transfers, PayPal, and select digital wallets. All transactions are secure and encrypted.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3 class="faq-question">How is artwork authenticated?</h3>
+          <p class="faq-answer">Every artwork undergoes a rigorous authentication process by our team of experts. We verify provenance, condition, and authenticity before listing.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3 class="faq-question">What about shipping and insurance?</h3>
+          <p class="faq-answer">We handle professional packing, worldwide shipping, and full insurance for all artworks. Shipping costs are calculated at checkout based on destination.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3 class="faq-question">Can I sell my artwork on Artmart?</h3>
+          <p class="faq-answer">Yes! Artists and collectors can submit artwork for consideration. Our curation team reviews all submissions for quality and market suitability.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3 class="faq-question">What is your return policy?</h3>
+          <p class="faq-answer">We offer a 7-day return policy if the artwork doesn't match the description. Returns must be in original condition with all documentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">Ready to Start Your Art Collection?</h2>
+      <p class="cta-text">
+        Join thousands of collectors who have discovered incredible artworks through Artmart. 
+        Whether you're a first-time buyer or an experienced collector, we're here to guide your journey.
+      </p>
+      <div class="cta-buttons">
+        <a href="signup.html" class="cta-btn">Create Free Account</a>
+        <a href="#catalog" class="cta-btn outline">Browse All Artworks</a>
+        <a href="contact.html" class="cta-btn outline">Contact Our Advisors</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <!-- Brand Column -->
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <span class="footer-brand">Artmart by Bultimore</span>
+          <p class="footer-tagline">
+            Connecting artists, collectors, and art enthusiasts worldwide. 
+            Supporting cultural preservation through sustainable art commerce.
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <!-- Quick Links Column -->
+        <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="gallery.html"><i class="fas fa-palette"></i> Art Gallery</a></li>
+            <li><a href="artmart_bultimore.html"><i class="fas fa-gavel"></i> Auctions</a></li>
+            <li><a href="programs.html"><i class="fas fa-cogs"></i> Our Programs</a></li>
+            <li><a href="donate.html"><i class="fas fa-heart"></i> Donate</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Column -->
+        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+          <h4 class="footer-heading">Contact Info</h4>
+          <div class="footer-contact">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>02 Cleopus Drive, Nalumunye</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-phone-alt"></i>
+            <div>+256 776 533 872</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-envelope"></i>
+            <div>art@bultimore.com</div>
+          </div>
+          <div class="footer-contact">
+            <i class="fas fa-clock"></i>
+            <div>Mon-Fri: 9AM-5PM EAT</div>
+          </div>
+        </div>
+        
+        <!-- Newsletter Column -->
+        <div class="col-lg-3">
+          <h4 class="footer-heading">Stay Updated</h4>
+          <p>Subscribe for auction alerts, new artist features, and art market insights.</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <button type="submit" class="newsletter-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Artmart by Bultimore Foundation. All rights reserved.</p>
+        <div class="payment-methods">
+          <span>Accepted Payments:</span>
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-amex"></i>
+          <i class="fab fa-cc-paypal"></i>
+        </div>
+        <p>Transforming communities through art, education, and cultural exchange.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+  // Auction Countdown Timer Functionality
+  class AuctionCountdown {
+    constructor(element) {
+      this.element = element;
+      this.endTime = new Date(element.dataset.end);
+      this.daysElement = element.querySelector('.countdown-days');
+      this.hoursElement = element.querySelector('.countdown-hours');
+      this.minutesElement = element.querySelector('.countdown-minutes');
+      this.secondsElement = element.querySelector('.countdown-seconds');
+      this.updateInterval = null;
+      this.init();
+    }
+
+    init() {
+      this.update();
+      this.updateInterval = setInterval(() => this.update(), 1000);
+    }
+
+    update() {
+      const now = new Date();
+      const diff = this.endTime - now;
+
+      if (diff <= 0) {
+        this.handleEnded();
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      this.updateDisplay(days, hours, minutes, seconds);
+      this.updateStyles(diff);
+    }
+
+    updateDisplay(days, hours, minutes, seconds) {
+      if (this.daysElement) this.daysElement.textContent = this.pad(days);
+      if (this.hoursElement) this.hoursElement.textContent = this.pad(hours);
+      if (this.minutesElement) this.minutesElement.textContent = this.pad(minutes);
+      if (this.secondsElement) this.secondsElement.textContent = this.pad(seconds);
+    }
+
+    updateStyles(diff) {
+      // Remove all style classes
+      this.element.classList.remove('expiring', 'ended');
+
+      // Add expiring class if less than 24 hours remaining
+      if (diff < 24 * 60 * 60 * 1000) {
+        this.element.classList.add('expiring');
+      }
+    }
+
+    handleEnded() {
+      this.element.classList.remove('expiring');
+      this.element.classList.add('ended');
+      
+      if (this.daysElement) this.daysElement.textContent = '00';
+      if (this.hoursElement) this.hoursElement.textContent = '00';
+      if (this.minutesElement) this.minutesElement.textContent = '00';
+      if (this.secondsElement) this.secondsElement.textContent = '00';
+      
+      this.element.innerHTML = '<i class="fas fa-ban"></i> Auction Ended';
+      
+      if (this.updateInterval) {
+        clearInterval(this.updateInterval);
+      }
+    }
+
+    pad(number) {
+      return number.toString().padStart(2, '0');
+    }
+  }
+
+  // Initialize all countdown timers when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize countdown timers
+    const countdownElements = document.querySelectorAll('.countdown-timer');
+    const countdowns = [];
+    
+    countdownElements.forEach(element => {
+      countdowns.push(new AuctionCountdown(element));
+    });
+
+    // Articles Slider
+    const track = document.getElementById('articlesTrack');
+    const slides = Array.from(track.children);
+    const prevBtn = document.querySelector('.prev-slide');
+    const nextBtn = document.querySelector('.next-slide');
+    let currentSlide = 0;
+    
+    function updateSlider() {
+      const slideWidth = slides[0].getBoundingClientRect().width + 30;
+      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+    
+    if (prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlider();
+        }
+      });
+      
+      nextBtn.addEventListener('click', () => {
+        if (currentSlide < slides.length - getSlidesPerView()) {
+          currentSlide++;
+          updateSlider();
+        }
+      });
+    }
+    
+    function getSlidesPerView() {
+      if (window.innerWidth >= 992) return 3;
+      if (window.innerWidth >= 768) return 2;
+      return 1;
+    }
+    
+    window.addEventListener('resize', () => {
+      updateSlider();
+    });
+    
+    if (track) updateSlider();
+    
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('.newsletter-input').value;
+        if (email) {
+          alert('Thank you for subscribing to Artmart updates! You\'ll receive auction alerts and art market insights.');
+          this.querySelector('.newsletter-input').value = '';
+        }
+      });
+    }
+    
+    // Bid button functionality with countdown awareness
+    document.querySelectorAll('.bid-btn, .auction-card').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        // Don't trigger if clicking on the countdown timer itself
+        if (e.target.closest('.countdown-timer')) return;
+        
+        const isFeatured = this.closest('.featured-details');
+        const auctionCard = this.closest('.auction-card');
+        const countdownTimer = (isFeatured ? 
+          document.getElementById('featuredCountdown') :
+          auctionCard?.querySelector('.countdown-timer'));
+        
+        const artworkTitle = isFeatured ? 
+          document.querySelector('.featured-title').textContent :
+          auctionCard?.querySelector('.auction-title').textContent;
+        
+        if (artworkTitle) {
+          // Check if auction has ended
+          if (countdownTimer?.classList.contains('ended')) {
+            alert(`Sorry, the auction for "${artworkTitle}" has already ended.`);
+          } else {
+            const days = countdownTimer?.querySelector('.countdown-days')?.textContent || '00';
+            const hours = countdownTimer?.querySelector('.countdown-hours')?.textContent || '00';
+            const minutes = countdownTimer?.querySelector('.countdown-minutes')?.textContent || '00';
+            const timeRemaining = `${days}d ${hours}h ${minutes}m`;
+            
+            alert(`Placing a bid on "${artworkTitle}"\nTime remaining: ${timeRemaining}\n\nIn a real implementation, this would open a bidding form.`);
+          }
+        }
+      });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar-wrapper');
+      if (navbar) {
+        if (window.scrollY > 50) {
+          navbar.classList.add('navbar-solid');
+        } else {
+          navbar.classList.remove('navbar-solid');
+        }
+      }
+    });
+
+    // Add auction status indicator to page
+    function updateAuctionStatus() {
+      const activeAuctions = document.querySelectorAll('.countdown-timer:not(.ended)').length;
+      const endedAuctions = document.querySelectorAll('.countdown-timer.ended').length;
+      
+      // Create or update status indicator
+      let statusIndicator = document.getElementById('auctionStatusIndicator');
+      if (!statusIndicator) {
+        statusIndicator = document.createElement('div');
+        statusIndicator.id = 'auctionStatusIndicator';
+        statusIndicator.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: var(--dark-brown);
+          color: white;
+          padding: 10px 15px;
+          border-radius: 10px;
+          font-size: 0.9rem;
+          z-index: 1000;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        `;
+        document.body.appendChild(statusIndicator);
+      }
+      
+      statusIndicator.innerHTML = `
+        <i class="fas fa-gavel"></i>
+        <span>${activeAuctions} active • ${endedAuctions} ended</span>
+      `;
+    }
+
+    // Update status indicator every 30 seconds
+    setInterval(updateAuctionStatus, 30000);
+    updateAuctionStatus(); // Initial update
+  });
+  </script>
+</body>
+</html>
